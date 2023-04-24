@@ -48,12 +48,10 @@ export class ReservaService {
   ];
 
   
-  selectedReservation: Reserva | null = null;
+  selected: Reserva | null = null;
 
   selectReservation(reservation: Reserva): void {
-    this.selectedReservation = reservation;
+    this.selected = reservation;
     this.router.navigate(['/reservaPage'])
   }
-
-
 }

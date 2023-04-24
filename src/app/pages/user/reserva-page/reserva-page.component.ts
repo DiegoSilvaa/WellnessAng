@@ -2,6 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReservaService } from 'src/app/services/reserva.service';
 
+
+interface Reserva {
+  id: number;
+  description: string;
+  image: string;
+}
+
 @Component({
   selector: 'app-reserva-page',
   templateUrl: './reserva-page.component.html',
@@ -9,7 +16,7 @@ import { ReservaService } from 'src/app/services/reserva.service';
 })
 export class ReservaPageComponent  {
   constructor(private router: Router, private resService: ReservaService) { }
-
+  selectedReserva = this.resService.selected;
   
   selected?: Date;
   
