@@ -1,0 +1,32 @@
+
+<div class="main-container">
+    <div class="rate-container">
+        <img class="logo" src="../../assets/centro1.png" alt="Logo">
+    </div>
+    <div class="content-container">
+        <h2 class="title">Centro Deportivo 1</h2>
+        <p class="subtitle">Cancha 1.1</p>
+        <div class="reserva-container">
+          <div class="calendar-cont">
+            <mat-card class="demo-inline-calendar-card">
+              <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+          </div>
+          <div class="child-container">
+            <h3 class="subtitle">Horas Disponibles</h3>
+            <p>Selected date: {{selected}}</p>
+            <div class="chip-container">
+              <mat-chip-listbox aria-label="Horas">
+                <mat-chip-option *ngFor="let hour of hours" [selected]="hour.selected" (click)="toggleSelection(hour)">
+                  {{ hour.label }}
+                </mat-chip-option>
+              </mat-chip-listbox>
+              <div class="btt-cont">
+                <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" routerLink="/reservaConf"> Reserva </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</div>  

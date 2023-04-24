@@ -1,0 +1,43 @@
+
+<div class="main-container">
+    <div class="rate-container">
+        <img class="logo" src="../../assets/centro1.png" alt="Logo">
+    </div>
+    <div class="content-container">
+        <h2 class="title">Centro Deportivo 1</h2>
+        <p class="subtitle">Cancha 1.1</p>
+        <div class="reserva-container">
+            <div class="form-cont">
+                <form (submit)="agregarPersona()">
+                    <mat-form-field>
+                      <input matInput placeholder="Nombre" [(ngModel)]="nuevoNombre" name="nombre">
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" type="submit">Añadir persona</button>
+                </form>
+            </div>
+
+            <p>Personas añadidas:</p>
+            <div class="table-container">
+                <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="nombre">
+                    <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                    <mat-cell *matCellDef="let persona">{{persona.nombre}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="acciones">
+                    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+                    <mat-cell *matCellDef="let persona">
+                    <button mat-icon-button color="warn" (click)="eliminarPersona(persona)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: columnas;"></mat-row>
+                </mat-table>
+            </div>
+            <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" routerLink="/home"> Reserva </button>
+
+        </div>
+      </div>
+      
+</div>  
