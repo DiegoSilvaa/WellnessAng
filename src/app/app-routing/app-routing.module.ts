@@ -16,20 +16,23 @@ import { DashboardComponent } from '../pages/admin/dashboard/dashboard.component
 import { NewAforoComponent } from '../pages/admin/new-aforo/new-aforo.component';
 import { NewreservacionesComponent } from '../pages/admin/newreservaciones/newreservaciones.component';
 
+
+// Services
+
+import { AuthGuard } from '../services/can-activate.service';
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'perfil', component: PerfilComponent },
-  { path: 'reservas', component: ReservasComponent },
-  { path: 'reservaPage', component: ReservaPageComponent},
-  { path: 'reservaConf', component: ReservaPageConfComponent},
-  { path: 'notificacion', component: NotificacionComponent},
-  { path: 'notificacionConf', component: NotificacionConfComponent},
-  
-  { path: 'alertas', component: AlertasComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'aforo', component: NewAforoComponent},
-  { path: 'newReservas', component: NewreservacionesComponent},
+  { path: '', component: LoginComponent, },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
+  { path: 'reservas', component: ReservasComponent,  canActivate: [AuthGuard] },
+  { path: 'reservaPage', component: ReservaPageComponent,  canActivate: [AuthGuard]},
+  { path: 'reservaConf', component: ReservaPageConfComponent,  canActivate: [AuthGuard]},
+  { path: 'notificacion', component: NotificacionComponent,  canActivate: [AuthGuard]},
+  { path: 'notificacionConf', component: NotificacionConfComponent,  canActivate: [AuthGuard]},
+  { path: 'alertas', component: AlertasComponent,  canActivate: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent,  canActivate: [AuthGuard]},
+  { path: 'aforo', component: NewAforoComponent,  canActivate: [AuthGuard]},
+  { path: 'newReservas', component: NewreservacionesComponent,  canActivate: [AuthGuard]},
 ];
 
 @NgModule({

@@ -11,7 +11,6 @@
 
 .container {
   margin: 20px;
-  text-align: center;
 }
 
 .header {
@@ -23,10 +22,9 @@
 }
 
 .cards {
-  width: 100%;
-  align-items: center;
-  text-align: center;
   justify-content: center;
+  align-items: center;
+  display: flex;
   flex-direction: column;
 }
 
@@ -37,5 +35,6 @@
 
 mat-card {
   margin-top: 10px;
+  width: 70%;
 }
 

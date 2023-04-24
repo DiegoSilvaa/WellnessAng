@@ -30,4 +30,8 @@ export class AuthServiceService {
     this.isLoggedIn = false;
     this.userType = '';
   }
+
+  isAuthenticated(): boolean {
+    return this.isLoggedIn;
+  }
 }

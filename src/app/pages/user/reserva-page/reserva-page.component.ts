@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ReservaService } from 'src/app/services/reserva.service';
 
 @Component({
   selector: 'app-reserva-page',
@@ -6,8 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./reserva-page.component.css']
 })
 export class ReservaPageComponent  {
-  selected?: Date;
+  constructor(private router: Router, private resService: ReservaService) { }
 
+  
+  selected?: Date;
+  
   hours = [
     { label: '10:00 am', selected: false },
     { label: '11:00 am', selected: false },

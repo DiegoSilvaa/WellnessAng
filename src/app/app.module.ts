@@ -43,6 +43,10 @@ import {MatChipsModule} from '@angular/material/chips';
 
 // Services
 import { AuthServiceService } from './services/auth-service.service';
+import { AuthGuard } from './services/can-activate.service';
+import { ReservaService } from './services/reserva.service';
+import { NotService } from './services/not.service';
+
 import { SideBarAdminComponent } from './components/side-bar-admin/side-bar-admin.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { NewAforoComponent } from './pages/admin/new-aforo/new-aforo.component';
@@ -93,7 +97,11 @@ import { NewreservacionesComponent } from './pages/admin/newreservaciones/newres
     CalendarModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
-  providers: [AuthServiceService],
+  providers: [
+    AuthServiceService, 
+    AuthGuard, 
+    ReservaService,
+    NotService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
