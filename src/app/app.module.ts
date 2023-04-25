@@ -54,6 +54,7 @@ import { AlertasComponent } from './pages/admin/alertas/alertas.component';
 import { NewreservacionesComponent } from './pages/admin/newreservaciones/newreservaciones.component';
 import { RegistroModuloComponent } from './pages/register/registro-modulo/registro-modulo.component';
 import { SidebarRegisterComponent } from './components/sidebar-register/sidebar-register.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { SidebarRegisterComponent } from './components/sidebar-register/sidebar-
     NewreservacionesComponent,
     RegistroModuloComponent,
     SidebarRegisterComponent,
+    ErrorComponent,
   ],
   imports: [
     MatChipsModule,

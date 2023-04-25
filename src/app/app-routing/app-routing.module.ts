@@ -24,6 +24,10 @@ import { RegistroModuloComponent } from '../pages/register/registro-modulo/regis
 // Services
 
 import { AuthGuard } from '../services/can-activate.service';
+
+// Error
+import { ErrorComponent } from '../components/error/error.component';
+
 const routes: Routes = [
   { path: '', component: LoginComponent, },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -38,6 +42,7 @@ const routes: Routes = [
   { path: 'aforo', component: NewAforoComponent,  canActivate: [AuthGuard]},
   { path: 'newReservas', component: NewreservacionesComponent,  canActivate: [AuthGuard]},
   { path: 'registroModulo', component: RegistroModuloComponent,  canActivate: [AuthGuard]},
+  { path: '**', component: ErrorComponent},
 ];
 
 @NgModule({
