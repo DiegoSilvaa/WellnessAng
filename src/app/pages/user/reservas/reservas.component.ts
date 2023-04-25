@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Booking } from 'src/app/booking';
+import { Booking } from 'src/app/clases/booking';
 @Component({
   selector: 'app-reservas',
   templateUrl: './reservas.component.html',

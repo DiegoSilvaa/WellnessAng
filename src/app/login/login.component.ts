@@ -27,8 +27,8 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']);
       } else if (this.authService.userType === 'user') {
         this.router.navigate(['/home']);
-      } else if (this.authService.userType === 'register') {
-        this.router.navigate(['/']);
+      } else if (this.authService.userType === 'registro') {
+        this.router.navigate(['/registroModulo']);
       }
     }
   }

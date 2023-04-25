@@ -17,6 +17,10 @@ import { NewAforoComponent } from '../pages/admin/new-aforo/new-aforo.component'
 import { NewreservacionesComponent } from '../pages/admin/newreservaciones/newreservaciones.component';
 
 
+// Registro Modulo
+
+import { RegistroModuloComponent } from '../pages/register/registro-modulo/registro-modulo.component';
+
 // Services
 
 import { AuthGuard } from '../services/can-activate.service';
@@ -33,6 +37,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent,  canActivate: [AuthGuard]},
   { path: 'aforo', component: NewAforoComponent,  canActivate: [AuthGuard]},
   { path: 'newReservas', component: NewreservacionesComponent,  canActivate: [AuthGuard]},
+  { path: 'registroModulo', component: RegistroModuloComponent,  canActivate: [AuthGuard]},
 ];
 
 @NgModule({

@@ -4,4 +4,4 @@ export interface Booking {
     customerName: string;
     location: string;
     description: string;
-  }
+}

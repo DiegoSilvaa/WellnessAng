@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
-  selector: 'app-side-bar-admin',
-  templateUrl: './side-bar-admin.component.html',
-  styleUrls: ['./side-bar-admin.component.css']
+  selector: 'app-sidebar-register',
+  templateUrl: './sidebar-register.component.html',
+  styleUrls: ['./sidebar-register.component.css']
 })
-export class SideBarAdminComponent {
+export class SidebarRegisterComponent {
   constructor(private authService: AuthServiceService, private router: Router) { }
   
   onSubmitLog() {

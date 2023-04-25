@@ -2,19 +2,19 @@
     <mat-sidenav mode="side" opened class="sidenav">
       <mat-nav-list>
         <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
-          <mat-icon>account_circle</mat-icon> Dashboard
+          <mat-icon>home</mat-icon> Dashboard
         </a>
         <a mat-list-item routerLink="/aforo" routerLinkActive="active">
-          <mat-icon>book</mat-icon> Nueva Aforo
+          <mat-icon>date_range</mat-icon> Nueva Aforo
         </a>
         <a mat-list-item routerLink="/alertas" routerLinkActive="active">
-          <mat-icon>home</mat-icon> Alertas
+          <mat-icon>event_note</mat-icon> Alertas
         </a>
         <a mat-list-item routerLink="/newReservas" routerLinkActive="active">
-            <mat-icon>home</mat-icon> Reservaciones
+            <mat-icon>book</mat-icon> Reservaciones
         </a>
-        <a mat-list-item routerLink="/" routerLinkActive="active">
-            <mat-icon>home</mat-icon> Logout
+        <a mat-list-item routerLink="/" routerLinkActive="active" (click)="onSubmitLog()">
+            <mat-icon>close</mat-icon> Logout
         </a>
       </mat-nav-list>
     </mat-sidenav>
