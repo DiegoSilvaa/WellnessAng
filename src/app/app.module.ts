@@ -55,8 +55,14 @@ import { NewreservacionesComponent } from './pages/admin/newreservaciones/newres
 import { RegistroModuloComponent } from './pages/register/registro-modulo/registro-modulo.component';
 import { SidebarRegisterComponent } from './components/sidebar-register/sidebar-register.component';
 import { ErrorComponent } from './components/error/error.component';
+<<<<<<< HEAD
 import { AppRatingComponent } from './components/app-rating/app-rating.component';
 
+=======
+import { CrearAvisoComponent } from './components/crear-aviso/crear-aviso.component';
+import { EditarAvisoComponent } from './components/editar-aviso/editar-aviso.component';
+import { RangeCalendarComponent } from './components/range-calendar/range-calendar.component';
+>>>>>>> Alan-Admin
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +84,13 @@ import { AppRatingComponent } from './components/app-rating/app-rating.component
     RegistroModuloComponent,
     SidebarRegisterComponent,
     ErrorComponent,
+<<<<<<< HEAD
     AppRatingComponent,
+=======
+    CrearAvisoComponent,
+    EditarAvisoComponent,
+    RangeCalendarComponent,
+>>>>>>> Alan-Admin
   ],
   imports: [
     MatChipsModule,

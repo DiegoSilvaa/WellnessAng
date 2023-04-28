@@ -15,7 +15,8 @@ import { AlertasComponent } from '../pages/admin/alertas/alertas.component';
 import { DashboardComponent } from '../pages/admin/dashboard/dashboard.component';
 import { NewAforoComponent } from '../pages/admin/new-aforo/new-aforo.component';
 import { NewreservacionesComponent } from '../pages/admin/newreservaciones/newreservaciones.component';
-
+import { CrearAvisoComponent } from '../components/crear-aviso/crear-aviso.component';
+import { EditarAvisoComponent } from '../components/editar-aviso/editar-aviso.component';
 
 // Registro Modulo
 
@@ -42,6 +43,8 @@ const routes: Routes = [
   { path: 'aforo', component: NewAforoComponent,  canActivate: [AuthGuard]},
   { path: 'newReservas', component: NewreservacionesComponent,  canActivate: [AuthGuard]},
   { path: 'registroModulo', component: RegistroModuloComponent,  canActivate: [AuthGuard]},
+  { path: 'crearAviso', component: CrearAvisoComponent,  canActivate: [AuthGuard]},
+  { path: 'editarAviso', component: EditarAvisoComponent,  canActivate: [AuthGuard]},
   { path: '**', component: ErrorComponent},
 ];
 
