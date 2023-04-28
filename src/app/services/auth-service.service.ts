@@ -8,8 +8,12 @@ export class AuthServiceService {
   isLoggedIn = false;
   userType = '';
   username = '';
+  success = false;
+  pending = false;
+  error = false;
 
   login(username: string, password: string): boolean {
+    this.pending = true;
     if (username === 'diego') {
       this.userType = 'user';
     } else if (username === 'alan') {
@@ -19,10 +23,15 @@ export class AuthServiceService {
     }
 
     if (password === '1234') {
+      this.pending = false;
       this.isLoggedIn = true;
       this.username = username;
+      this.success = true;
       return true;
     }
+    this.error = true;
+    this.pending = false;
+    console.log(this.error)
     return false;
   }
 
@@ -30,6 +39,9 @@ export class AuthServiceService {
     this.isLoggedIn = false;
     this.userType = '';
     this.username = '';
+    this.pending = false;
+    this.success = false;
+    this.error = false;
   }
 
   isAuthenticated(): boolean {

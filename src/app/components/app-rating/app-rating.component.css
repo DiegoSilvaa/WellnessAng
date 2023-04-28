@@ -1,0 +1,27 @@
+.rating-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .star {
+    cursor: default;
+  }
+  
+  .material-icons {
+    font-size: 32px;
+  }
+  
+  .yellow {
+    color: #FFC107;
+  }
+  
+  .gray {
+    color: #BDBDBD;
+  }
+  
+  .rating-number {
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  

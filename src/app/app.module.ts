@@ -55,6 +55,7 @@ import { NewreservacionesComponent } from './pages/admin/newreservaciones/newres
 import { RegistroModuloComponent } from './pages/register/registro-modulo/registro-modulo.component';
 import { SidebarRegisterComponent } from './components/sidebar-register/sidebar-register.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AppRatingComponent } from './components/app-rating/app-rating.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ErrorComponent } from './components/error/error.component';
     RegistroModuloComponent,
     SidebarRegisterComponent,
     ErrorComponent,
+    AppRatingComponent,
   ],
   imports: [
     MatChipsModule,

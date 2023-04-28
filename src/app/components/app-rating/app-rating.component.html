@@ -1,0 +1,9 @@
+<div class="rating-container">
+    <span class="star" *ngFor="let _ of maxRating; let i = index">
+      <i class="material-icons" [ngClass]="{'yellow': rating >= i + 1, 'gray': rating < i + 1}">
+        star
+      </i>
+    </span>
+    <span class="rating-number">{{ rating }} / {{ 5 }}</span>
+</div>
+  

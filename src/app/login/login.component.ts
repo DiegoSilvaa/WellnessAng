@@ -12,16 +12,25 @@ export class LoginComponent {
 
   username = '';
   password = '';
-
+  alertStatusP : boolean = false;
+  alertStatusS : boolean = false;
+  alertStatusE : boolean = false;
   constructor(private authService: AuthServiceService, private router: Router) { }
-
+  
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
 
+  access : boolean = false;
   submit() {
-    if (this.authService.login(this.form.get('username')?.value, this.form.get('password')?.value)) {
+
+    // PROBAR ESTA FUNCIONALIDAD CUANDO ESTE LISTA EL BACKEND
+    this.access = this.authService.login(this.form.get('username')?.value, this.form.get('password')?.value)
+    this.alertStatusE = this.authService.error;
+    this.alertStatusP = this.authService.pending;
+    this.alertStatusS = this.authService.success;
+    if (this.access) {
       console.log(`${this.form.get('username')?.value} ----- ${this.form.get('password')?.value}`);
       if (this.authService.userType === 'admin') {
         this.router.navigate(['/dashboard']);

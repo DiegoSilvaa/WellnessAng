@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReservaService } from 'src/app/services/reserva.service';
-
+import { CommonModule } from '@angular/common';
 
 interface Reserva {
   id: number;
@@ -16,6 +16,7 @@ interface Reserva {
 })
 export class ReservaPageComponent  {
   constructor(private router: Router, private resService: ReservaService) { }
+
   selectedReserva = this.resService.selected;
   
   selected?: Date;
