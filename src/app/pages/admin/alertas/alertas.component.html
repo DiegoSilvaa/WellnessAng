@@ -1,4 +1,23 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
-
-</div>  
+  <div class="container">
+    <div class="header">
+      <h1>Alertas</h1>
+      <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" (click)="crearAviso()"> Nuevo Aviso </button>
+    </div>
+    <div class="cards">
+        <mat-card *ngFor="let noti of alerta">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{ noti.date }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              {{noti.title}}
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" (click)="editarAviso(noti)"> Editar </button>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+  </div>
+</div>

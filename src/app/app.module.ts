@@ -55,7 +55,9 @@ import { NewreservacionesComponent } from './pages/admin/newreservaciones/newres
 import { RegistroModuloComponent } from './pages/register/registro-modulo/registro-modulo.component';
 import { SidebarRegisterComponent } from './components/sidebar-register/sidebar-register.component';
 import { ErrorComponent } from './components/error/error.component';
-
+import { CrearAvisoComponent } from './components/crear-aviso/crear-aviso.component';
+import { EditarAvisoComponent } from './components/editar-aviso/editar-aviso.component';
+import { RangeCalendarComponent } from './components/range-calendar/range-calendar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +79,9 @@ import { ErrorComponent } from './components/error/error.component';
     RegistroModuloComponent,
     SidebarRegisterComponent,
     ErrorComponent,
+    CrearAvisoComponent,
+    EditarAvisoComponent,
+    RangeCalendarComponent,
   ],
   imports: [
     MatChipsModule,
