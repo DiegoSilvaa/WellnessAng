@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { TableUtil } from 'src/app/components/export';
 
 export interface PeriodicElement {
   name: string;
@@ -30,4 +30,22 @@ export class RegistroModuloComponent {
   progress = 75;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+  matColumns: string[] = ["name", "symbol"];
+  reverseDataSource = [...ELEMENT_DATA].reverse();
+
+  exportTable() {
+    TableUtil.exportTableToExcel("ExampleMaterialTable");
+  }
+
+  exportNormalTable() {
+    TableUtil.exportTableToExcel("ExampleNormalTable");
+  }
+
+  exportArray() {
+    const onlyNameAndSymbolArr: Partial<PeriodicElement>[] = this.dataSource.map(x => ({
+      name: x.name,
+      symbol: x.symbol
+    }));
+    TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, "ExampleArray");
+  }
 }

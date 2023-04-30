@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ReservaService } from 'src/app/services/reserva.service';
+import { MatTableDataSource } from '@angular/material/table';
+
 interface Persona {
   nombre: string;
 }
@@ -9,23 +13,28 @@ interface Persona {
   styleUrls: ['./reserva-page-conf.component.css']
 })
 export class ReservaPageConfComponent {
-  personas: Persona[] = [];
+  constructor(private router: Router, private resService: ReservaService) { }
+  selectedReserva = this.resService.selected;
+
+
   nuevoNombre: string = '';
-  columnas: string[] = ['nombre', 'acciones'];
-  dataSource: Persona[] = this.personas;
+  dataSource = new MatTableDataSource<Persona>([]);
+  columnas = ['nombre', 'acciones'];
 
   agregarPersona() {
-    const persona: Persona = { nombre: this.nuevoNombre };
-    this.personas.push(persona);
-    this.dataSource = [...this.personas];
-    this.nuevoNombre = '';
+    if (this.nuevoNombre.trim()) {
+      this.dataSource.data.push({ nombre: this.nuevoNombre });
+      this.dataSource.data = [...this.dataSource.data];
+      this.nuevoNombre = '';
+    }
   }
 
   eliminarPersona(persona: Persona) {
-    const index = this.personas.indexOf(persona);
+    console.log('pendejo')
+    const index = this.dataSource.data.indexOf(persona);
     if (index >= 0) {
-      this.personas.splice(index, 1);
-      this.dataSource = [...this.personas];
+      this.dataSource.data.splice(index, 1);
+      this.dataSource.data = [...this.dataSource.data];
     }
   }
 }

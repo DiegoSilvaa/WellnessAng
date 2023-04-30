@@ -41,6 +41,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatChipsModule} from '@angular/material/chips';
 
+
+
 // Services
 import { AuthServiceService } from './services/auth-service.service';
 import { AuthGuard } from './services/can-activate.service';
@@ -55,14 +57,13 @@ import { NewreservacionesComponent } from './pages/admin/newreservaciones/newres
 import { RegistroModuloComponent } from './pages/register/registro-modulo/registro-modulo.component';
 import { SidebarRegisterComponent } from './components/sidebar-register/sidebar-register.component';
 import { ErrorComponent } from './components/error/error.component';
-<<<<<<< HEAD
 import { AppRatingComponent } from './components/app-rating/app-rating.component';
 
-=======
 import { CrearAvisoComponent } from './components/crear-aviso/crear-aviso.component';
 import { EditarAvisoComponent } from './components/editar-aviso/editar-aviso.component';
 import { RangeCalendarComponent } from './components/range-calendar/range-calendar.component';
->>>>>>> Alan-Admin
+import { SpinnerAforoComponent } from './components/spinner-aforo/spinner-aforo.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,13 +85,11 @@ import { RangeCalendarComponent } from './components/range-calendar/range-calend
     RegistroModuloComponent,
     SidebarRegisterComponent,
     ErrorComponent,
-<<<<<<< HEAD
     AppRatingComponent,
-=======
     CrearAvisoComponent,
     EditarAvisoComponent,
     RangeCalendarComponent,
->>>>>>> Alan-Admin
+    SpinnerAforoComponent,
   ],
   imports: [
     MatChipsModule,

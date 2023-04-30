@@ -1,11 +1,6 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
-    <div class="spinner-container">
-        <mat-progress-spinner mode="determinate" diameter="300" strokeWidth="12" value="{{ progress }}" color="">
-        </mat-progress-spinner>
-        <div class="spinner-text"> {{ progress }}% </div>
-    </div>
-
+    <app-spinner-aforo></app-spinner-aforo>
     <div class="grid-container mat-elevation-z2">
         <mat-card *ngFor="let button of reservas" class="example-card">
             <mat-card-header>

@@ -1,30 +1,24 @@
 <app-side-bar-admin></app-side-bar-admin>
     <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
         <h2 class="form-title">Nuevo Aviso</h2>
-        <div class="form-field">
+        <div>
+          <div class="form-field">
+            <label for="usuarios" class="form-label">Centro deportivo:</label>
+            <input type="text" id="usuarios" name="usuarios" class="form-input" required>
+          </div>
+        </div>
+        <div class="name-deporte">
+          <div class="child1">
             <label for="titulo" class="form-label">Nombre:</label>
             <input type="text" id="titulo" name="titulo" class="form-input" required>
+          </div>
+          <div class="child2"> 
+            <label for="titulo" class="form-label">Deporte:</label>
+            <input type="text" id="titulo" name="titulo" class="form-input" required>
+          </div>
         </div>
-      <div>
-        <div class="form-field">
-        <label for="usuarios" class="form-label">Centro deportivo:</label>
-        <input type="text" id="usuarios" name="usuarios" class="form-input" required>
-        </div>
-      </div>
-      <div class="form-field">
         <label for="descripcion" class="form-label">Disponibilidad:</label>
         <app-range-calendar></app-range-calendar>
-      </div>
-      <div class="contain-hold">
-        <div class="form-field">
-            <label for="descripcion" class="form-label">Min:</label>
-            <input type="text" id="usuarios" name="usuarios" class="form-input" required>
-        </div>
-        <div class="form-field">
-            <label for="descripcion" class="form-label">Max:</label>
-            <input type="text" id="usuarios" name="usuarios" class="form-input" required>
-        </div>
-      </div>
       <button type="submit" class="form-submit-btn">Habilitar</button>
 </form>
 

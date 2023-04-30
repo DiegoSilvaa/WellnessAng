@@ -6,7 +6,10 @@
         <div class="spinner-text"> {{ progress }}% </div>
     </div>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="export-container">
+      <button mat-raised-button color="primary" (click)="exportTable()">Export Material Table</button>
+    </div>
+        <table mat-table id="ExampleMaterialTable" [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="position">
               <th mat-header-cell *matHeaderCellDef> No. </th>
               <td mat-cell *matCellDef="let element"> {{element.position}} </td>

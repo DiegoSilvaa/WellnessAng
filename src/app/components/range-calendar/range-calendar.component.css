@@ -1,3 +1,37 @@
+.container-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
 .example-form-field {
-    margin: 0 8px 16px 0;
-  }
+  width: 250px;
+  margin-right: 20px;
+}
+
+.name-deporte {
+  display: flex;
+  margin-top: 10px;
+}
+
+.name-deporte .child1,
+.name-deporte .child2 {
+  margin-right: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.form-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100px;
+}

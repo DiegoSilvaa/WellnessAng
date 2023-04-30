@@ -1,18 +1,11 @@
 <app-sidebar></app-sidebar>
 <app-navbar></app-navbar>
 <div class="main-container">
-    <div class="spinner-container">
-        <mat-progress-spinner mode="determinate" diameter="300" strokeWidth="12" value="{{ progress }}" color="">
-        </mat-progress-spinner>
-        <div class="spinner-text"> {{ progress }}% </div>
-    </div>
-
-    <div class="scrollsView">
-      <mat-form-field appearance="outline" class="rounded-input">
-          <mat-label>Buscar Canchas</mat-label>
-            <input matInput  type="text" placeholder="Ingresa tu nombre" [(ngModel)]="searchQuery" (keyup)="filterButtons()">
-      </mat-form-field>
-      
+    <app-spinner-aforo></app-spinner-aforo> 
+    <mat-form-field appearance="outline" class="rounded-input">
+      <mat-label>Buscar Canchas</mat-label>
+        <input matInput  type="text" placeholder="Ingresa tu nombre" [(ngModel)]="searchQuery" (keyup)="filterButtons()">
+    </mat-form-field>
     <div class="horizontal-scroll-container">
         <mat-card *ngFor="let button of filteredButtons1" class="example-card">
             <mat-card-header>
@@ -61,4 +54,3 @@
               </mat-card>
         </div>
     </div>
-</div>

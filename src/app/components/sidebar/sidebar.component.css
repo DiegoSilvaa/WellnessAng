@@ -1,25 +1,30 @@
 mat-sidenav-container, mat-sidenav-content {
     height: 100%;
+    color: white;
   }
   
   mat-sidenav {
     width: 200px;
+    color: white;
   }
   
   @media (max-width: 600px) {
     mat-sidenav {
       width: 80%;
+      color: white;
     }
   }
   .sidenav-container {
     height: 100%;
     position: fixed;
+    color: white;
     width: 15%;
   }
   
   .sidenav {
     width: 300px;
-    background-color: #3284ff;
+    color: white;
+    background-color: #ffffff;
   }
 
   .example-spacer {
@@ -28,6 +33,4 @@ mat-sidenav-container, mat-sidenav-content {
   
   mat-toolbar {
     position: relative;
-    background-color: #3284ff;
-    color: rgb(0, 0, 0);
   }

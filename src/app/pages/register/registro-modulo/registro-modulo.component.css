@@ -7,7 +7,6 @@
     flex-direction: column;
     background-size: cover;
     margin-left: 15%;
-
 }
   
 .mat-progress-spinner {
@@ -32,7 +31,7 @@
 .spinner-container {
   position: relative;
   margin-bottom: 10px;
-  margin-top: 13%;
+  margin-top: 20%;
 }
 
 .mid-container {
@@ -41,6 +40,15 @@
     width: 80%;
 }
 
-table {
+
+.export-container {
+  text-align: right;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 85%;
+}
+
+mat-table {
     width: 80%;
+    justify-content: center;
   }

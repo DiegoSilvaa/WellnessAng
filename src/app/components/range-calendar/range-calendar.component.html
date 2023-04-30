@@ -1,19 +1,33 @@
-<mat-form-field class="example-form-field" appearance="fill">
-    <mat-label>First campaign</mat-label>
-    <mat-date-range-input
-      [formGroup]="campaignOne"
-      [rangePicker]="campaignOnePicker"
-      [comparisonStart]="campaignTwo.value.start"
-      [comparisonEnd]="campaignTwo.value.end">
-      <input matStartDate placeholder="Start date" formControlName="start">
-      <input matEndDate placeholder="End date" formControlName="end">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
-  </mat-form-field>
-  
+
+<div class="container-main">
+    <div class="">
+    <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Entre Semana </mat-label>
+        <mat-date-range-input
+          [formGroup]="campaignOne"
+          [rangePicker]="campaignOnePicker"
+          [comparisonStart]="campaignTwo.value.start"
+          [comparisonEnd]="campaignTwo.value.end">
+          <input matStartDate placeholder="Start date" formControlName="start">
+          <input matEndDate placeholder="End date" formControlName="end">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+      </mat-form-field>
+      <div class="name-deporte">
+        <div class="child1">
+            <label for="descripcion" class="form-label">Min:</label>
+            <input type="text" id="usuarios" name="usuarios" class="form-input" required>
+        </div>
+        <div class="child2">
+            <label for="descripcion" class="form-label">Max:</label>
+            <input type="text" id="usuarios" name="usuarios" class="form-input" required>
+        </div>
+      </div>
+    </div>
+  <div class="">
   <mat-form-field class="example-form-field" appearance="fill">
-    <mat-label>Second campaign</mat-label>
+    <mat-label>Fin de Semana</mat-label>
     <mat-date-range-input
       [formGroup]="campaignTwo"
       [rangePicker]="campaignTwoPicker"
@@ -25,4 +39,16 @@
     <mat-datepicker-toggle matIconSuffix [for]="campaignTwoPicker"></mat-datepicker-toggle>
     <mat-date-range-picker #campaignTwoPicker></mat-date-range-picker>
   </mat-form-field>
+  <div class="name-deporte">
+    <div class="child1">
+        <label for="descripcion" class="form-label">Min:</label>
+        <input type="text" id="usuarios" name="usuarios" class="form-input" required>
+    </div>
+    <div class="child2">
+        <label for="descripcion" class="form-label">Max:</label>
+        <input type="text" id="usuarios" name="usuarios" class="form-input" required>
+    </div>
+  </div>
+</div>
+</div>
   

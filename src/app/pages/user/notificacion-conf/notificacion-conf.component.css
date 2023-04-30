@@ -3,8 +3,8 @@
     align-items: center;
     display: flex;
     height: 100vh;
-    background-image: url('../../../../assets/back.png');
-    background-size: cover;  
+    background-image: url('../../../../assets/back3.png');
+    background-size: contain;  
   }
   
   

@@ -1,24 +1,24 @@
 .main-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: url('../../../../assets/back.png');
-  background-size: cover;
+  height: 91vh;
+  background-image: url('../../../../assets/back4.png');
+  background-size: contain;
   flex-direction: column;
   margin-left: 15%;
-  padding-top: 3%;
 }
 
 .image-container {
   background-color: rgb(255, 255, 255);
+  opacity: 0.75;
   align-items: center;
   justify-content: center;
   text-align: center;
   width: 80%;
-  height: 90%;
+  height: 94%;
   border-color: aqua;
   border-radius: 10px;
+  margin-top: 20px;
 }
 
 .profile-logo {
@@ -28,7 +28,7 @@
   height: 300px;
   border-radius: 50%;
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .profile-logo img {

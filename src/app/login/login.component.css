@@ -4,7 +4,7 @@
   align-items: center;
   height: 100vh;
   background-image: url('../../assets/back.png');
-  background-size: cover;
+  background-size: contain;
 }
 
 .content-container {
@@ -52,16 +52,19 @@ button {
   background-color: #fff3cd;
   border: 1px solid #ffeeba;
   color: #856404;
+  width: 50%;
 }
 
 .alert-success {
   background-color: #d4edda;
   border: 1px solid #c3e6cb;
   color: #155724;
+  width: 50%;
 }
 
 .alert-danger {
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
   color: #721c24;
+  width: 50%;
 }
