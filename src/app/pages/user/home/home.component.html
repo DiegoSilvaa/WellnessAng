@@ -1,11 +1,18 @@
 <app-sidebar></app-sidebar>
 <app-navbar></app-navbar>
 <div class="main-container">
+  <h2 class="title"> Aforo del Gimansio </h2>
     <app-spinner-aforo></app-spinner-aforo> 
+    <div class="input-boton">
     <mat-form-field appearance="outline" class="rounded-input">
       <mat-label>Buscar Canchas</mat-label>
         <input matInput  type="text" placeholder="Ingresa tu nombre" [(ngModel)]="searchQuery" (keyup)="filterButtons()">
     </mat-form-field>
+    <button mat-icon-button (click)="openDialog()">
+      <mat-icon>help_outline</mat-icon>
+    </button>
+  </div>
+    <h2 class="title"> Centro Deportivo 1 </h2>
     <div class="horizontal-scroll-container">
         <mat-card *ngFor="let button of filteredButtons1" class="example-card">
             <mat-card-header>
@@ -21,7 +28,7 @@
             </mat-card-actions>
           </mat-card>
       </div>
-        
+      <h2 class="title"> Centro Deportivo 2 </h2>
         <div class="horizontal-scroll-container">
             <mat-card *ngFor="let button of filteredButtons2" class="example-card">
                 <mat-card-header>
@@ -37,7 +44,8 @@
                 </mat-card-actions>
               </mat-card>
         </div>
-        
+        <h2 class="title"> Wellness </h2>
+
         <div class="horizontal-scroll-container">
             <mat-card *ngFor="let button of filteredButtons3" class="example-card">
                 <mat-card-header>

@@ -13,6 +13,20 @@ mat-form-field {
   margin: 20px;
 }
 
+.input-boton {
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: white;
+}
+
 .horizontal-scroll-container {
   width: 90%;
   height: 400px;
@@ -49,6 +63,10 @@ mat-form-field {
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+.my-dialog-container {
+  padding: 10%;
 }
 
 

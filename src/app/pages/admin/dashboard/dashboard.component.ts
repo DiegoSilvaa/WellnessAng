@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 interface Reserva {
@@ -13,7 +14,7 @@ interface Reserva {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  
+  constructor(private router: Router) { }
   progress = 75;
 
   reservas : Reserva[] = [
@@ -22,4 +23,7 @@ export class DashboardComponent {
     { id: 3, description: 'Boton 1.3', image: '../../../../assets/centro1.png'},
   ];
 
+  onReservationClick(reservation: Reserva): void {
+    this.router.navigate(['/dispReserva'])
+  }
 }

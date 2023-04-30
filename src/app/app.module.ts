@@ -40,6 +40,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -63,6 +64,8 @@ import { CrearAvisoComponent } from './components/crear-aviso/crear-aviso.compon
 import { EditarAvisoComponent } from './components/editar-aviso/editar-aviso.component';
 import { RangeCalendarComponent } from './components/range-calendar/range-calendar.component';
 import { SpinnerAforoComponent } from './components/spinner-aforo/spinner-aforo.component';
+import { ReservasDisplayComponent } from './pages/admin/reservas-display/reservas-display.component';
+import { GraficasAdminComponent } from './pages/admin/graficas-admin/graficas-admin.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +93,8 @@ import { SpinnerAforoComponent } from './components/spinner-aforo/spinner-aforo.
     EditarAvisoComponent,
     RangeCalendarComponent,
     SpinnerAforoComponent,
+    ReservasDisplayComponent,
+    GraficasAdminComponent,
   ],
   imports: [
     MatChipsModule,
@@ -115,6 +120,7 @@ import { SpinnerAforoComponent } from './components/spinner-aforo/spinner-aforo.
     MatToolbarModule,
     CalendarModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    MatDialogModule
   ],
   providers: [
     AuthServiceService, 

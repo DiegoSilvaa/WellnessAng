@@ -1,9 +1,8 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
-    <h2 class="title"> Aforo del Gimansio</h2>
-    <app-spinner-aforo></app-spinner-aforo>
-    <div class="grid-container mat-elevation-z2">
-        <mat-card *ngFor="let button of reservas" class="example-card">
+    <h2 class="title"> Centro Deportivo 1 </h2>
+    <div class="row" style="overflow-y: auto;">
+        <mat-card *ngFor="let button of cards" class="example-card">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>Centro Deportivo 1</mat-card-title>
@@ -13,10 +12,10 @@
             <mat-card-actions>
               <button mat-button color="primary" 
               style="background-color: #408dff; color: rgb(255, 255, 255);" 
-              class="mat-elevation-z4"  (click)="onReservationClick(button)">
-                <mat-icon>add</mat-icon>Editar
+              class="mat-elevation-z4"
+              (click)="onReservationClick(button)">
+                <mat-icon>add</mat-icon> Editar
               </button>
             </mat-card-actions>
           </mat-card>
-    </div>  
-</div>  
+</div>

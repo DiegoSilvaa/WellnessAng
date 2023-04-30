@@ -2,52 +2,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-image: url('../../../../assets/back2.png');
     margin-left: 15%;
-    background-size: cover;
+    background-size: contain;
     flex-direction: column;
     overflow-y: auto;
+    padding-bottom: 2%;
 }
   
-.mat-progress-spinner {
-  display: block;
-  margin: 0 auto;
-}
-
-.mat-progress-spinner circle {
-  stroke-width: 15px;
-}
-
-.spinner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36px;
-  font-weight: bold;
-  color: #000;
-}
-
-.spinner-container {
-  position: relative;
-  margin-bottom: 10px;
-}
-
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Define dos columnas de igual ancho */
-    grid-gap: 1em; /* Espacio entre los cards */
+    grid-gap: 2em; /* Espacio entre los cards */
     height: 100%; /* Altura máxima del contenedor */
-    width: 80%;
+    width: 90%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
   }
 
 .example-card {
-  max-width: 250px;
+  max-width: 350px;
+  height: 60%;
   margin-inline: 10px;
 }
 
@@ -56,9 +31,11 @@
   background-size: cover;
 }
 
-.rounded-input {
-  border-radius: 20px;
-  width: 80%;
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: white;
 }
 
 

@@ -11,7 +11,7 @@
             <div class="form-container">
                 <h2>Agregar Persona</h2>
                 <form (submit)="agregarPersona()">
-                  <mat-form-field>
+                  <mat-form-field appearance="outline" class="rounded-input">
                     <input matInput placeholder="Nombre" [(ngModel)]="nuevoNombre" name="nombre">
                   </mat-form-field>
                   <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" type="submit"> Anadir Personas </button>

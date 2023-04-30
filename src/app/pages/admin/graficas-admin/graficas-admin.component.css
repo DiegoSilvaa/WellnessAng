@@ -1,0 +1,63 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../../../../assets/back4.png');
+    margin-left: 15%;
+    background-size: contain;
+    flex-direction: row;
+    overflow-y: auto;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    flex-direction: column;
+  }
+  
+  .line-chart-container{
+    width: 400px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .pie-chart-container {
+    width: 500px;
+    height: 620px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .chart-header {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .chart-body {
+    padding: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .chart-container {
+      flex-wrap: wrap;
+    }
+  
+    .line-chart-container,
+    .pie-chart-container {
+      width: 100%;
+      margin-bottom: 20px;
+      margin-right: 20px;
+    }
+  }
+  
