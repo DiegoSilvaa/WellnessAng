@@ -38,5 +38,16 @@
   color: white;
 }
 
+mat-icon {
+  color: white;
+}
+
+.subtitle {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #dedede;
+  margin: 0;
+}
+
 
 

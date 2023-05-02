@@ -19,6 +19,7 @@ import { CrearAvisoComponent } from '../components/crear-aviso/crear-aviso.compo
 import { EditarAvisoComponent } from '../components/editar-aviso/editar-aviso.component';
 import { ReservasDisplayComponent } from '../pages/admin/reservas-display/reservas-display.component';
 import { GraficasAdminComponent } from '../pages/admin/graficas-admin/graficas-admin.component';
+import { StatsAforoComponent } from '../pages/admin/stats-aforo/stats-aforo.component';
 // Registro Modulo
 
 import { RegistroModuloComponent } from '../pages/register/registro-modulo/registro-modulo.component';
@@ -47,7 +48,8 @@ const routes: Routes = [
   { path: 'crearAviso', component: CrearAvisoComponent,  canActivate: [AuthGuard]},
   { path: 'editarAviso', component: EditarAvisoComponent,  canActivate: [AuthGuard]},
   { path: 'dispReserva', component: ReservasDisplayComponent,  canActivate: [AuthGuard]},
-  { path: 'graficasAdmin', component: GraficasAdminComponent, },
+  { path: 'graficasAdmin', component: GraficasAdminComponent, canActivate: [AuthGuard] },
+  { path: 'statsAdmin', component: StatsAforoComponent, canActivate: [AuthGuard] },
   { path: '**', component: ErrorComponent},
 ];
 

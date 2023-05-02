@@ -2,6 +2,10 @@
 <div class="main-container">
     <h2 class="title"> Aforo del Gimansio</h2>
     <app-spinner-aforo></app-spinner-aforo>
+    <p class="subtitle"> Estadísticas </p>
+    <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active">
+      <mat-icon aria-label="Estadísticas">bar_chart</mat-icon>
+    </button>
     <div class="grid-container mat-elevation-z2">
         <mat-card *ngFor="let button of reservas" class="example-card">
             <mat-card-header>

@@ -74,7 +74,6 @@ export class GraficasAdminComponent {
             '#F06AFF',
             '#40CCA9',
             '#41B296'
-
           ],
         }]
       },

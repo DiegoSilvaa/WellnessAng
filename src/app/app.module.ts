@@ -66,6 +66,7 @@ import { RangeCalendarComponent } from './components/range-calendar/range-calend
 import { SpinnerAforoComponent } from './components/spinner-aforo/spinner-aforo.component';
 import { ReservasDisplayComponent } from './pages/admin/reservas-display/reservas-display.component';
 import { GraficasAdminComponent } from './pages/admin/graficas-admin/graficas-admin.component';
+import { StatsAforoComponent } from './pages/admin/stats-aforo/stats-aforo.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { GraficasAdminComponent } from './pages/admin/graficas-admin/graficas-ad
     SpinnerAforoComponent,
     ReservasDisplayComponent,
     GraficasAdminComponent,
+    StatsAforoComponent,
   ],
   imports: [
     MatChipsModule,
