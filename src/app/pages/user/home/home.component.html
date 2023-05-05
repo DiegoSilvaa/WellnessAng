@@ -18,9 +18,9 @@
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>Centro Deportivo 1</mat-card-title>
-              <mat-card-subtitle>{{button.description}}</mat-card-subtitle>
+              <mat-card-subtitle>{{button.nombre}}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{button.image}}" alt="Photo of a Shiba Inu">
+            <img mat-card-image src="{{button.imagen}}" alt="Photo of a Shiba Inu">
             <mat-card-actions>
               <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" class="mat-elevation-z4" (click)="onReservationClick(button)">
                 <mat-icon>add</mat-icon>Reservar
@@ -30,35 +30,35 @@
       </div>
       <h2 class="title"> Centro Deportivo 2 </h2>
         <div class="horizontal-scroll-container">
-            <mat-card *ngFor="let button of filteredButtons2" class="example-card">
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>Centro Deportivo 1</mat-card-title>
-                  <mat-card-subtitle>{{button.description}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="{{button.image}}" alt="Photo of a Shiba Inu">
-                <mat-card-actions>
-                  <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" class="mat-elevation-z4" (click)="onReservationClick(button)">
-                    <mat-icon>add</mat-icon>Reservar
-                  </button>
-                </mat-card-actions>
-              </mat-card>
+          <mat-card *ngFor="let button of filteredButtons2" class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Centro Deportivo 1</mat-card-title>
+              <mat-card-subtitle>{{button.nombre}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{button.imagen}}" alt="Photo of a Shiba Inu">
+            <mat-card-actions>
+              <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" class="mat-elevation-z4" (click)="onReservationClick(button)">
+                <mat-icon>add</mat-icon>Reservar
+              </button>
+            </mat-card-actions>
+          </mat-card>
         </div>
         <h2 class="title"> Wellness </h2>
 
         <div class="horizontal-scroll-container">
-            <mat-card *ngFor="let button of filteredButtons3" class="example-card">
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>Centro Deportivo 1</mat-card-title>
-                  <mat-card-subtitle>{{button.description}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="{{button.image}}" alt="Photo of a Shiba Inu">
-                <mat-card-actions>
-                  <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" class="mat-elevation-z4" (click)="onReservationClick(button)">
-                    <mat-icon>add</mat-icon>Reservar
-                  </button>
-                </mat-card-actions>
-              </mat-card>
+          <mat-card *ngFor="let button of filteredButtons3" class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Centro Deportivo 1</mat-card-title>
+              <mat-card-subtitle>{{button.nombre}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{button.imagen}}" alt="Photo of a Shiba Inu">
+            <mat-card-actions>
+              <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" class="mat-elevation-z4" (click)="onReservationClick(button)">
+                <mat-icon>add</mat-icon>Reservar
+              </button>
+            </mat-card-actions>
+          </mat-card>
         </div>
     </div>

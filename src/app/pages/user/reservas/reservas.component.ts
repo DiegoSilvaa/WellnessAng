@@ -1,74 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Booking } from 'src/app/clases/booking';
+import { HttpClient } from '@angular/common/http';
+import { Subscription, interval } from 'rxjs';
+
 @Component({
   selector: 'app-reservas',
   templateUrl: './reservas.component.html',
   styleUrls: ['./reservas.component.css']
 })
-export class ReservasComponent {
-  bookings: Booking[] = [
-    {
-      title: 'Reserva 1',
-      date: '01/01/2023',
-      customerName: 'Cliente 1',
-      location: 'Ciudad 1',
-      description: 'Descripción de la reserva 1'
-    },
-    {
-      title: 'Reserva 2',
-      date: '02/01/2023',
-      customerName: 'Cliente 2',
-      location: 'Ciudad 2',
-      description: 'Descripción de la reserva 2'
-    },
-    {
-      title: 'Reserva 3',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    },
-    {
-      title: 'Reserva 4',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    },
-    {
-      title: 'Reserva 5',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    },
-    {
-      title: 'Reserva 6',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    },
-    {
-      title: 'Reserva 7',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    },
-    {
-      title: 'Reserva 8',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    }
-  ];
+export class ReservasComponent implements OnInit {
+  API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/alumno/a00832361/reservaciones';
+  reservas: any;
+  reservasArray: any;
+  private refreshInterval!: Subscription;
 
-  deleteBooking(booking: Booking) {
-    const index = this.bookings.indexOf(booking);
-    if (index !== -1) {
-      this.bookings.splice(index, 1);
+  constructor(private http: HttpClient) { 
+    this.reservas = [];
+  }
+
+  ngOnInit() {
+    this.http.get<any[]>(this.API).subscribe((results: any) => {
+      this.reservas = Object.values(results.data);
+      console.log(this.reservas)
+      this.reservasArray = Array.isArray(this.reservas) ? this.reservas : [this.reservas];
+    });
+
+    this.refreshInterval = interval(10000).subscribe(() => {
+      this.http.get<any[]>(this.API).subscribe((results: any) => {
+        this.reservas = Object.values(results.data);
+        console.log(this.reservas)
+        this.reservasArray = Array.isArray(this.reservas) ? this.reservas : [this.reservas];
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.refreshInterval) {
+      this.refreshInterval.unsubscribe();
     }
+  }
+
+  deleteBooking(booking: any) {
+    this.http.delete(this.API);
   }
 }

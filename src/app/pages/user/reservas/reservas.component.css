@@ -3,8 +3,10 @@
   align-items: center;
   background-image: url('../../../../assets/back6.png');
   background-size: contain;
+  overflow-y: auto;
+  height: 82vh;
   margin-left: 15%;
-  padding-top: 1%;
+  padding-top: 2%;
   padding-bottom: 2%;
 }
 
@@ -12,8 +14,7 @@
 .container {
   margin: 20px;
   opacity: 0.75;
-
-}
+} 
 
 .header {
   color: white;

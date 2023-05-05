@@ -1,54 +1,42 @@
 .main-container {
-    justify-content: center;
-    align-items: center;
     display: flex;
-    height: 100vh;
-    background-image: url('../../../../assets/back2.png');
     flex-direction: column;
-    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    height: 200vh;
+    background-image: url('../../../../assets/back2.png');
+    background-size: contain;
     margin-left: 15%;
+    padding-top: 1%;
 }
   
-.mat-progress-spinner {
-  display: block;
-  margin: 0 auto;
-}
-
-.mat-progress-spinner circle {
-  stroke-width: 15px;
-}
-
-.spinner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36px;
-  font-weight: bold;
-  color: #000;
-}
-
-.spinner-container {
-  position: relative;
-  margin-bottom: 10px;
-  margin-top: 20%;
-}
-
-.mid-container {
-    align-items: center;
-    margin-top: 20px;
-    width: 80%;
+.table-container {
+  width: 80%;
+  margin-top: 1rem;
+  overflow-y: auto;
+  background-color: aqua;
 }
 
 
 .export-container {
   text-align: right;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   margin-left: 85%;
 }
 
-mat-table {
-    width: 80%;
-    justify-content: center;
-  }
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: white;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  text-align: center;
+}
