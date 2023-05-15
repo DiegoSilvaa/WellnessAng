@@ -1,7 +1,6 @@
-form {
+.main-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -9,13 +8,18 @@ form {
     background-size: contain;
     padding-top: 2%;
     margin-left: 15%;
+    flex-direction: row;
   }
   
-  .form-container {
+  form {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     text-align: center;
+    margin-right: 100px;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
   }
 
   .name-deporte {
@@ -33,19 +37,19 @@ form {
   }
   
   .form-title {
-    color: white;
+    color: black;
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
   }
   
   .form-field {
-    color: white;
+    color: black;
     margin-bottom: 20px;
   }
   
   .form-label {
-    color: white;
+    color: black;
     display: block;
     font-size: 18px;
     margin-bottom: 10px;
@@ -60,15 +64,8 @@ form {
     border: 1px solid #ccc;
   }
   
-  .form-input:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #4d90fe;
-    box-shadow: 0 0 5px #4d90fe;
-  }
   
   .form-submit-btn {
-    display: block;
     width: 15%;
     padding: 10px;
     background-color: #4d90fe;
@@ -88,4 +85,15 @@ form {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+}
+
+.image-selector{
+  background-color: white;
+  border-radius: 10px;
+  height: 60%;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }

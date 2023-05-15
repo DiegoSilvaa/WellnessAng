@@ -9,7 +9,7 @@ import { ReservaPageComponent } from '../pages/user/reserva-page/reserva-page.co
 import { ReservaPageConfComponent } from '../pages/user/reserva-page-conf/reserva-page-conf.component';
 import { NotificacionComponent } from '../pages/user/notificacion/notificacion.component';
 import { NotificacionConfComponent } from '../pages/user/notificacion-conf/notificacion-conf.component';
-
+import { InstalacionesDisplayComponent } from '../pages/user/instalaciones-display/instalaciones-display.component';
 // Admin 
 import { AlertasComponent } from '../pages/admin/alertas/alertas.component';
 import { DashboardComponent } from '../pages/admin/dashboard/dashboard.component';
@@ -50,6 +50,7 @@ const routes: Routes = [
   { path: 'dispReserva', component: ReservasDisplayComponent,  canActivate: [AuthGuard]},
   { path: 'graficasAdmin', component: GraficasAdminComponent, canActivate: [AuthGuard] },
   { path: 'statsAdmin', component: StatsAforoComponent, canActivate: [AuthGuard] },
+  { path: 'instalacionesUser', component: InstalacionesDisplayComponent, canActivate: [AuthGuard] },
   { path: '**', component: ErrorComponent},
 ];
 

@@ -13,6 +13,6 @@ export class ReservaService {
 
   selectReservation(reservation: any): void {
     this.selected = reservation;
-    this.router.navigate(['/reservaPage'])
+    this.router.navigate(['/instalacionesUser'])
   }
 }

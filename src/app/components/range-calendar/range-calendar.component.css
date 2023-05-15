@@ -1,6 +1,5 @@
 .container-main {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
   text-align: center;
@@ -9,7 +8,8 @@
 
 .example-form-field {
   width: 250px;
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .name-deporte {
@@ -19,14 +19,16 @@
 
 .name-deporte .child1,
 .name-deporte .child2 {
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  flex-direction: column;
+  text-align: center;
 }
 
 .form-label {
-  font-weight: bold;
   display: block;
   margin-bottom: 5px;
-  color: white;
+  color: black;
 }
 
 .form-input {

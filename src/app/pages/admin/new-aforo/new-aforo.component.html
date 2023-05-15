@@ -1,25 +1,32 @@
 <app-side-bar-admin></app-side-bar-admin>
-    <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
-        <h2 class="form-title"> Nuevo Aforo </h2>
-        <div>
-          <div class="form-field">
-            <label for="usuarios" class="form-label">Centro deportivo:</label>
-            <input type="text" id="usuarios" name="usuarios" class="form-input" required>
-          </div>
+
+<div class="main-container">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+      <h2 class="form-title">Nuevo Instalacion Deportiva</h2>
+      <div class="form-field">
+        <label for="usuarios" class="form-label">Centro deportivo:</label>
+        <input type="text" id="usuarios" name="usuarios" class="form-input" required>
+      </div>
+      <div class="name-deporte">
+        <div class="child1">
+          <label for="titulo" class="form-label">Nombre:</label>
+          <input type="text" id="titulo" name="titulo" class="form-input" required>
         </div>
-        <div class="name-deporte">
-          <div class="child1">
-            <label for="titulo" class="form-label">Nombre:</label>
-            <input type="text" id="titulo" name="titulo" class="form-input" required>
-          </div>
-          <div class="child2"> 
-            <label for="titulo" class="form-label">Deporte:</label>
-            <input type="text" id="titulo" name="titulo" class="form-input" required>
-          </div>
+        <div class="child2">
+          <label for="titulo" class="form-label">Deporte:</label>
+          <input type="text" id="titulo" name="titulo" class="form-input" required>
         </div>
-        <label for="descripcion" class="form-label">Disponibilidad:</label>
-        <app-range-calendar></app-range-calendar>
+      </div>
+      <label for="descripcion" class="form-label">Disponibilidad:</label>
+      <app-range-calendar></app-range-calendar>
       <button type="submit" class="form-submit-btn">Habilitar</button>
-</form>
+    </form>
 
-
+  <div class="image-selector">
+    <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+      <div><img [src]="url" *ngIf="url" [style.width.px]="300" [style.height.px]="300"></div>
+      <p>
+        <input type="file" (change)="selectFile($event)">
+      </p>
+    </div>
+</div>

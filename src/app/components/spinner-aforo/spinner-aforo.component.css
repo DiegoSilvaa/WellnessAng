@@ -20,6 +20,14 @@
   
   .spinner-container {
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
   }
+  
+  .overlay-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  

@@ -23,7 +23,6 @@
   }
   
   .cards {
-    opacity: 0.75;
     justify-content: center;
     align-items: center;
     display: flex;

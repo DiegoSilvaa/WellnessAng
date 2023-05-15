@@ -43,7 +43,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 // Services
@@ -69,6 +69,7 @@ import { SpinnerAforoComponent } from './components/spinner-aforo/spinner-aforo.
 import { ReservasDisplayComponent } from './pages/admin/reservas-display/reservas-display.component';
 import { GraficasAdminComponent } from './pages/admin/graficas-admin/graficas-admin.component';
 import { StatsAforoComponent } from './pages/admin/stats-aforo/stats-aforo.component';
+import { InstalacionesDisplayComponent } from './pages/user/instalaciones-display/instalaciones-display.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { StatsAforoComponent } from './pages/admin/stats-aforo/stats-aforo.compo
     ReservasDisplayComponent,
     GraficasAdminComponent,
     StatsAforoComponent,
+    InstalacionesDisplayComponent,
   ],
   imports: [
     MatChipsModule,
@@ -126,7 +128,8 @@ import { StatsAforoComponent } from './pages/admin/stats-aforo/stats-aforo.compo
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     MatDialogModule,
     HttpClientModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
   providers: [
     AuthServiceService, 
