@@ -1,25 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TableUtil } from 'src/app/components/export';
+import { HttpClient } from '@angular/common/http';
+import { Subscription, interval } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import Chart from 'chart.js/auto';
 
-interface Row {
-  fecha: Date;
-  valor: number;
-}
-const ELEMENT_DATA: Row[] = [
-  { fecha: new Date('2023/05/02'), valor: 100 },
-  { fecha: new Date('2023/04/02'), valor: -50 },
-  { fecha: new Date('2023/04/03'), valor: 200 },
-  { fecha: new Date('2023/04/04'), valor: -150 },
-  { fecha: new Date('2023/04/05'), valor: 50 },
-  { fecha: new Date('2023/04/06'), valor: 300 },
-  { fecha: new Date('2023/04/07'), valor: -250 },
-  { fecha: new Date('2023/04/08'), valor: 150 },
-  { fecha: new Date('2023/04/09'), valor: -100 },
-  { fecha: new Date('2023/04/10'), valor: 250 },
-  { fecha: new Date('2023/04/11'), valor: -200 },
-  { fecha: new Date('2023/04/12'), valor: 350 },
-];
 
 @Component({
   selector: 'app-stats-aforo',
@@ -27,29 +13,118 @@ const ELEMENT_DATA: Row[] = [
   styleUrls: ['./stats-aforo.component.css']
 })
 export class StatsAforoComponent implements OnInit {
-
-  dataSource = new MatTableDataSource<Row>(ELEMENT_DATA);
-  displayedColumns: string[] = ['fecha', 'valor'];
-
+  
+  API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/registro_gimnasio';
+  registro: any;
+  registroArray: any = new MatTableDataSource<any>();
+  private refreshInterval!: Subscription;
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
-  ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+  constructor(private http: HttpClient) { 
+    this.registro = [];
   }
 
-  applyFilter(filterValue: string) {
-    const parsedValue = Date.parse(filterValue);
-    console.log("VALOR: " + parsedValue)
-    if (!isNaN(parsedValue)) {
-      const filteredData = ELEMENT_DATA.filter(row => 
-        row.fecha.getTime() === parsedValue);
-      console.log(filteredData);
-      this.dataSource = new MatTableDataSource(filteredData);
-      this.dataSource.paginator = this.paginator;
+  ngOnInit() {
+    this.getRegistro();
+    this.createLineChart1();
+    this.createLineChart2();
+
+    this.refreshInterval = interval(10000).subscribe(() => {
+      this.getRegistro();
+    });
+    this.registroArray.paginator = this.paginator;
+  }
+
+  ngOnDestroy() {
+    if (this.refreshInterval) {
+      this.refreshInterval.unsubscribe();
     }
   }
 
-  getRowClass(row: Row) {
-    return row.valor < 0 ? 'negative' : 'positive';
+  getRegistro() {
+    this.http.get<any[]>(this.API).subscribe((results: any) => {
+      this.registro = Object.values(results.data);
+      console.log(this.registro)
+      this.registroArray = Array.isArray(this.registro) ? this.registro : [this.registro];
+    });
   }
+
+  displayedColumns = ['id_registro', 'matricula', 'fecha'];
+
+  fechaDesde: Date | null = null;
+  fechaHasta: Date | null = null;
+
+  filterByDate() {
+    if (!this.fechaDesde || !this.fechaHasta) {
+      this.registroArray.filter = null;
+      console.log("No entre");
+      return;
+    }
+  
+    const fechaDesde = new Date(this.fechaDesde);
+    const fechaHasta = new Date(this.fechaHasta);
+    this.registroArray.filter = (value: any) => {
+      const fecha = new Date(value.fecha);
+      return fecha >= fechaDesde && fecha <= fechaHasta;
+    };
+  }
+
+  exportTable() {
+    TableUtil.exportTableToExcel("ExampleMaterialTable");
+  }
+
+  exportNormalTable() {
+    TableUtil.exportTableToExcel("ExampleNormalTable");
+  }
+
+  public Linechart1: any;
+  public Linechart2: any;
+
+  /// LINE CHART 1 
+  createLineChart1(){
+    this.Linechart1 = new Chart('Line1', {
+      type: 'line',
+      data: {
+        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+        datasets: [{
+          label: 'Ventas',
+          data: [12, 19, 3, 5, 2, 3, 10],
+          borderColor: 'rgb(75, 192, 192)',
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            }
+          }
+        }
+      })
+  }
+
+  createLineChart2(){
+    this.Linechart2 = new Chart('Line2', {
+      type: 'line',
+      data: {
+        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+        datasets: [{
+          label: 'Ventas',
+          data: [12, 19, 3, 5, 2, 3, 10],
+          borderColor: 'rgb(75, 192, 192)',
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            }
+          }
+        }
+      })
+  }
+
 }

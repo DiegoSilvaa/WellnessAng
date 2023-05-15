@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.getCentros1();
     this.getCentros2();
     this.getCentros3();
-    this.refreshInterval = interval(10000).subscribe(() => {
+    this.refreshInterval = interval(100000).subscribe(() => {
       this.getCentros1();
       this.getCentros2();
       this.getCentros3();

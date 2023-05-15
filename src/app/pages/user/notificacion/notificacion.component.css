@@ -34,12 +34,10 @@
     background-size: cover;
   }
 
-  .example-card {
-    max-width: 300px;
-  }
   
   mat-card {
     margin-top: 10px;
+    width: 70%;
   }
 
   

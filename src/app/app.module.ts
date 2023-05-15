@@ -42,6 +42,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -124,7 +125,8 @@ import { StatsAforoComponent } from './pages/admin/stats-aforo/stats-aforo.compo
     CalendarModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSortModule
   ],
   providers: [
     AuthServiceService, 

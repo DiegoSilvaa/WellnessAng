@@ -27,7 +27,7 @@ export class SpinnerAforoComponent implements OnInit {
       //console.log(results.data[0])
     });
 
-    this.refreshInterval = interval(10000).subscribe(() => {
+    this.refreshInterval = interval(1000).subscribe(() => {
       this.http.get<any[]>(this.API).subscribe((results: any) => {
         this.gimnasio = results.data[0];
         this.aforo = Math.trunc((this.gimnasio.aforo_actual/this.gimnasio.aforo_maximo) * 100)

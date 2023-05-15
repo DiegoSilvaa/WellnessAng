@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableUtil } from 'src/app/components/export';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, interval } from 'rxjs';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -19,6 +20,9 @@ export class RegistroModuloComponent implements OnInit{
   constructor(private http: HttpClient) { 
     this.registro = [];
   }
+
+
+  
 
   ngOnInit() {
     this.getRegistro();
