@@ -6,7 +6,6 @@
       <form [formGroup]="form" (ngSubmit)="submit()">
       <div style="flex-direction: column; justify-content: center; align-items: center; display: flex;">
           <input placeholder="Matricula" type="email" formControlName="username">
-          <input placeholder="Password" type="password" formControlName="password">
           <br>
           <div *ngIf="alertStatusP === true" class="alert alert-warning">Enviando datos...</div>
           <div *ngIf="alertStatusS === true" class="alert alert-success">¡Inicio de sesión exitoso!</div>

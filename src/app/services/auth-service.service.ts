@@ -16,13 +16,20 @@ export class AuthServiceService {
     this.pending = true;
     if (username === 'diego') {
       this.userType = 'user';
+      this.pending = false;
+      this.isLoggedIn = true;
+      this.username = username;
+      this.success = true;
+      return true;
     } else if (username === 'alan') {
       this.userType = 'registro';
+      this.pending = false;
+      this.isLoggedIn = true;
+      this.username = username;
+      this.success = true;
+      return true;
     } else if (username === 'perro'){
       this.userType = 'admin';
-    }
-
-    if (password === '1234') {
       this.pending = false;
       this.isLoggedIn = true;
       this.username = username;

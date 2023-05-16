@@ -6,39 +6,10 @@ import { Notificacion } from '../clases/notificacion';
 })
 export class AdminAlertaService {
 
-  constructor() { }
+  selectedReservation: any;
 
-  notificaciones: Notificacion[] = [
-    {
-      title: 'Notificacion 1',
-      asunto:'Cierre' ,
-      date: '01/01/2023',
-      descripcion :'Va a estar cerrado'
-    },
-    {
-      title: 'Notificacion 2',
-      asunto:'Cierre' ,
-      date: '01/01/2023',
-      descripcion :'Va a estar cerrado'
-    },
-    {
-      title: 'Notificacion 3',
-      asunto:'Cierre' ,
-      date: '01/01/2023',
-      descripcion :'Va a estar cerrado'
-    },
-    {
-      title: 'Notificacion 4',
-      asunto:'Cierre' ,
-      date: '01/01/2023',
-      descripcion :'Va a estar cerrado'
-    }
-  ];
-
-  selectedAlerta: Notificacion | null = null;
-
-  selectReservation(alerta: Notificacion): void {
-    this.selectedAlerta = alerta;
+  selectReservation(reservation: any): void {
+    this.selectedReservation = reservation;
   }
 }
 

@@ -1,11 +1,20 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
-    <h2 class="title"> Aforo del Gimansio</h2>
-    <app-spinner-aforo></app-spinner-aforo>
-    <p class="subtitle"> Estadísticas </p>
-    <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active">
-      <mat-icon aria-label="Estadísticas">bar_chart</mat-icon>
-    </button>
+  <h2 class="titleAd"> Vista de Adminstrador  </h2>
+  <div class="contents">
+    <div class="aforo-container">
+      <h2 class="title"> Aforo del Gimansio</h2>
+      <app-spinner-aforo></app-spinner-aforo>
+    </div>
+    <div class="stats-container">
+      <p class="title"> Estadísticas </p>
+      <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active">
+        <mat-icon aria-label="Estadísticas">bar_chart</mat-icon>
+      </button>
+  </div>
+  </div>
+  <h2 class="titleCen"> Centros Deportivos </h2>
+
     <div class="grid-container mat-elevation-z2">
         <mat-card *ngFor="let button of reservas" class="example-card">
             <mat-card-header>

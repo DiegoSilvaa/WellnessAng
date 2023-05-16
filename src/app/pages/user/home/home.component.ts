@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Subscription, interval } from 'rxjs';
+import { Subscription, generate, interval } from 'rxjs';
 import { ReservaService } from 'src/app/services/reserva.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,10 @@ export class HomeComponent implements OnInit {
   APICB1 : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/1/instalaciones';
   APICB2 : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/2/instalaciones';
   APIWELL : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/3/instalaciones';
+  APIGen : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/deportes';
+
+  General: any;
+  deportes: any;
 
   Centro1: any;
   filteredButtons1: any;
@@ -29,21 +34,16 @@ export class HomeComponent implements OnInit {
   private refreshInterval!: Subscription;
 
   constructor(private router: Router, private resService: ReservaService, public dialog: MatDialog, private http: HttpClient) { 
-    this.Centro1 = [];
-    this.Centro2 = [];
-    this.Wellness = [];
+    this.General = [];
+    this.deportes =[];
   }
   
 
   // METODO INICIALIZADOR DE PANTALLA
   ngOnInit() {
-    this.getCentros1();
-    this.getCentros2();
-    this.getCentros3();
+    this.getCentros();
     this.refreshInterval = interval(100000).subscribe(() => {
-      this.getCentros1();
-      this.getCentros2();
-      this.getCentros3();
+
     });
   }
 
@@ -53,44 +53,34 @@ export class HomeComponent implements OnInit {
     }
   }
   
-  // Funcion para llamar a los centros Deportivos 1
-  getCentros1() {
-    this.http.get<any[]>(this.APICB1).subscribe((results: any) => {
-      this.Centro1 = Object.values(results.data);
-      console.log(this.Centro1)
-      this.filteredButtons1 = Array.isArray(this.Centro1) ? this.Centro1 : [this.Centro1];
+  // Funcion General de llamda de APIS
+
+  getCentros() {
+    this.http.get<any[]>(this.APIGen).subscribe((results: any) => {
+      this.General = Object.values(results.data);
+      console.log(this.General);
+    
+      // Obtener un array de observables de las llamadas HTTP
+      const observables = this.General.map((item:any) => {
+        const idCentroDeportivo = item.id_centro_deportivo;
+        return this.http.get<any[]>(`http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/${idCentroDeportivo}/deportes`);
+      });
+    
+      // Combinar y esperar todas las llamadas HTTP en paralelo
+      forkJoin(observables).subscribe((resultsArray: any) => {
+        resultsArray.forEach((results: any) => {
+          const deportes = Object.values(results.data);
+          console.log(deportes);
+          // Realiza cualquier otra lógica necesaria con los datos obtenidos
+        });
+      });
     });
   }
 
-  // Funcion para llamar a los centros Deportivos 2
-  getCentros2() {
-    this.http.get<any[]>(this.APICB2).subscribe((results: any) => {
-      this.Centro2 = Object.values(results.data);
-      console.log(this.Centro2)
-      this.filteredButtons2 = Array.isArray(this.Centro2) ? this.Centro2 : [this.Centro2];
-    });
-  }
-
-  // Funcion para llamar a los centros WEllness
-  getCentros3() {
-    this.http.get<any[]>(this.APIWELL).subscribe((results: any) => {
-      this.Wellness = Object.values(results.data);
-      console.log(this.Wellness)
-      this.filteredButtons3 = Array.isArray(this.Wellness) ? this.Wellness : [this.Wellness];
-    });
-  }
 
   filterButtons() {
-    this.filteredButtons1 = this.Centro1.filter((button: any) =>
-      button.deporte.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-
-    this.filteredButtons2 = this.Centro2.filter((button: any) =>
-      button.deporte.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-
-    this.filteredButtons3 = this.Wellness.filter((button: any) =>
-      button.deporte.toLowerCase().includes(this.searchQuery.toLowerCase())
+    this.filteredButtons1 = this.deportes.filter((button: any) =>
+      button.nombre_deporte.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 

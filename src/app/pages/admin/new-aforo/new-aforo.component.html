@@ -4,20 +4,42 @@
     <form [formGroup]="form" (ngSubmit)="submit()" class="form">
       <h2 class="form-title">Nuevo Instalacion Deportiva</h2>
       <div class="form-field">
-        <label for="usuarios" class="form-label">Centro deportivo:</label>
-        <input type="text" id="usuarios" name="usuarios" class="form-input" required>
+        <label for="centro" class="form-label">Centro deportivo:</label>
+        <mat-form-field>
+          <mat-select id="centro" name="centro" class="form-input-select" formControlName="centro" required>
+            <mat-option value="opcion1">Opción 1</mat-option>
+            <mat-option value="opcion2">Opción 2</mat-option>
+            <mat-option value="opcion3">Opción 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="isFieldInvalid('centro') && formSubmitted" class="error-message">
+          Centro deportivo es requerido.
+        </div>
       </div>
+      
       <div class="name-deporte">
         <div class="child1">
-          <label for="titulo" class="form-label">Nombre:</label>
-          <input type="text" id="titulo" name="titulo" class="form-input" required>
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" class="form-input" formControlName="nombre" required>
+          <div *ngIf="isFieldInvalid('nombre') && formSubmitted" class="error-message">
+            Nombre es requerido.
+          </div>
         </div>
         <div class="child2">
-          <label for="titulo" class="form-label">Deporte:</label>
-          <input type="text" id="titulo" name="titulo" class="form-input" required>
+          <label for="deporte" class="form-label">Deporte:</label>
+          <mat-form-field>
+            <mat-select id="deporte" name="deporte" class="form-input-select" formControlName="deporte" required>
+              <mat-option value="opcion1">Opción 1</mat-option>
+              <mat-option value="opcion2">Opción 2</mat-option>
+              <mat-option value="opcion3">Opción 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="isFieldInvalid('deporte') && formSubmitted" class="error-message">
+            Deporte es requerido.
+          </div>
         </div>
-      </div>
-      <label for="descripcion" class="form-label">Disponibilidad:</label>
+      </div>      
+      <label for="calendar" class="form-label">Disponibilidad:</label>
       <app-range-calendar></app-range-calendar>
       <button type="submit" class="form-submit-btn">Habilitar</button>
     </form>

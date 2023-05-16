@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+
 // Routeo
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -44,6 +45,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 // Services
@@ -129,7 +132,9 @@ import { InstalacionesDisplayComponent } from './pages/user/instalaciones-displa
     MatDialogModule,
     HttpClientModule,
     MatSortModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [
     AuthServiceService, 

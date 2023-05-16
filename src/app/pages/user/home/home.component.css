@@ -58,6 +58,9 @@ mat-form-field {
 .rounded-input {
   border-radius: 20px;
   width: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 
