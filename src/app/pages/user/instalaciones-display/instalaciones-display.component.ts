@@ -1,36 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Subscription, generate, interval } from 'rxjs';
+import { ReservaService } from 'src/app/services/reserva.service';
 
-interface Reserva {
-  id: number;
-  description: string;
-  image: string;
-}
 
 @Component({
   selector: 'app-instalaciones-display',
   templateUrl: './instalaciones-display.component.html',
   styleUrls: ['./instalaciones-display.component.css']
 })
-export class InstalacionesDisplayComponent {
-  constructor(private router: Router) { }
+export class InstalacionesDisplayComponent implements OnInit {
+  private refreshInterval!: Subscription;
+  constructor(private router: Router, private resService: ReservaService, private http: HttpClient) {
+    this.arrayDeportes = [];
+   }
 
-  cards : Reserva[] = [
-    { id: 1, description: 'Boton 1.1', image: '../../../../assets/centro1.png'},
-    { id: 2, description: 'Boton 1.2', image: '../../../../assets/centro1.png'},
-    { id: 3, description: 'Boton 1.3', image: '../../../../assets/centro1.png'},
-    { id: 4, description: 'Boton 1.4', image: '../../../../assets/centro1.png'},
-    { id: 5, description: 'Boton 1.5', image: '../../../../assets/centro1.png'},
-    { id: 6, description: 'Boton 1.6', image: '../../../../assets/centro1.png'},
-    { id: 7, description: 'Boton 1.7', image: '../../../../assets/centro1.png'},
-    { id: 8, description: 'Boton 1.8', image: '../../../../assets/centro1.png'},
-    { id: 9, description: 'Boton 1.9', image: '../../../../assets/centro1.png'},
-    { id: 10, description: 'Boton 1.10', image: '../../../../assets/centro1.png'},
-    { id: 11, description: 'Boton 1.11', image: '../../../../assets/centro1.png'},
-    { id: 12, description: 'Boton 1.12', image: '../../../../assets/centro1.png'},
-  ];
+  selectedReserva = this.resService.selected;
+  idSelected = this.resService.idSelected;
+  arrayDeportes : any;
+  
+  /// Llamada al Api con ids
 
-  onReservationClick(reservation: Reserva): void {
+  
+  // METODO INICIALIZADOR DE PANTALLA
+  ngOnInit() {
+    console.log(this.selectedReserva.deportes);
+    this.getCentros();
+    this.refreshInterval = interval(100000).subscribe(() => {
+    
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.refreshInterval) {
+      this.refreshInterval.unsubscribe();
+    }
+  }
+
+  getCentros() {
+    this.http.get<any[]>(`http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/${this.idSelected.id_deporte}/instalaciones`).subscribe((results: any) => {
+      this.arrayDeportes = Object.values(results.data);
+      console.log(this.arrayDeportes)
+    })
+  }
+
+  onReservationClick(reservation: any): void {
     this.router.navigate(['/reservaPage'])
   }
 }

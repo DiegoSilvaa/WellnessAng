@@ -102,3 +102,14 @@ mat-icon {
   margin-inline: 20px;
   width: 100%;
 }
+
+.card-image {
+  width: 300px; /* Establece el ancho deseado */
+  height: 150px; /* Establece la altura deseada */
+}
+
+.disable-card {
+  background-color: #ccc; /* Cambia el color de fondo a gris */
+  opacity: 0.5; /* Puedes ajustar la opacidad según tus preferencias */
+  /* Agrega otros estilos personalizados para las tarjetas deshabilitadas */
+}

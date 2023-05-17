@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'notificacion', component: NotificacionComponent,  canActivate: [AuthGuard]},
   { path: 'notificacionConf', component: NotificacionConfComponent,  canActivate: [AuthGuard]},
   { path: 'alertas', component: AlertasComponent,  canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardComponent,},
+  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]},
   { path: 'aforo', component: NewAforoComponent,  canActivate: [AuthGuard]},
   { path: 'newReservas', component: NewreservacionesComponent,  canActivate: [AuthGuard]},
   { path: 'registroModulo', component: RegistroModuloComponent,  canActivate: [AuthGuard]},

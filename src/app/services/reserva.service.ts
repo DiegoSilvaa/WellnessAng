@@ -10,9 +10,10 @@ export class ReservaService {
   constructor(private router: Router) { }
   
   selected: any;
-
-  selectReservation(reservation: any): void {
+  idSelected: any;
+  selectReservation(reservation: any, id: any): void {
     this.selected = reservation;
+    this.idSelected = id;
     this.router.navigate(['/instalacionesUser'])
   }
 }

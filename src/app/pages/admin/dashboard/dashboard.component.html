@@ -16,18 +16,19 @@
   <h2 class="titleCen"> Centros Deportivos </h2>
 
     <div class="grid-container mat-elevation-z2">
-        <mat-card *ngFor="let button of reservas" class="example-card">
+        <mat-card *ngFor="let button of General" class="example-card" [ngClass]="{ 'disable-card':!button.esta_habilitado }">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Centro Deportivo 1</mat-card-title>
-              <mat-card-subtitle>{{button.description}}</mat-card-subtitle>
+              <mat-card-title>{{button.nombre}}</mat-card-title>
+              <mat-card-subtitle>{{button.ubicacion}}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{button.image}}" alt="Photo of a Shiba Inu">
+            <img mat-card-image class="card-image" src="{{button.imagen}}" alt="Imagen de Centro">
             <mat-card-actions>
               <button mat-button color="primary" 
               style="background-color: #408dff; color: rgb(255, 255, 255);" 
-              class="mat-elevation-z4"  (click)="onReservationClick(button)">
-                <mat-icon>add</mat-icon>Editar
+              class="mat-elevation-z4"  (click)="onReservationClick(button)"
+              [disabled]="!button.esta_habilitado">
+                <mat-icon style="color: white;">add</mat-icon>Editar
               </button>
             </mat-card-actions>
           </mat-card>

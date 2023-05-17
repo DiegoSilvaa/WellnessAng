@@ -1,20 +1,25 @@
 .main-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     background-image: url('../../../../assets/back2.png');
     margin-left: 15%;
     background-size: contain;
     flex-direction: column;
-    padding-top: 18%;
-    padding-bottom: 20%;
+    align-items: center;
+    padding-bottom: 20px;
 }
   
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  grid-gap: 1em; /* Espacio entre los cards */
+  height: 100%; /* Altura máxima del contenedor */
+  width: 90%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 3 columnas de ancho flexible */
+  margin-top: 20px;
+  align-items: center;
+  justify-items: center;
+  background-color: rgb(255, 255, 255);
 } 
 
 
@@ -25,7 +30,7 @@
   }
   
   .example-card {
-    max-width: 250px;
+    max-width: 400px;
     margin-inline: 10px;
     margin-bottom: 20px;
   }
@@ -39,6 +44,11 @@
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 10px;
-    color: white;
+    color: rgb(0, 0, 0);
+    width: 90%;
+    padding: 17px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
   }
   

@@ -12,23 +12,11 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  APICB1 : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/1/instalaciones';
-  APICB2 : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/2/instalaciones';
-  APIWELL : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/3/instalaciones';
-  APIGen : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/deportes';
+  APIGen : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/';
 
   General: any;
   deportes: any;
-
-  Centro1: any;
-  filteredButtons1: any;
-
-  Centro2: any;
-  filteredButtons2: any;
-
-  Wellness: any;
-  filteredButtons3: any;
-
+  deportesFiltrados: any;
   searchQuery = '';
 
   private refreshInterval!: Subscription;
@@ -43,7 +31,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getCentros();
     this.refreshInterval = interval(100000).subscribe(() => {
-
+    
     });
   }
 
@@ -58,34 +46,50 @@ export class HomeComponent implements OnInit {
   getCentros() {
     this.http.get<any[]>(this.APIGen).subscribe((results: any) => {
       this.General = Object.values(results.data);
+      this.deportesFiltrados =  Object.values(results.data);
       console.log(this.General);
-    
-      // Obtener un array de observables de las llamadas HTTP
-      const observables = this.General.map((item:any) => {
+  
+      const observables = this.General.map((item: any) => {
         const idCentroDeportivo = item.id_centro_deportivo;
         return this.http.get<any[]>(`http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/${idCentroDeportivo}/deportes`);
       });
-    
-      // Combinar y esperar todas las llamadas HTTP en paralelo
+  
       forkJoin(observables).subscribe((resultsArray: any) => {
-        resultsArray.forEach((results: any) => {
+        resultsArray.forEach((results: any, index: number) => {
           const deportes = Object.values(results.data);
-          console.log(deportes);
-          // Realiza cualquier otra lógica necesaria con los datos obtenidos
+          //console.log(deportes);
+          this.General[index].deportes = deportes; // Almacena los deportes correspondientes en la propiedad 'deportes' del centro
+          this.deportesFiltrados[index].deportes = deportes;
+          console.log(this.deportesFiltrados);
         });
       });
     });
   }
+  
 
 
   filterButtons() {
-    this.filteredButtons1 = this.deportes.filter((button: any) =>
-      button.nombre_deporte.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+    const filteredCentros = [];
+
+    for (let i = 0; i < this.General.length; i++) {
+      const centro = this.General[i];
+      const filteredDeportes = centro.deportes.filter((deporte:any) =>
+        deporte.nombre_deporte.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+  
+      if (filteredDeportes.length > 0) {
+        filteredCentros.push({
+          ...centro,
+          deportes: filteredDeportes
+        });
+      }
+    }
+  
+    this.deportesFiltrados = filteredCentros;
   }
 
-  onReservationClick(reservation: any): void {
-    this.resService.selectReservation(reservation);
+  onReservationClick(reservation: any, id: any): void {
+    this.resService.selectReservation(reservation, id);
   }
 
   

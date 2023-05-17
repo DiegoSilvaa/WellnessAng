@@ -1,34 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { id } from 'date-fns/locale';
+import { HttpClient } from '@angular/common/http';
+import { Subscription, generate, interval } from 'rxjs';
 
-
-interface Reserva {
-  id: number;
-  description: string;
-  image: string;
-}
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  constructor(private router: Router) { }
-  progress = 75;
+export class DashboardComponent implements OnInit {
+  APIGen : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/';
+  General: any;
+  private refreshInterval!: Subscription;
 
-  reservas : Reserva[] = [
-    { id: 1, description: 'Boton 1.1', image: '../../../../assets/centro1.png'},
-    { id: 2, description: 'Boton 1.2', image: '../../../../assets/centro1.png'},
-    { id: 3, description: 'Boton 1.3', image: '../../../../assets/centro1.png'},
-    { id: 4, description: 'Boton 1.3', image: '../../../../assets/centro1.png'},
-    { id: 5, description: 'Boton 1.3', image: '../../../../assets/centro1.png'},
-    { id: 6, description: 'Boton 1.3', image: '../../../../assets/centro1.png'},
+  constructor(private router: Router, private http: HttpClient) { 
+    this.General = [];
+  }
 
-  ];
+  // METODO INICIALIZADOR DE PANTALLA
+  ngOnInit() {
+    this.getCentros();
+    this.refreshInterval = interval(100000).subscribe(() => {
+      this.getCentros();
+    });
+  }
 
-  onReservationClick(reservation: Reserva): void {
+  ngOnDestroy() {
+    if (this.refreshInterval) {
+      this.refreshInterval.unsubscribe();
+    }
+  }
+  
+  getCentros() {
+    this.http.get<any[]>(this.APIGen).subscribe((results: any) => {
+      this.General = Object.values(results.data);
+      console.log(this.General);
+  
+      this.General.sort((a: any, b: any) => {
+        if (a.esta_habilitado && !b.esta_habilitado) {
+          return -1; // a debe aparecer antes que b
+        } else if (!a.esta_habilitado && b.esta_habilitado) {
+          return 1; // a debe aparecer después de b
+        } else {
+          return 0; // no se cambia el orden
+        }
+      });
+    });
+  }
+  
+  
+  onReservationClick(reservation: any): void {
     this.router.navigate(['/dispReserva'])
   }
 
