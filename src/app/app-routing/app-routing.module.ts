@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]},
   { path: 'aforo', component: NewAforoComponent,  canActivate: [AuthGuard]},
   { path: 'newReservas', component: NewreservacionesComponent,  canActivate: [AuthGuard]},
-  { path: 'registroModulo', component: RegistroModuloComponent,  canActivate: [AuthGuard]},
+  { path: 'registroModulo', component: RegistroModuloComponent},
   { path: 'crearAviso', component: CrearAvisoComponent,  canActivate: [AuthGuard]},
   { path: 'editarAviso', component: EditarAvisoComponent,  canActivate: [AuthGuard]},
   { path: 'dispReserva', component: ReservasDisplayComponent,  canActivate: [AuthGuard]},

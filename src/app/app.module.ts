@@ -47,6 +47,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 // Services
@@ -134,7 +135,8 @@ import { InstalacionesDisplayComponent } from './pages/user/instalaciones-displa
     MatSortModule,
     MatCheckboxModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
   ],
   providers: [
     AuthServiceService, 

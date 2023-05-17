@@ -19,12 +19,13 @@ mat-sidenav-container, mat-sidenav-content {
     position: fixed;
     color: white;
     width: 15%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
   }
   
   .sidenav {
     width: 300px;
     color: white;
-    background-color: #ffffff;
+    background-color: #cecece;
   }
 
   .example-spacer {

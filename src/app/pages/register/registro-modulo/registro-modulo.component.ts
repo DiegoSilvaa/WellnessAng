@@ -16,14 +16,13 @@ export class RegistroModuloComponent implements OnInit{
   API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/registro_gimnasio';
   registro: any;
   registroArray: any;
+  aforoMax: any;
+  aforoActual: any;
   private refreshInterval!: Subscription;
   constructor(private http: HttpClient) { 
     this.registro = [];
   }
-
-
   
-
   ngOnInit() {
     this.getRegistro();
     this.refreshInterval = interval(10000).subscribe(() => {
@@ -49,11 +48,18 @@ export class RegistroModuloComponent implements OnInit{
   
 
   exportTable() {
-    TableUtil.exportTableToExcel("ExampleMaterialTable");
+    TableUtil.exportTableToExcel("MaterialTable");
   }
 
   exportNormalTable() {
-    TableUtil.exportTableToExcel("ExampleNormalTable");
+    TableUtil.exportTableToExcel("MaterialTable");
+  }
+  
+  // Cambiar Aforo
+  guardarCambios() {
+    // Aquí puedes realizar las acciones para guardar los cambios
+    // por ejemplo, enviar una solicitud HTTP al servidor
+    console.log('Cambios guardados:', this.aforoMax, this.aforoActual);
   }
 
 

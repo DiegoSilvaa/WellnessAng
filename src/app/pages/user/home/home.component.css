@@ -1,10 +1,10 @@
 .main-container {
     display: flex;
     align-items: center;
-    justify-content: center;
     background-image: url('../../../../assets/back2.png');
     flex-direction: column;
     margin-left: 15%;
+    height: 100vh;
     background-size: contain;
     overflow-y: auto;
 }
@@ -63,6 +63,7 @@ mat-form-field {
   margin-inline: 20px;
   width: 100%;
   padding-bottom: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .stats-container {
@@ -74,6 +75,7 @@ mat-form-field {
   flex-direction: column;
   margin-inline: 20px;
   width: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .horizontal-scroll-container {
@@ -86,7 +88,7 @@ mat-form-field {
   background-color: #ffffff;
   border-radius: 20px;
   padding: 17px;
-
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .centros-container {

@@ -5,12 +5,18 @@
     <div class="aforo-container">
       <h2 class="title"> Aforo del Gimansio</h2>
       <app-spinner-aforo></app-spinner-aforo>
-    </div>
-    <div class="stats-container">
-      <p class="title"> Estadísticas </p>
-      <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active">
-        <mat-icon aria-label="Estadísticas">bar_chart</mat-icon>
+      <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active" class="custom-button">
+        <mat-icon>bar_chart</mat-icon> Aforo Gym
       </button>
+    </div>
+    <mat-divider vertical class="vertical-divider" style="height:480px"></mat-divider>
+    <div class="stats-container">
+      <h2 class="title"> Estadística Centros </h2>
+        <div class="pie-chart-container">
+            <div class="chart-body">
+                <canvas id="barChart">{{BarChart}}</canvas>
+            </div>
+        </div>
   </div>
   </div>
   <h2 class="titleCen"> Centros Deportivos </h2>

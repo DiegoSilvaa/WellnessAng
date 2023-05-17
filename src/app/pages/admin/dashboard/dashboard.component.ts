@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, generate, interval } from 'rxjs';
-
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
 
   // METODO INICIALIZADOR DE PANTALLA
   ngOnInit() {
+    this.createBarChart();
     this.getCentros();
     this.refreshInterval = interval(100000).subscribe(() => {
       this.getCentros();
@@ -53,5 +54,29 @@ export class DashboardComponent implements OnInit {
   onReservationClick(reservation: any): void {
     this.router.navigate(['/dispReserva'])
   }
-
+  
+  // Grafico de centros/Instlaciones
+  public BarChart: any;
+  createBarChart(){
+    this.BarChart = new Chart("barChart", {
+      type: 'pie', //this denotes tha type of chart
+      data: {
+        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo"],
+        datasets: [{
+          label: 'Ventas',
+          data: [12, 19, 3, 5, 2],
+          backgroundColor: [
+            '#A638B2',
+            '#FFE083',
+            '#F06AFF',
+            '#40CCA9',
+            '#41B296'
+          ],
+        }]
+      },
+      options: {
+        responsive: true,
+        }
+      })
+  }
 }

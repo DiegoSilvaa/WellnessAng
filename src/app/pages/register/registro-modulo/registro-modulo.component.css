@@ -2,41 +2,116 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 200vh;
     background-image: url('../../../../assets/back2.png');
     background-size: contain;
     margin-left: 15%;
-    padding-top: 1%;
 }
   
 .table-container {
-  width: 80%;
+  width: 90%;
   margin-top: 1rem;
   overflow-y: auto;
-  background-color: aqua;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
+.custom-table {
+  font-size: 20px; /* Tamaño de fuente */
+  width: 90%; /* Ancho de la tabla */
+}
+
+.custom-table mat-header-cell,
+.custom-table mat-cell {
+  padding: 5px; /* Espaciado interno de las celdas */
+  font-size: 10px;
+}
+
+.custom-table mat-header-row {
+  height: 30px; /* Altura de las filas de encabezado */
+}
+
+.custom-table mat-row {
+  height: 25px; /* Altura de las filas de datos */
+}
 
 .export-container {
   text-align: right;
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 85%;
+  margin-right: 20px;
 }
 
 .title {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
+  background-color: #f1f1f1;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.contents {
+  display: flex;
+  width: 90%;
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  margin-bottom: 10px;
 }
 
-table {
+.aforo-container {
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 20px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.stats-container {
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 20px;
   width: 100%;
 }
 
-th.mat-header-cell,
-td.mat-cell {
-  text-align: center;
+.mat-form-field {
+  width: 300px;
+}
+
+.mat-icon {
+  color: #888888;
+  cursor: pointer;
+}
+
+.input-container{
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  margin-top: 6%;
+}
+.vertical-divider {
+  margin: 0 10px;
+  border-left: 3px solid #c3c3c3;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }

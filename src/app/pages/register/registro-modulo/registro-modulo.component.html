@@ -1,13 +1,36 @@
 <app-sidebar-register></app-sidebar-register>
 <div class="main-container">
-    <h2 class="title"> Aforo del Gimansio </h2>
-    <app-spinner-aforo></app-spinner-aforo> 
+    <h2 class="title"> Vista de Registro Modulo </h2>
+    <div class="contents">
+      <div class="aforo-container">
+        <h2 class="title"> Aforo del Gimansio</h2>
+        <app-spinner-aforo></app-spinner-aforo>
+      </div>
+      <mat-divider vertical class="vertical-divider" style="height:400px"></mat-divider>
+      <div class="stats-container">
+        <h2 class="title"> Cambiar Aforo del Gimansio</h2>
+        <div class="input-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Aforo Máximo</mat-label>
+          <input matInput type="number" [(ngModel)]="aforoMax">
+          <mat-icon matSuffix>person_add_alt_1</mat-icon>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline">
+          <mat-label>Aforo Actual</mat-label>
+          <input matInput type="number" [(ngModel)]="aforoActual">
+          <mat-icon matSuffix>people_alt</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="guardarCambios()">Guardar Cambios</button>
 
-    <div class="export-container">
-      <button mat-raised-button color="primary" (click)="exportTable()">Export Material Table</button>
+      </div>
     </div>
+    </div> 
     <div class="table-container">
-        <table mat-table id="ExampleMaterialTable" [dataSource]="registroArray" class="mat-elevation-z8" matSort>
+      <div class="export-container">
+        <button mat-raised-button color="primary" (click)="exportTable()">Export Material Table</button>
+      </div>
+        <table mat-table id="MaterialTable" [dataSource]="registroArray" class="custom-table">
             <ng-container matColumnDef="id_registro">
               <th mat-header-cell *matHeaderCellDef> No. </th>
               <td mat-cell *matCellDef="let element"> {{element.id_registro}} </td>
