@@ -48,7 +48,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
-
+import { MatDatepicker } from '@angular/material/datepicker';
 
 // Services
 import { AuthServiceService } from './services/auth-service.service';
@@ -74,6 +74,7 @@ import { ReservasDisplayComponent } from './pages/admin/reservas-display/reserva
 import { GraficasAdminComponent } from './pages/admin/graficas-admin/graficas-admin.component';
 import { StatsAforoComponent } from './pages/admin/stats-aforo/stats-aforo.component';
 import { InstalacionesDisplayComponent } from './pages/user/instalaciones-display/instalaciones-display.component';
+import { NewCentroComponent } from './pages/admin/new-centro/new-centro.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { InstalacionesDisplayComponent } from './pages/user/instalaciones-displa
     GraficasAdminComponent,
     StatsAforoComponent,
     InstalacionesDisplayComponent,
+    NewCentroComponent,
   ],
   imports: [
     MatChipsModule,
@@ -136,7 +138,7 @@ import { InstalacionesDisplayComponent } from './pages/user/instalaciones-displa
     MatCheckboxModule,
     MatOptionModule,
     MatSelectModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   providers: [
     AuthServiceService, 

@@ -23,7 +23,7 @@ import { StatsAforoComponent } from '../pages/admin/stats-aforo/stats-aforo.comp
 // Registro Modulo
 
 import { RegistroModuloComponent } from '../pages/register/registro-modulo/registro-modulo.component';
-
+import { NewCentroComponent } from '../pages/admin/new-centro/new-centro.component';
 // Services
 
 import { AuthGuard } from '../services/can-activate.service';
@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'alertas', component: AlertasComponent,  canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]},
   { path: 'aforo', component: NewAforoComponent,  canActivate: [AuthGuard]},
+  { path: 'newCentro', component: NewCentroComponent,  canActivate: [AuthGuard]},
   { path: 'newReservas', component: NewreservacionesComponent,  canActivate: [AuthGuard]},
   { path: 'registroModulo', component: RegistroModuloComponent},
   { path: 'crearAviso', component: CrearAvisoComponent,  canActivate: [AuthGuard]},

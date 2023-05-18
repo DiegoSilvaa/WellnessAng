@@ -2,15 +2,12 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormGroupDirective } from '@angular/forms';
-
 @Component({
-  selector: 'app-new-aforo',
-  templateUrl: './new-aforo.component.html',
-  styleUrls: ['./new-aforo.component.css']
+  selector: 'app-new-centro',
+  templateUrl: './new-centro.component.html',
+  styleUrls: ['./new-centro.component.css']
 })
-
-
-export class NewAforoComponent implements OnInit{
+export class NewCentroComponent implements OnInit{
 	form!: FormGroup;
 	formSubmitted = false;
 	minWeekdaysTime: string = '08:00';
@@ -77,4 +74,5 @@ export class NewAforoComponent implements OnInit{
 			this.url = reader.result; 
 		}
 	}	
+
 }

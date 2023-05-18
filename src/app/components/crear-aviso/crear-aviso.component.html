@@ -1,30 +1,47 @@
+<app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
-  <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
-      <h2 class="form-title">Nuevo Aviso</h2>
+  <div class="containers">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
+      <label class="titleDips">Informacion Instalacion:</label>
       <div class="form-field">
-        <label for="titulo" class="form-label">Título:</label>
-        <input type="text" id="titulo" formControlName="titulo" class="form-input" required>
+        <mat-form-field appearance="outline" style="width: 90%;">
+          <mat-label><mat-icon>title</mat-icon> Título:</mat-label>
+          <input type="text" id="titulo" name="titulo" matInput formControlName="titulo" required>
+        </mat-form-field>
       </div>
       <div class="form-field">
-        <label for="numeroNom" class="form-label">Numero de Nomina:</label>
-        <input type="text" id="numeroNom" formControlName="numeroNom" class="form-input" required>
+        <mat-form-field appearance="outline" style="width: 90%;">
+          <mat-label><mat-icon>badge</mat-icon> Número de Nómina:</mat-label>
+          <input type="text" id="numeroNom" name="numeroNom" matInput formControlName="numeroNom" required>
+        </mat-form-field>
       </div>
       <div class="form-field">
-        <label for="fecha" class="form-label">Fecha:</label>
-        <input type="text" id="fecha" formControlName="fecha" class="form-input" required>
-      </div>
+        <mat-form-field appearance="outline" style="width: 90%;">
+          <mat-label><mat-icon>event</mat-icon> Fecha:</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Seleccione una fecha" formControlName="fecha" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>      
       <div class="form-field">
-        <label for="descripcion" class="form-label">Descripción:</label>
-        <textarea id="descripcion" formControlName="descripcion" class="form-input" required></textarea>
+        <mat-form-field appearance="outline" style="width: 90%;">
+          <mat-label><mat-icon>description</mat-icon> Descripción:</mat-label>
+          <input type="text" id="descripcion" name="descripcion" matInput formControlName="descripcion" required>
+        </mat-form-field>
       </div>
-      <button type="submit" class="form-submit-btn">Enviar</button>
-  </form>
-  <div class="image-selector">
-    <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-      <div><img [src]="url" *ngIf="url" [style.width.px]="300" [style.height.px]="300"></div>
-      <p>
-        <input type="file" (change)="selectFile($event)">
-      </p>
-    </div>
+      <button type="submit" class="form-submit-btn">Habilitar</button>
+    </form>
+    
+    
+    
+    <div class="image-selector">
+      <label class="titleDips">Selecciona una Imagen:</label>
+      <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+        <div class="imagenDisp"><img [src]="url" *ngIf="url" [style.width.px]="300" [style.height.px]="300"></div>
+        <p>
+          <input type="file" (change)="selectFile($event)">
+        </p>
+      </div>
+  </div>
 </div>
   

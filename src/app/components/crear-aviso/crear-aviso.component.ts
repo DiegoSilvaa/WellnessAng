@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,46 +7,50 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './crear-aviso.component.html',
   styleUrls: ['./crear-aviso.component.css']
 })
-export class CrearAvisoComponent {
+export class CrearAvisoComponent implements OnInit {  
+	constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+	form!: FormGroup;
+
+	ngOnInit() {
+	  this.buildForm();
+	}
   
-	constructor(private http: HttpClient) { }
-
-
-  titulo = ""
-  numeroNom = ""
-  fecha = ""
-  descripcion = ""
-
-
-  form: FormGroup = new FormGroup({
-    titulo : new FormControl(''),
-    numeroNom : new FormControl(''),
-    fecha : new FormControl(''),
-    descripcion : new FormControl(''),
-  });
+	buildForm() {
+	  this.form = this.formBuilder.group({
+		titulo: ['', Validators.required],
+		numeroNom: ['', Validators.required],
+		fecha: ['', Validators.required],
+		descripcion: ['', Validators.required]
+	  });
+	}
 
   submit() {
-	//console.log(typeof(this.form.get('numeroNom')?.value), typeof(this.form.get('titulo')?.value), typeof(this.form.get('descripcion')?.value), typeof(this.form.get('fecha')?.value))
-	const url = ' http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/avisos';
-  	const data = {
-		"num_nomina": this.form.get('numeroNom')?.value,
-		"titulo": this.form.get('titulo')?.value,
-		"contenido": this.form.get('descripcion')?.value,
-		"imagen": this.url,
-		"fecha_publicacion": this.form.get('fecha')?.value,
-		"fecha_inicio": "2023-02-05T06:00:00.000Z",
-		"fecha_fin": "2023-02-05T06:00:00.000Z"
-	};
-
-	this.http.post(url, data).subscribe(
-	  response => {
-		console.log(response);
-	  },
-	  error => {
-		console.error(error);
-	  }
-	);
+	if (this.form.valid) {
+		const url = ' http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/avisos';
+	  	const data = {
+			"num_nomina": this.form.get('numeroNom')?.value,
+			"titulo": this.form.get('titulo')?.value,
+			"contenido": this.form.get('descripcion')?.value,
+			"imagen": this.url,
+			"fecha_publicacion": this.form.get('fecha')?.value,
+			"fecha_inicio": "2023-02-05T06:00:00.000Z",
+			"fecha_fin": "2023-02-05T06:00:00.000Z"
+		};
+	
+		this.http.post(url, data).subscribe(
+		  response => {
+			console.log(response);
+		  },
+		  error => {
+			console.error(error);
+		  }
+		);
+	} else {
+		alert('Por favor, completa todos los campos requeridos.');
+	}
   }
+
+
   
 
    // Subir Imagen

@@ -1,54 +1,80 @@
 <app-side-bar-admin></app-side-bar-admin>
 
 <div class="main-container">
+  <h2 class="titleAd"> Crear nueva "Instalacion Deportiva" </h2>
+  <div class="containers">
     <form [formGroup]="form" (ngSubmit)="submit()" class="form">
-      <h2 class="form-title">Nuevo Instalacion Deportiva</h2>
+      <label class="titleDips">Informacion Instalacion:</label>
       <div class="form-field">
-        <label for="centro" class="form-label">Centro deportivo:</label>
-        <mat-form-field>
-          <mat-select id="centro" name="centro" class="form-input-select" formControlName="centro" required>
+        <mat-form-field appearance="outline">
+          <mat-label><i class="material-icons">business</i> Centro deportivo:</mat-label>
+          <mat-select id="centro" name="centro" formControlName="centro" required>
             <mat-option value="opcion1">Opción 1</mat-option>
             <mat-option value="opcion2">Opción 2</mat-option>
             <mat-option value="opcion3">Opción 3</mat-option>
           </mat-select>
         </mat-form-field>
-        <div *ngIf="isFieldInvalid('centro') && formSubmitted" class="error-message">
-          Centro deportivo es requerido.
-        </div>
       </div>
       
       <div class="name-deporte">
-        <div class="child1">
-          <label for="nombre" class="form-label">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" class="form-input" formControlName="nombre" required>
-          <div *ngIf="isFieldInvalid('nombre') && formSubmitted" class="error-message">
-            Nombre es requerido.
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label><i class="material-icons">person</i> Nombre:</mat-label>
+              <input type="text" id="nombre" name="nombre" matInput formControlName="nombre" required>
+            </mat-form-field>
           </div>
-        </div>
-        <div class="child2">
-          <label for="deporte" class="form-label">Deporte:</label>
-          <mat-form-field>
-            <mat-select id="deporte" name="deporte" class="form-input-select" formControlName="deporte" required>
-              <mat-option value="opcion1">Opción 1</mat-option>
-              <mat-option value="opcion2">Opción 2</mat-option>
-              <mat-option value="opcion3">Opción 3</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div *ngIf="isFieldInvalid('deporte') && formSubmitted" class="error-message">
-            Deporte es requerido.
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label><i class="material-icons">sports_soccer</i> Deporte:</mat-label>
+              <mat-select id="deporte" name="deporte" formControlName="deporte" required>
+                <mat-option value="opcion1">Opción 1</mat-option>
+                <mat-option value="opcion2">Opción 2</mat-option>
+                <mat-option value="opcion3">Opción 3</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
-        </div>
       </div>      
-      <label for="calendar" class="form-label">Disponibilidad:</label>
-      <app-range-calendar></app-range-calendar>
+      <label class="titleDips">Disponibilidad:</label>
+      <div style="flex-direction: row; display: flex; width: 100%; align-items: center; justify-content: space-evenly;">
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label><mat-icon>access_time</mat-icon> Hora de inicio (entre semana)</mat-label>
+            <input matInput [min]="minWeekdaysTime" [max]="maxWeekdaysTime" placeholder="Seleccione una hora" formControlName="weekdaysStartTime" required>
+          </mat-form-field>
+        </div>
+      
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label><mat-icon>access_time</mat-icon> Hora de fin (entre semana)</mat-label>
+            <input matInput [min]="minWeekdaysTime" [max]="maxWeekdaysTime" placeholder="Seleccione una hora" formControlName="weekdaysEndTime" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div style="flex-direction: row; display: flex; width: 100%; align-items: center; justify-content: space-evenly;">
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label><mat-icon>access_time</mat-icon> Hora de inicio (fin de semana)</mat-label>
+            <input matInput [min]="minWeekendTime" [max]="maxWeekendTime" placeholder="Seleccione una hora" formControlName="weekendStartTime" required>
+          </mat-form-field>
+        </div>
+        
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label><mat-icon>access_time</mat-icon> Hora de fin (fin de semana)</mat-label>
+            <input matInput [min]="minWeekendTime" [max]="maxWeekendTime" placeholder="Seleccione una hora" formControlName="weekendEndTime" required>
+          </mat-form-field>
+        </div>    
+      </div>
       <button type="submit" class="form-submit-btn">Habilitar</button>
     </form>
 
   <div class="image-selector">
+    <label class="titleDips">Selecciona una Imagen:</label>
     <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-      <div><img [src]="url" *ngIf="url" [style.width.px]="300" [style.height.px]="300"></div>
+      <div class="imagenDisp"><img [src]="url" *ngIf="url" [style.width.px]="300" [style.height.px]="300"></div>
       <p>
         <input type="file" (change)="selectFile($event)">
       </p>
     </div>
+  </div>
 </div>
