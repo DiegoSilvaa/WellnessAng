@@ -12,7 +12,7 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  APIGen : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/';
+  APIGen : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/';
 
   General: any;
   deportes: any;
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   
       const observables = this.General.map((item: any) => {
         const idCentroDeportivo = item.id_centro_deportivo;
-        return this.http.get<any[]>(`http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/${idCentroDeportivo}/deportes`);
+        return this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${idCentroDeportivo}/deportes`);
       });
   
       forkJoin(observables).subscribe((resultsArray: any) => {

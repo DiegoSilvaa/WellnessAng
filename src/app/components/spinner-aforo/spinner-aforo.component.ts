@@ -11,7 +11,7 @@ import { Subscription, interval } from 'rxjs';
 
 export class SpinnerAforoComponent implements OnInit {
   
-  API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/gimnasio';
+  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/gimnasio';
   gimnasio: any;
   aforo: any;
 

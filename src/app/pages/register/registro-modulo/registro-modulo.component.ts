@@ -14,7 +14,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 export class RegistroModuloComponent implements OnInit{
   
-  API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/registro_gimnasio';
+  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio';
   registro: any;
   registroArray: any;
   form!: FormGroup;
@@ -61,18 +61,15 @@ export class RegistroModuloComponent implements OnInit{
   
   
   // Cambiar Aforo
-  formSubmitted = false;
 
   guardarCambios() {
     if (this.form.valid) {
 		  // El formulario es válido, puedes continuar con el procesamiento
 		  console.log(this.form.value);
       this.form.reset();
-      this.formSubmitted = false;
 		} else {
 		  // Mostrar la alerta de error
 		  alert('Por favor, completa todos los campos requeridos.');
-      this.formSubmitted = true; // Establecer primero formSubmitted a true
 		}
   }
 

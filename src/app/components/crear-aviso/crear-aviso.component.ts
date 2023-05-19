@@ -28,7 +28,7 @@ export class CrearAvisoComponent implements OnInit {
 
   submit() {
 	if (this.form.valid) {
-		const url = ' http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/avisos';
+		const url = ' http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos';
 	  	const data = {
 			"num_nomina": this.form.get('numeroNom')?.value,
 			"titulo": this.form.get('titulo')?.value,

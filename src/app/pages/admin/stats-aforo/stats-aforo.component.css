@@ -20,7 +20,7 @@
   .contents{
     display: flex;
     width: 90%;
-    background-color: #4d90fe;
+    background-color: rgb(195, 188, 188, 0.8);
     padding-top: 20px;
     margin-top: 10px;
     padding-bottom: 20px;

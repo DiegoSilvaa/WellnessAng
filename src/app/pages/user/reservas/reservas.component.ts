@@ -9,7 +9,7 @@ import { Subscription, interval } from 'rxjs';
   styleUrls: ['./reservas.component.css']
 })
 export class ReservasComponent implements OnInit {
-  API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/alumno/a00832361/reservaciones';
+  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/a00832361/reservaciones';
   reservas: any;
   reservasArray: any;
   private refreshInterval!: Subscription;

@@ -12,7 +12,7 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./stats-aforo.component.css']
 })
 export class StatsAforoComponent implements OnInit {
-  API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/registro_gimnasio';
+  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio';
   registro: any;
   registroArray: any = new MatTableDataSource<any>();
   private refreshInterval!: Subscription;

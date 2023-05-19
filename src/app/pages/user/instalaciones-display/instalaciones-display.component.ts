@@ -39,7 +39,7 @@ export class InstalacionesDisplayComponent implements OnInit {
   }
 
   getCentros() {
-    this.http.get<any[]>(`http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/centro_deportivo/${this.idSelected.id_deporte}/instalaciones`).subscribe((results: any) => {
+    this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${this.idSelected.id_deporte}/instalaciones`).subscribe((results: any) => {
       this.arrayDeportes = Object.values(results.data);
       console.log(this.arrayDeportes)
     })

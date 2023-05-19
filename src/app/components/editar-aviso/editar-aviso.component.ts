@@ -29,7 +29,7 @@ export class EditarAvisoComponent {
 
   submit() {
     //console.log(typeof(this.form.get('numeroNom')?.value), typeof(this.form.get('titulo')?.value), typeof(this.form.get('descripcion')?.value), typeof(this.form.get('fecha')?.value))
-    const url = `http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/avisos/${this.currNot.id_aviso}`;
+    const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/${this.currNot.id_aviso}`;
       const data = {
       "num_nomina": this.form.get('numeroNom')?.value,
       "titulo": this.form.get('titulo')?.value,
