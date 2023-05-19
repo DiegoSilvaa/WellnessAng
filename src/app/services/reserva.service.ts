@@ -22,4 +22,9 @@ export class ReservaService {
     this.selectedInstalacion = reservation;
     this.router.navigate(['/reservaPage'])
   }
+
+  selectedCentroAdmin: any;
+  selectCentro(reservation: any): void {
+    this.selectedCentroAdmin = reservation;
+    this.router.navigate(['/dispReserva'])  }
 }

@@ -11,6 +11,9 @@
         <a mat-list-item routerLink="/home" routerLinkActive="active">
           <mat-icon>home</mat-icon> Home
         </a>
+        <a mat-list-item routerLink="/" routerLinkActive="active" (click)="onSubmitLog()">
+          <mat-icon>close</mat-icon> Logout
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">

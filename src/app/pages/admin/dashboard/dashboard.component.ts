@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, generate, interval } from 'rxjs';
 import Chart from 'chart.js/auto';
-
+import { ReservaService } from 'src/app/services/reserva.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,9 +14,11 @@ export class DashboardComponent implements OnInit {
   General: any;
   private refreshInterval!: Subscription;
 
-  constructor(private router: Router, private http: HttpClient) { 
+  constructor(private router: Router, private http: HttpClient, private resService: ReservaService) { 
     this.General = [];
   }
+
+
 
   // METODO INICIALIZADOR DE PANTALLA
   ngOnInit() {
@@ -50,11 +52,6 @@ export class DashboardComponent implements OnInit {
     });
   }
   
-  
-  onReservationClick(reservation: any): void {
-    this.router.navigate(['/dispReserva'])
-  }
-  
   // Grafico de centros/Instlaciones
   public BarChart: any;
   createBarChart(){
@@ -79,5 +76,9 @@ export class DashboardComponent implements OnInit {
         responsive: true,
         }
       })
+  }
+
+  onReservationClick(reservation: any): void {
+    this.resService.selectCentro(reservation);
   }
 }

@@ -1,8 +1,6 @@
 import { Component, OnInit , ChangeDetectorRef} from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,15 +8,10 @@ import { of } from 'rxjs';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  isHandset$: Observable<boolean>;
-
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
-      .pipe(map(result => result.matches));
-  }
+  constructor(private authService: AuthServiceService, private router: Router) { }
   
-  showSide: boolean = true;
-  onclick() {
-    this.showSide = !this.showSide;
+  onSubmitLog() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }
