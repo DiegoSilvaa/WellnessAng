@@ -16,4 +16,10 @@ export class ReservaService {
     this.idSelected = id;
     this.router.navigate(['/instalacionesUser'])
   }
+
+  selectedInstalacion: any;
+  selectInstalacion(reservation: any): void {
+    this.selectedInstalacion = reservation;
+    this.router.navigate(['/reservaPage'])
+  }
 }

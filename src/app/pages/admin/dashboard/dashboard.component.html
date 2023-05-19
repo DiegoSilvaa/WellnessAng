@@ -21,13 +21,17 @@
   <h2 class="titleCen"> Centros Deportivos </h2>
   <ng-container *ngIf="General?.length; else noReservas">
     <div class="grid-container">
-        <mat-card *ngFor="let button of General" class="example-card" [ngClass]="{ 'disable-card':!button.esta_habilitado }">
+        <mat-card *ngFor="let button of General" class="example-card">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>{{button.nombre}}</mat-card-title>
-              <mat-card-subtitle>{{button.ubicacion}}</mat-card-subtitle>
             </mat-card-header>
             <img mat-card-image class="card-image" src="{{button.imagen}}" alt="Imagen de Centro">
+            <mat-card-content>
+              <p>
+                {{button.ubicacion}}
+              </p>
+            </mat-card-content>
             <mat-card-actions>
               <button mat-button color="primary" 
               style="background-color: #408dff; color: rgb(255, 255, 255);" 

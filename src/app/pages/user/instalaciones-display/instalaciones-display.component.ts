@@ -28,7 +28,6 @@ export class InstalacionesDisplayComponent implements OnInit {
     console.log(this.selectedReserva.deportes);
     this.getCentros();
     this.refreshInterval = interval(100000).subscribe(() => {
-    
     });
   }
 
@@ -46,6 +45,6 @@ export class InstalacionesDisplayComponent implements OnInit {
   }
 
   onReservationClick(reservation: any): void {
-    this.router.navigate(['/reservaPage'])
+    this.resService.selectInstalacion(reservation);
   }
 }

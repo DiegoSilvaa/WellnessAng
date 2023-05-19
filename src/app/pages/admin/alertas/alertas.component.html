@@ -6,11 +6,12 @@
       mat-button color="primary" 
       style="background-color: #408dff; color: rgb(255, 255, 255); 
       width: 20%; height: 50px; border-radius: 20px; font-size: 20px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);" 
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 1); margin-bottom: 10px;" 
       (click)="crearAviso()"><mat-icon style="margin-right: 5px;">add</mat-icon> Nuevo Aviso </button>
     <ng-container *ngIf="notificacionesArray?.length; else noReservas">
-    <div class="cards">
-        <mat-card *ngFor="let reservation of notificacionesArray" class="example-card">
+      <div class="container" style="background-color: white;">
+        <div class="cards">
+        <mat-card *ngFor="let reservation of notificacionesArray">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{ reservation.titulo }}</mat-card-title>
@@ -21,9 +22,13 @@
             {{ reservation.contenido }}
           </mat-card-content>
           <mat-card-actions align="end">
-              <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" (click)="editarAviso(reservation)"> Editar </button>
+              <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255); margin-inline: 5px;" 
+              (click)="editarAviso(reservation)"> Editar </button>
+              <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255); margin-inline: 5px;" 
+              (click)="confirmarEliminacion(reservation)"> Eliminar </button>
           </mat-card-actions>
         </mat-card>
+    </div>
     </div>
     </ng-container>
     <ng-template #noReservas>

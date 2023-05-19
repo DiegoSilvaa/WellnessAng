@@ -2,7 +2,7 @@
 <div class="main-container">
   <div class="containers">
     <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
-      <label class="titleDips">Informacion Instalacion:</label>
+      <label class="titleDips">Informacion Alerta:</label>
       <div class="form-field">
         <mat-form-field appearance="outline" style="width: 90%;">
           <mat-label><mat-icon>title</mat-icon> Título:</mat-label>
@@ -18,7 +18,7 @@
       <div class="form-field">
         <mat-form-field appearance="outline" style="width: 90%;">
           <mat-label><mat-icon>event</mat-icon> Fecha:</mat-label>
-          <mat-date-range-input formControlName="fecha" [rangePicker]="picker">
+          <mat-date-range-input [rangePicker]="picker">
             <input matStartDate formControlName="start" placeholder="Start date">
             <input matEndDate formControlName="end" placeholder="End date">
           </mat-date-range-input>
@@ -32,7 +32,7 @@
           <input type="text" id="descripcion" name="descripcion" matInput formControlName="descripcion" required>
         </mat-form-field>
       </div>
-      <button type="submit" class="form-submit-btn">Habilitar</button>
+      <button type="submit" class="form-submit-btn">Agregar</button>
     </form>
     
     

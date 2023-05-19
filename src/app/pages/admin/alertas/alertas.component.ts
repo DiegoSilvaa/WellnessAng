@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Notificacion } from 'src/app/clases/notificacion';
 import { Router } from '@angular/router';
 import { AdminAlertaService } from 'src/app/services/admin-alerta.service';
 import { HttpClient } from '@angular/common/http';
@@ -46,9 +45,30 @@ export class AlertasComponent {
     this.router.navigate(['/crearAviso']);
   }
 
-  editarAviso(not: Notificacion) : void {
+  editarAviso(not: any) : void {
     this.alertaService.selectReservation(not)
     this.router.navigate(['/editarAviso']);
+  }
+  
+  confirmarEliminacion(reservation: any) {
+    const confirmacion = confirm('¿Estás seguro de que deseas eliminar este elemento?');
+    if (confirmacion) {
+      // Lógica para eliminar el elemento
+      this.eliminarAviso(reservation);
+    } else {
+      alert('No se elimino el aviso, ya que cancelaste la confirmacion')
+    }
+  }
+
+  eliminarAviso (not: any) {
+    this.http.delete(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/${not.id_aviso}`).subscribe(
+      () => {
+        console.log('Elemento eliminado exitosamente');
+      },
+      error => {
+        console.error('Error al eliminar el elemento', error);
+      }
+    );
   }
 
 }

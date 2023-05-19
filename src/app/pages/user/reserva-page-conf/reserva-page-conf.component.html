@@ -9,25 +9,28 @@
     <div class="content-container">
         <div class="reserva-container">
             <div class="form-container">
-                <h2>Agregar Persona</h2>
-                <form (submit)="agregarPersona()">
-                  <mat-form-field appearance="outline" class="rounded-input">
-                    <input matInput placeholder="Nombre" [(ngModel)]="nuevoNombre" name="nombre">
-                  </mat-form-field>
-                  <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" type="submit"> Anadir Personas </button>
+                <h2 class="fechaLabel">Agrega Personas a tu Reserva:</h2>
+                <form [formGroup]="form">
+                    <div class="input-container">
+                        <mat-form-field appearance="outline">
+                          <mat-label><i class="material-icons">person</i> Nombre:</mat-label>
+                          <input type="text" id="nombre" name="nombre" matInput formControlName="nombre" required>
+                          <mat-icon matSuffix (click)="agregarNombre()">add</mat-icon>
+                        </mat-form-field>
+                    </div>                 
                 </form>
+            <h2 class="fechaLabel">Personas añadidas:</h2>
 
-            <p>Personas añadidas:</p>
             <div class="table-container">
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table">
+                <table mat-table [dataSource]="dataSource" class="custom-table">
                 <ng-container matColumnDef="nombre">
                     <th mat-header-cell *matHeaderCellDef>Nombre</th >
                     <td  mat-cell *matCellDef="let persona">{{persona.nombre}}</td >
                 </ng-container>
                 <ng-container matColumnDef="acciones">
                     <th mat-header-cell *matHeaderCellDef>Borrar Nombre</th>
-                    <td mat-cell *matCellDef="let persona">
-                    <button mat-icon-button color="warn" (click)="eliminarPersona(persona)">
+                    <td mat-cell *matCellDef="let persona; let i = index;">
+                    <button mat-icon-button color="warn" (click)="eliminarNombre(i)">
                         <mat-icon>delete</mat-icon>
                     </button>
                     </td >
@@ -36,7 +39,10 @@
                 <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
                 </table>
             </div>
-            <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" routerLink="/home"> Reserva </button>
+            <button mat-button color="primary" 
+            style="background-color: #408dff; color: rgb(255, 255, 255); padding: 20px;
+            width: 30%; font-size: 20px;" 
+            (click)="submit()"> Reserva </button>
         </div>
         </div>      
       </div>

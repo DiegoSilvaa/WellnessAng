@@ -15,7 +15,7 @@ export class ReservaPageComponent {
   constructor(private router: Router, private resService: ReservaService) { }
   
   
-  selectedReserva = this.resService.selected;
+  selectedReserva = this.resService.selectedInstalacion;
   
   selected?: Date;
   
@@ -33,5 +33,15 @@ export class ReservaPageComponent {
 
   toggleSelection(hour: any) {
     hour.selected = !hour.selected;
+  }
+
+  confirmReservation() {
+    if (!this.selected || this.hours.every(hour => !hour.selected)) {
+      alert('Por favor, selecciona una fecha y hora antes de reservar.');
+    } else {
+      // Lógica para confirmar la reserva si se selecciona la fecha y hora
+      // Redirecciona a la página de confirmación de reserva u otra acción deseada
+      this.router.navigate(['/reservaConf']);
+    }
   }
 }

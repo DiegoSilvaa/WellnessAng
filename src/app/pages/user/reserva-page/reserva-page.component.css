@@ -18,45 +18,49 @@
   }
 
   .rate-container {
-    background-color: white;
+    background-color: rgb(195, 188, 188, 0.8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     width: 28%;
-    height: 90%;
+    height: 95%;
     border-radius: 10px;
     margin-right: 20px;
     align-items: center;
-    justify-content: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
  .content-container {
     width: 68%;
-    height: 90%;
+    height: 95%;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(195, 188, 188, 0.8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .title {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
-}
-
-.subtitle {
-  font-size: 18px;
-  color: #666;
-  margin: 0;
+  color: rgb(0, 0, 0);
+  width: 90%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .reserva-container {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-evenly;
   margin-top: 20px;
   width: 100%;
 }
@@ -64,30 +68,78 @@
 .calendar-cont {
   flex: 1;
   margin-right: 20px;
+  align-items: center;
+  margin-left: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  padding-bottom: 20px;
+  border-radius: 20px;
+}
+
+.fechaLabel{
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: rgb(0, 0, 0);
+  background-color: #f1f1f1;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .child-container {
   flex: 1;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: rgb(0, 0, 0);
+  background-color: #f1f1f1;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  background-size:cover;
+  width: 100%;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+}
+
+.calendar-card {
+  width: 98%;
 }
 
 .chip-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
+  text-align: center;
 }
 
-.mat-chip {
-  margin: 5px;
+mat-chip-option {
+  flex: 1 0 120px;
+  min-width: 120px;
+  text-align: center;
+  align-items: center;
 }
 
-.mat-chip-listbox {
-  width: 100%;
-}
 
 .btt-cont{
   margin-top: 20px;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  display: flex;
+  width: 100%;
 }
 
 

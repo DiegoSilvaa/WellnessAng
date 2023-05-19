@@ -19,7 +19,6 @@ export class CrearAvisoComponent implements OnInit {
 	  this.form = this.formBuilder.group({
 		titulo: ['', Validators.required],
 		numeroNom: ['', Validators.required],
-		fecha: ['', Validators.required],
 		descripcion: ['', Validators.required],
 		start: ['', Validators.required],
 		end: ['', Validators.required],
@@ -34,9 +33,9 @@ export class CrearAvisoComponent implements OnInit {
 			"titulo": this.form.get('titulo')?.value,
 			"contenido": this.form.get('descripcion')?.value,
 			"imagen": this.url,
-			"fecha_publicacion": this.form.get('fecha')?.value,
-			"fecha_inicio": "2023-02-05T06:00:00.000Z",
-			"fecha_fin": "2023-02-05T06:00:00.000Z"
+			"fecha_publicacion": this.form.get('start')?.value,
+			"fecha_inicio": this.form.get('start')?.value,
+			"fecha_fin": this.form.get('end')?.value
 		};
 	
 		this.http.post(url, data).subscribe(
