@@ -3,32 +3,36 @@
     <h2 class="title"> Vista de Registro Modulo </h2>
     <div class="contents">
       <div class="aforo-container">
-        <h2 class="title"> Aforo del Gimansio</h2>
+        <label class="title"> Aforo del Gimansio</label>
         <app-spinner-aforo></app-spinner-aforo>
       </div>
-      <mat-divider vertical class="vertical-divider" style="height:400px"></mat-divider>
-      <div class="stats-container">
-        <h2 class="title"> Cambiar Aforo del Gimansio</h2>
+      <form [formGroup]="form" (ngSubmit)="guardarCambios()" class="form">
+        <label class="title"> Cambiar Aforo del Gimansio</label>
         <div class="input-container">
-        <mat-form-field appearance="outline">
-          <mat-label>Aforo Máximo</mat-label>
-          <input matInput type="number" [(ngModel)]="aforoMax">
-          <mat-icon matSuffix>person_add_alt_1</mat-icon>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Aforo Máximo</mat-label>
+            <input matInput type="number" formControlName="aforoMax">
+            <mat-icon matSuffix>person_add_alt_1</mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Aforo Actual</mat-label>
+            <input matInput type="number" formControlName="aforoActual">
+            <mat-icon matSuffix>people_alt</mat-icon>
+          </mat-form-field>
       
-        <mat-form-field appearance="outline">
-          <mat-label>Aforo Actual</mat-label>
-          <input matInput type="number" [(ngModel)]="aforoActual">
-          <mat-icon matSuffix>people_alt</mat-icon>
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="guardarCambios()">Guardar Cambios</button>
-
-      </div>
-    </div>
+          <button mat-raised-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);">
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+      
     </div> 
     <div class="table-container">
       <div class="export-container">
-        <button mat-raised-button color="primary" (click)="exportTable()">Export Material Table</button>
+        <button mat-raised-button color="primary" 
+        style="background-color: #408dff; color: rgb(255, 255, 255);"
+        (click)="exportTable()">Export Material Table</button>
       </div>
         <table mat-table id="MaterialTable" [dataSource]="registroArray" class="custom-table">
             <ng-container matColumnDef="id_registro">

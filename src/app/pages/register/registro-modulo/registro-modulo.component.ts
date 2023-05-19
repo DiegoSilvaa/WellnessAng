@@ -3,7 +3,8 @@ import { TableUtil } from 'src/app/components/export';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, interval } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
-
+import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registro-modulo',
@@ -16,14 +17,17 @@ export class RegistroModuloComponent implements OnInit{
   API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/registro_gimnasio';
   registro: any;
   registroArray: any;
-  aforoMax: any;
-  aforoActual: any;
+  form!: FormGroup;
   private refreshInterval!: Subscription;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) { 
     this.registro = [];
   }
   
   ngOnInit() {
+    this.form = this.formBuilder.group({
+  		aforoMax: ['', Validators.required],
+  		aforoActual: ['', Validators.required],
+	  });
     this.getRegistro();
     this.refreshInterval = interval(10000).subscribe(() => {
       this.getRegistro();
@@ -55,11 +59,21 @@ export class RegistroModuloComponent implements OnInit{
     TableUtil.exportTableToExcel("MaterialTable");
   }
   
+  
   // Cambiar Aforo
+  formSubmitted = false;
+
   guardarCambios() {
-    // Aquí puedes realizar las acciones para guardar los cambios
-    // por ejemplo, enviar una solicitud HTTP al servidor
-    console.log('Cambios guardados:', this.aforoMax, this.aforoActual);
+    if (this.form.valid) {
+		  // El formulario es válido, puedes continuar con el procesamiento
+		  console.log(this.form.value);
+      this.form.reset();
+      this.formSubmitted = false;
+		} else {
+		  // Mostrar la alerta de error
+		  alert('Por favor, completa todos los campos requeridos.');
+      this.formSubmitted = true; // Establecer primero formSubmitted a true
+		}
   }
 
 

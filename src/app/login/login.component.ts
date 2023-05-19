@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth-service.service';
 
@@ -8,28 +9,30 @@ import { AuthServiceService } from '../services/auth-service.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  // Mostrar Visibilidad del Password
+  showPassword: boolean = false;
 
-  username = '';
-  password = '';
-  alertStatusP : boolean = false;
-  alertStatusS : boolean = false;
-  alertStatusE : boolean = false;
-  constructor(private authService: AuthServiceService, private router: Router) { }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  form!: FormGroup;
+
+  constructor(private authService: AuthServiceService, private router: Router, private formBuilder: FormBuilder) { }
   
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
+  ngOnInit() {
+	  this.form = this.formBuilder.group({
+  		username: ['', Validators.required],
+  		password: ['', Validators.required],
+	  });
+	}
 
   access : boolean = false;
   submit() {
 
     // PROBAR ESTA FUNCIONALIDAD CUANDO ESTE LISTA EL BACKEND
     this.access = this.authService.login(this.form.get('username')?.value, this.form.get('password')?.value)
-    this.alertStatusE = this.authService.error;
-    this.alertStatusP = this.authService.pending;
-    this.alertStatusS = this.authService.success;
     if (this.access) {
       console.log(`${this.form.get('username')?.value} ----- ${this.form.get('password')?.value}`);
       if (this.authService.userType === 'admin') {
@@ -39,6 +42,8 @@ export class LoginComponent {
       } else if (this.authService.userType === 'registro') {
         this.router.navigate(['/registroModulo']);
       }
+    } else {
+      alert('Por favor, completa todos los campos requeridos.');
     }
   }
 }

@@ -4,11 +4,11 @@
 <div class="main-container">
   <div class="contents">
     <div class="aforo-container">
-      <h2 class="title"> Aforo del Gimansio</h2>
+      <label class="title"> Aforo del Gimansio</label>
       <app-spinner-aforo></app-spinner-aforo>
     </div>
   <div class="stats-container">
-    <h2 class="title"> Buscar Deportes </h2>
+    <label class="title"> Buscar Deportes </label>
       <div class="input-boton">
       <mat-form-field appearance="outline" class="rounded-input">
         <mat-label>Escribe un Deporte</mat-label>
@@ -21,6 +21,7 @@
       </div>
   </div>  
   </div> 
+  <h2 class="titleCen"> Centros Deportivos </h2>
   <ng-container *ngIf="deportesFiltrados?.length; else noReservas">
   <div class="centros-container" *ngFor="let centro of deportesFiltrados">
     <h2 class="titleDown">{{ centro.nombre }}</h2>

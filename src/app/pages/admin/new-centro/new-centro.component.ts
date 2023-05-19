@@ -25,13 +25,9 @@ export class NewCentroComponent implements OnInit{
   
 	ngOnInit() {
 	  this.form = this.formBuilder.group({
-		centro: ['', Validators.required],
 		nombre: ['', Validators.required],
-		deporte: ['', Validators.required],
-		weekdaysStartTime: ['', Validators.required],
-		weekdaysEndTime: ['', Validators.required],
-		weekendStartTime: ['', Validators.required],
-		weekendEndTime: ['', Validators.required]
+		disponibilidad: ['', Validators.required],
+		ubicacion: ['', Validators.required],
 	  });
 	}
 

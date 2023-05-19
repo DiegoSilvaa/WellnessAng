@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormGroupDirective } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-aforo',
@@ -16,13 +17,7 @@ export class NewAforoComponent implements OnInit{
 	minWeekdaysTime: string = '08:00';
 	maxWeekdaysTime: string = '18:00';
 	minWeekendTime: string = '09:00';
-	maxWeekendTime: string = '20:00';
-
-	isFieldInvalid(fieldName: string): boolean {
-		const field = this.form.get(fieldName);
-		return field?.invalid && (field?.dirty || field?.touched) || false;
-	  }
-	  
+	maxWeekendTime: string = '20:00';	  
 	  
 	constructor(private formBuilder: FormBuilder) {}
   

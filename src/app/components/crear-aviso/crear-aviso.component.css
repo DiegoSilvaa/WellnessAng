@@ -11,8 +11,8 @@
 
 .containers{
   display: flex;
-  width: 60%;
-  background-color: #4d90fe;
+  width: 80%;
+  background-color: rgb(195, 188, 188, 0.8);
   justify-content: space-evenly;
   padding-top: 20px;
   padding-bottom: 20px;

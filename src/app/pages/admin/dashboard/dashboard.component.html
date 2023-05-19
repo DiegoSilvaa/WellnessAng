@@ -3,14 +3,14 @@
   <h2 class="titleCen"> Vista de Adminstrador </h2>
   <div class="contents">
     <div class="aforo-container">
-      <h2 class="title"> Aforo del Gimansio</h2>
+      <label class="title"> Aforo del Gimansio</label>
       <app-spinner-aforo></app-spinner-aforo>
       <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active" class="custom-button">
         <mat-icon>bar_chart</mat-icon> Aforo Gym
       </button>
     </div>
     <div class="stats-container">
-      <h2 class="title"> Estadística Centros </h2>
+      <label class="title"> Estadística Centros </label>
         <div class="pie-chart-container">
             <div class="chart-body">
                 <canvas id="barChart">{{BarChart}}</canvas>

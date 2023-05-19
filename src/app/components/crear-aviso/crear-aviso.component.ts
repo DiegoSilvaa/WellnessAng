@@ -20,7 +20,9 @@ export class CrearAvisoComponent implements OnInit {
 		titulo: ['', Validators.required],
 		numeroNom: ['', Validators.required],
 		fecha: ['', Validators.required],
-		descripcion: ['', Validators.required]
+		descripcion: ['', Validators.required],
+		start: ['', Validators.required],
+		end: ['', Validators.required],
 	  });
 	}
 
