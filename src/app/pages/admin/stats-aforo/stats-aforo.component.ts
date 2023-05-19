@@ -6,14 +6,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import Chart from 'chart.js/auto';
 
-
 @Component({
   selector: 'app-stats-aforo',
   templateUrl: './stats-aforo.component.html',
   styleUrls: ['./stats-aforo.component.css']
 })
 export class StatsAforoComponent implements OnInit {
-  
   API : string = 'http://gymcodersapivm.eastus2.cloudapp.azure.com:1433/registro_gimnasio';
   registro: any;
   registroArray: any = new MatTableDataSource<any>();
@@ -51,23 +49,6 @@ export class StatsAforoComponent implements OnInit {
 
   displayedColumns = ['id_registro', 'matricula', 'fecha'];
 
-  fechaDesde: Date | null = null;
-  fechaHasta: Date | null = null;
-
-  filterByDate() {
-    if (!this.fechaDesde || !this.fechaHasta) {
-      this.registroArray.filter = null;
-      console.log("No entre");
-      return;
-    }
-  
-    const fechaDesde = new Date(this.fechaDesde);
-    const fechaHasta = new Date(this.fechaHasta);
-    this.registroArray.filter = (value: any) => {
-      const fecha = new Date(value.fecha);
-      return fecha >= fechaDesde && fecha <= fechaHasta;
-    };
-  }
 
   exportTable() {
     TableUtil.exportTableToExcel("ExampleMaterialTable");
@@ -126,5 +107,7 @@ export class StatsAforoComponent implements OnInit {
         }
       })
   }
+
+
 
 }

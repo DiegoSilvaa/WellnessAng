@@ -6,8 +6,27 @@
         <div class="profile-logo">
             <img src="../../assets/perfillogo.png" alt="Profile Image">
         </div>
-        <p style="font-size: 26px"> Nombre : Diego Silva </p>
-        <p style="font-size: 26px"> Matricula : A00830677 </p>
-        <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" class="mat-elevation-z4" routerLink="/" (click)="onSubmitLog()"> Cerrar Sesion </button>
+        <div class="profile-container">
+            <div class="profile-header">
+              <h2 class="profile-name">Diego Maltin</h2>
+            </div>
+            <div class="profile-content">
+              <div class="profile-section">
+                <mat-icon class="section-icon" aria-hidden="true">mail</mat-icon>
+                <p class="section-text">diegosilva11042002@gmail.com</p>
+              </div>
+              <div class="profile-section">
+                <mat-icon class="section-icon" aria-hidden="true">phone</mat-icon>
+                <p class="section-text">8112813043</p>
+              </div>
+              <div class="profile-section">
+                <mat-icon class="section-icon" aria-hidden="true">location_on</mat-icon>
+                <p class="section-text">Mi casa</p>
+              </div>
+            </div>
+            <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);" 
+            class="mat-elevation-z4" routerLink="/" 
+            (click)="onSubmitLog()"> Cerrar Sesion </button>
+          </div>          
     </div>
 </div>

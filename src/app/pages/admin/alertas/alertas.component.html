@@ -1,13 +1,14 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
   <div class="container">
-      <h2 class="titleCen"> Vista de Adminstrador </h2>
+      <h2 class="titleCen"> Alertas </h2>
       <button 
       mat-button color="primary" 
       style="background-color: #408dff; color: rgb(255, 255, 255); 
       width: 20%; height: 50px; border-radius: 20px; font-size: 20px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);" 
       (click)="crearAviso()"><mat-icon style="margin-right: 5px;">add</mat-icon> Nuevo Aviso </button>
+    <ng-container *ngIf="notificacionesArray?.length; else noReservas">
     <div class="cards">
         <mat-card *ngFor="let reservation of notificacionesArray" class="example-card">
           <mat-card-header>
@@ -24,5 +25,9 @@
           </mat-card-actions>
         </mat-card>
     </div>
+    </ng-container>
+    <ng-template #noReservas>
+      <div class="no-reservas-text"> No existen Alertas </div>
+    </ng-template>  
   </div>
 </div>

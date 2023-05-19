@@ -66,11 +66,12 @@ export class DashboardComponent implements OnInit {
           label: 'Ventas',
           data: [12, 19, 3, 5, 2],
           backgroundColor: [
-            '#A638B2',
-            '#FFE083',
-            '#F06AFF',
-            '#40CCA9',
-            '#41B296'
+            '#408dff',
+            '#007bff',
+            '#66a3ff',
+            '#005cbf',
+            '#3377ff',
+            '#003f7f'
           ],
         }]
       },

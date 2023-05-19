@@ -21,6 +21,7 @@
       </div>
   </div>  
   </div> 
+  <ng-container *ngIf="deportesFiltrados?.length; else noReservas">
   <div class="centros-container" *ngFor="let centro of deportesFiltrados">
     <h2 class="titleDown">{{ centro.nombre }}</h2>
     <div class="horizontal-scroll-container"  [ngClass]="{ 'disable-card':!centro.esta_habilitado }">
@@ -38,5 +39,9 @@
         </mat-card-actions>
       </mat-card>
     </div>
-  </div>  
+  </div>
+  </ng-container>
+  <ng-template #noReservas>
+    <div class="no-reservas-text"> No existen Centros Deportivos </div>
+  </ng-template>  
   </div>

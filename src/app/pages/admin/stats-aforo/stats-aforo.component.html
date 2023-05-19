@@ -1,22 +1,11 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
+  <h2 class="title"> Estadisticas del Gimnasio </h2>
+  <div class="contents">
     <div class="table-container">
-          <div class="filter-container">
-            <mat-form-field>
-              <input matInput [matDatepicker]="pickerDesde" placeholder="Desde" [(ngModel)]="fechaDesde">
-              <mat-datepicker-toggle matSuffix [for]="pickerDesde"></mat-datepicker-toggle>
-              <mat-datepicker #pickerDesde></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="pickerHasta" placeholder="Hasta" [(ngModel)]="fechaHasta">
-              <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
-              <mat-datepicker #pickerHasta></mat-datepicker>
-            </mat-form-field>
-            <button mat-raised-button color="primary" (click)="filterByDate()">Filtrar</button>
-          </div>
-          <div class="export-container">
-            <button mat-raised-button color="primary" (click)="exportTable()">Exportar</button>
-          </div>
+      <div class="export-container">
+        <button mat-raised-button color="primary" (click)="exportTable()">Exportar</button>
+      </div>
           <table mat-table id="ExampleMaterialTable" [dataSource]="registroArray" class="mat-elevation-z8">
             <ng-container matColumnDef="id_registro">
               <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -57,4 +46,5 @@
           </div>
         </div>
     </div>
+  </div>
 </div>

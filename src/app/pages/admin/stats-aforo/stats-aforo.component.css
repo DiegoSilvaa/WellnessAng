@@ -1,19 +1,13 @@
 .main-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
     background-image: url('../../../../assets/back2.png');
     margin-left: 15%;
     background-size: contain;
-    padding-bottom: 5%;
-    padding-top: 2%;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-bottom: 2%;
 }
-
-.filter-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
   
   .mat-form-field {
     margin-right: 20px;
@@ -23,31 +17,65 @@
     margin-left: 10px;
   }
 
-  
-.table-container {
-    width: 60%;
-    margin-right: 20px;
-}
+  .contents{
+    display: flex;
+    width: 90%;
+    background-color: #4d90fe;
+    padding-top: 20px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  }
 
-.chart-container {
-    width: 35%;
-    flex-direction: column;
-    margin-top: 5%;
-}
+  .title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+    background-color: white;
+    width: 90%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+  }
 
-.export-container {
+  .export-container {
     text-align: right;
     margin-bottom: 10px;
     margin-top: 10px;
-    margin-left: 85%;
+    margin-right: 20px;
   }
+
+.chart-container {
+  width: 90%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding-top: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  margin-inline: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.table-container {
+  width: 90%;
+  margin-inline: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
 
 .line-chart-container {
     width: 450px;
     height: 450px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     margin-bottom: 20px;
 }
 
@@ -73,4 +101,23 @@
       margin-bottom: 20px;
       margin-right: 20px;
     }
+  }
+  
+  .custom-table {
+    font-size: 20px; /* Tamaño de fuente */
+    width: 90%; /* Ancho de la tabla */
+  }
+  
+  .custom-table mat-header-cell,
+  .custom-table mat-cell {
+    padding: 5px; /* Espaciado interno de las celdas */
+    font-size: 10px;
+  }
+  
+  .custom-table mat-header-row {
+    height: 30px; /* Altura de las filas de encabezado */
+  }
+  
+  .custom-table mat-row {
+    height: 25px; /* Altura de las filas de datos */
   }

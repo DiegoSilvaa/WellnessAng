@@ -1,10 +1,11 @@
 .main-container {
-  justify-content: center;
   align-items: center;
   background-image: url('../../../../assets/back6.png');
   background-size: contain;
   overflow-y: auto;
-  height: 82vh;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
   margin-left: 15%;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -13,19 +14,39 @@
 
 .container {
   margin: 10px;
+  background-color: #4d90fe;
+  width: 90%;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
 } 
 
-.header {
+.TitleCen {
   color: rgb(0, 0, 0);
   background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 90%;
   text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin-bottom: 10px;
   font-weight: 500;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
+
+.no-reservas-text {
+  font-size: 80px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.5;
+  background-color: gray;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  width: 90% ;
 }
 
 .cards {

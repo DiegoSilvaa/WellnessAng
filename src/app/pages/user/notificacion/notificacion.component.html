@@ -1,27 +1,30 @@
 
 <div class="main-container">
-        <div class="container">
-            <div class="header">
-              <h1>Notificaciones de Reservas</h1>
-            </div>
-            <div class="cards">
-              <mat-card *ngFor="let reservation of notificacionesArray">
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>{{ reservation.titulo }}</mat-card-title>
-                  <mat-card-subtitle>{{ reservation.fecha_inicio }} // {{ reservation.fecha_fin }}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="{{reservation.imagen}}" alt="{{reservation.imagen}}">
-                <mat-card-content>
-                  {{ reservation.contenido }}
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button 
-                    color="primary" 
-                    style="background-color: #408dff; color: rgb(255, 255, 255);" 
-                    (click)="onReservationClick(reservation)"> Ver detalles</button>
-                </mat-card-actions>
-              </mat-card>
-            </div>
-          </div>
+    <h2 class="TitleCen">Tus Notificaciones </h2>
+    <ng-container *ngIf="notificacionesArray?.length; else noReservas">
+    <div class="container">
+        <div class="cards">
+            <mat-card *ngFor="let reservation of notificacionesArray">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{ reservation.titulo }}</mat-card-title>
+                <mat-card-subtitle>{{ reservation.fecha_inicio }} // {{ reservation.fecha_fin }}</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="{{reservation.imagen}}" alt="{{reservation.imagen}}">
+              <mat-card-content>
+                {{ reservation.contenido }}
+              </mat-card-content>
+              <mat-card-actions>
+                  <button mat-button 
+                  color="primary" 
+                  style="background-color: #408dff; color: rgb(255, 255, 255);" 
+                  (click)="onReservationClick(reservation)"> Ver detalles</button>
+              </mat-card-actions>
+            </mat-card>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noReservas>
+      <div class="no-reservas-text"> No existen notificaciones </div>
+    </ng-template>
     </div>

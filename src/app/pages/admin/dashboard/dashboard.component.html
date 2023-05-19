@@ -19,8 +19,8 @@
   </div>
   </div>
   <h2 class="titleCen"> Centros Deportivos </h2>
-
-    <div class="grid-container mat-elevation-z2">
+  <ng-container *ngIf="General?.length; else noReservas">
+    <div class="grid-container">
         <mat-card *ngFor="let button of General" class="example-card" [ngClass]="{ 'disable-card':!button.esta_habilitado }">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
@@ -38,4 +38,8 @@
             </mat-card-actions>
           </mat-card>
     </div>  
+  </ng-container>
+  <ng-template #noReservas>
+    <div class="no-reservas-text"> No existen Centros Deportivos </div>
+  </ng-template>  
 </div>  
