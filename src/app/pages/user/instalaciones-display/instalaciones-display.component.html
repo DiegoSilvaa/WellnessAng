@@ -3,15 +3,14 @@
 <div class="main-container">
   <h2 class="title"> {{idSelected.nombre_deporte}} </h2>
   <ng-container *ngIf="arrayDeportes?.length; else noReservas">
-    <div class="row">
-        <mat-card *ngFor="let button of arrayDeportes" class="example-card" [ngClass]="{ 'disable-card':!button.esta_habilitada}">
+    <div class="container">
+      <div class="cards">
+        <mat-card *ngFor="let button of arrayDeportes"  [ngClass]="{ 'disable-card':!button.esta_habilitada}">
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
+            <mat-icon mat-card-avatar>fitness_center</mat-icon>
             <mat-card-title>{{button.nombre}}</mat-card-title>
           </mat-card-header>
-          <div class="card-image-container">
-            <img mat-card-image src="{{button.imagen}}" alt="imagen instalacion">
-          </div>
+            <img mat-card-image class="card-image" src="{{button.imagen}}" alt="imagen instalacion">
           <mat-card-actions>
             <button mat-button color="primary"
             style="background-color: #408dff; color: rgb(255, 255, 255);"
@@ -21,7 +20,8 @@
             </button>
           </mat-card-actions>
         </mat-card> 
-    </div>    
+    </div>   
+    </div> 
     </ng-container>
     <ng-template #noReservas>
       <div class="no-reservas-text"> No existen  "Instalaciones Deportivas" </div>

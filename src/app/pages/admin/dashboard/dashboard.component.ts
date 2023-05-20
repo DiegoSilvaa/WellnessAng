@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription, generate, interval } from 'rxjs';
 import Chart from 'chart.js/auto';
 import { ReservaService } from 'src/app/services/reserva.service';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,7 +14,8 @@ export class DashboardComponent implements OnInit {
   APIGen : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/';
   General: any;
   private refreshInterval!: Subscription;
-
+  nombresCentros: any;
+  numCentros: any;
   constructor(private router: Router, private http: HttpClient, private resService: ReservaService) { 
     this.General = [];
   }
@@ -22,12 +24,12 @@ export class DashboardComponent implements OnInit {
 
   // METODO INICIALIZADOR DE PANTALLA
   ngOnInit() {
-    this.createBarChart();
     this.getCentros();
-    this.refreshInterval = interval(100000).subscribe(() => {
+    this.refreshInterval = interval(10000).subscribe(() => {
       this.getCentros();
     });
   }
+
 
   ngOnDestroy() {
     if (this.refreshInterval) {
@@ -38,18 +40,25 @@ export class DashboardComponent implements OnInit {
   getCentros() {
     this.http.get<any[]>(this.APIGen).subscribe((results: any) => {
       this.General = Object.values(results.data);
-      console.log(this.General);
+      //console.log(this.General);
+      this.nombresCentros = this.General.map((centro:any) => centro.nombre);
+      // Realizar una solicitud HTTP para cada centro y obtener el número de instalaciones
+      const observables = this.General.map((item: any) => {
+        const idCentroDeportivo = item.id_centro_deportivo;
+        this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${idCentroDeportivo}/instalaciones`).subscribe((result:any) =>{
+          //console.log(result.data)
+        });
+        return this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${idCentroDeportivo}/instalaciones`);
+      });
   
-      this.General.sort((a: any, b: any) => {
-        if (a.esta_habilitado && !b.esta_habilitado) {
-          return -1; // a debe aparecer antes que b
-        } else if (!a.esta_habilitado && b.esta_habilitado) {
-          return 1; // a debe aparecer después de b
-        } else {
-          return 0; // no se cambia el orden
-        }
+      forkJoin(observables).subscribe((resultsArray: any) => {
+        this.numCentros = resultsArray.map((instalaciones: any) => instalaciones.data.length);
+        console.log(this.numCentros);
+        this.createBarChart();
+
       });
     });
+    
   }
   
   // Grafico de centros/Instlaciones
@@ -58,10 +67,10 @@ export class DashboardComponent implements OnInit {
     this.BarChart = new Chart("barChart", {
       type: 'pie', //this denotes tha type of chart
       data: {
-        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo"],
+        labels: this.nombresCentros,
         datasets: [{
-          label: 'Ventas',
-          data: [12, 19, 3, 5, 2],
+          label: 'Instalaciones',
+          data: this.numCentros,
           backgroundColor: [
             '#408dff',
             '#007bff',

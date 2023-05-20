@@ -28,7 +28,7 @@
     <div class="horizontal-scroll-container" >
       <mat-card *ngFor="let deporte of centro.deportes" class="example-card" [ngClass]="{ 'disable-card':!deporte.esta_habilitado_deporte}">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <mat-icon mat-card-avatar>sports_soccer</mat-icon>
           <mat-card-title>{{ deporte.nombre_deporte }}</mat-card-title>
         </mat-card-header>
         <img mat-card-image class="card-image" src="{{ deporte.imagen_deporte }}" alt="Photo of a Shiba Inu">

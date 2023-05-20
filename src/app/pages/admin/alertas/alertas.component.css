@@ -31,15 +31,6 @@
     width: 100%;
   }
   
-  .header {
-    color: white;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 10px;
-    flex-direction: row;
-  }
-  
   .container {
     width: 90%;
     background-color: rgb(195, 188, 188, 0.8);
@@ -55,10 +46,6 @@
     width: 100%;
   }
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
   
   mat-card {
     background-color: #f2f2f2;
