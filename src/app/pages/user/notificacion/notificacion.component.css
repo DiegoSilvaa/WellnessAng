@@ -1,10 +1,9 @@
 .main-container {
   background-size: contain;
-  overflow-y: auto;
   height: 100vh;
   flex-direction: column;
   display: flex;
-  padding-top: 2%;
+  padding-top: 1%;
   padding-bottom: 2%;
   align-items: center;
   background-image: url('../../../../assets/back3.png');

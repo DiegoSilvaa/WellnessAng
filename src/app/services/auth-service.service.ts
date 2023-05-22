@@ -42,6 +42,7 @@ export class AuthServiceService {
     return false;
   }
 
+  
   logout(): void {
     this.isLoggedIn = false;
     this.userType = '';

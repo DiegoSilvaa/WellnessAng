@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import { NgxImageCompressService } from 'ngx-image-compress';
+	
 @Component({
   selector: 'app-crear-aviso',
   templateUrl: './crear-aviso.component.html',
   styleUrls: ['./crear-aviso.component.css']
 })
 export class CrearAvisoComponent implements OnInit {  
-	constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+	constructor(private formBuilder: FormBuilder, private http: HttpClient, private imageCompress: NgxImageCompressService) { }
 	form!: FormGroup;
 
 	ngOnInit() {
@@ -32,7 +33,7 @@ export class CrearAvisoComponent implements OnInit {
 			"num_nomina": this.form.get('numeroNom')?.value,
 			"titulo": this.form.get('titulo')?.value,
 			"contenido": this.form.get('descripcion')?.value,
-			"imagen": this.url,
+			"imagen": this.iamgen,
 			"fecha_publicacion": this.form.get('start')?.value,
 			"fecha_inicio": this.form.get('start')?.value,
 			"fecha_fin": this.form.get('end')?.value
@@ -41,6 +42,7 @@ export class CrearAvisoComponent implements OnInit {
 		this.http.post(url, data).subscribe(
 		  response => {
 			console.log(response);
+			this.form.reset();
 		  },
 		  error => {
 			console.error(error);
@@ -51,11 +53,8 @@ export class CrearAvisoComponent implements OnInit {
 	}
   }
 
-
-  
-
    // Subir Imagen
-	url: any;
+	iamgen: any;
 	msg = "";
 	selectFile(event: any) { 
 		if(!event.target.files[0] || event.target.files[0].length == 0) {
@@ -75,7 +74,8 @@ export class CrearAvisoComponent implements OnInit {
 		
 		reader.onload = (_event) => {
 			this.msg = "";
-			this.url = reader.result; 
+			this.iamgen = reader.result; 
+			console.log(this.iamgen)
 		}
 	}
 }

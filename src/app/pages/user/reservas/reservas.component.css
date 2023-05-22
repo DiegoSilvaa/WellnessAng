@@ -3,10 +3,10 @@
   background-image: url('../../../../assets/back6.png');
   background-size: contain;
   overflow-y: auto;
-  height: 100vh;
   flex-direction: column;
   display: flex;
-  margin-left: 15%;
+  margin-left: 13%;
+  padding-left: 20px;
   padding-top: 2%;
   padding-bottom: 2%;
 }
@@ -64,4 +64,20 @@ mat-card {
   background-color: #f2f2f2;
   width: 100%;
 }
+
+.aceptado {
+  background-color: rgba(123, 255, 123, 0.8);
+  color: rgb(0, 0, 0);
+}
+
+.en-espera {
+  background-color: rgb(255, 255, 112, 0.8);
+  color: black;
+}
+
+.cancelada {
+  background-color: rgb(255, 104, 104,0.8);
+  color: rgb(0, 0, 0);
+}
+
 

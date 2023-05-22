@@ -47,6 +47,7 @@ export class EditarAvisoComponent {
     this.http.put(url, data).subscribe(
       response => {
       console.log(response);
+	  this.form.reset();
       },
       error => {
       console.error(error);

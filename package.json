@@ -29,6 +29,7 @@
     "model": "^6.0.1",
     "ng-bootstrap": "^1.6.3",
     "ng2-charts": "^4.1.1",
+    "ngx-image-compress": "^15.1.5",
     "ngx-swiper-wrapper": "^10.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

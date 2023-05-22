@@ -9,7 +9,7 @@
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 1); margin-bottom: 10px;" 
       (click)="crearAviso()"><mat-icon style="margin-right: 5px;">add</mat-icon> Nuevo Aviso </button>
     <ng-container *ngIf="notificacionesArray?.length; else noReservas">
-      <div class="container" style="background-color: white;">
+      <div class="containerDown" style="background-color: white;">
         <div class="cards">
         <mat-card *ngFor="let reservation of notificacionesArray">
           <mat-card-header>

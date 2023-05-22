@@ -41,6 +41,12 @@ export class ReservasComponent implements OnInit {
   }
 
   deleteBooking(booking: any) {
-    this.http.delete(this.API);
+    this.http.delete(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/reservacion/${booking.id_reservacion}`)
+      .subscribe((response: any) => {
+        console.log(response)
+      }, (error) => {
+        // Manejar errores si la eliminación falla
+        console.error(error);
+      });
   }
 }

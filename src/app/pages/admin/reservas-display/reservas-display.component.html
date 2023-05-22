@@ -7,6 +7,9 @@
           <mat-card-header>
             <mat-icon mat-card-avatar>fitness_center</mat-icon>
             <mat-card-title>{{ button.nombre }}</mat-card-title>
+            <div class="switch-container">
+              <mat-slide-toggle [checked]="button.esta_habilitada"></mat-slide-toggle>
+            </div>
           </mat-card-header>
             <img mat-card-image class="card-image" [src]="button.imagen" alt="Photo of a Shiba Inu">
           <mat-card-actions>

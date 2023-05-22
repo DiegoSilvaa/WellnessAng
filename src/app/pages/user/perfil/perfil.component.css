@@ -5,7 +5,8 @@
   background-image: url('../../../../assets/back4.png');
   background-size: contain;
   flex-direction: column;
-  margin-left: 15%;
+  margin-left: 13%;
+  padding-left: 20px;
 }
 
 .image-container {

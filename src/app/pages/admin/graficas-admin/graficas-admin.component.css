@@ -4,7 +4,8 @@
     align-items: center;
     height: 100vh;
     background-image: url('../../../../assets/back4.png');
-    margin-left: 15%;
+    margin-left: 13%;
+    padding-left: 20px;
     background-size: contain;
     flex-direction: row;
     overflow-y: auto;

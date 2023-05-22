@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   getCentros() {
     this.http.get<any[]>(this.APIGen).subscribe((results: any) => {
       this.General = Object.values(results.data);
-      //console.log(this.General);
+      console.log(this.General);
       this.nombresCentros = this.General.map((centro:any) => centro.nombre);
       // Realizar una solicitud HTTP para cada centro y obtener el número de instalaciones
       const observables = this.General.map((item: any) => {
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
   
       forkJoin(observables).subscribe((resultsArray: any) => {
         this.numCentros = resultsArray.map((instalaciones: any) => instalaciones.data.length);
-        console.log(this.numCentros);
+        //console.log(this.numCentros);
         this.createBarChart();
 
       });
