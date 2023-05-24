@@ -47,29 +47,33 @@ export class NewAforoComponent implements OnInit{
 
 	submit() {
 		if (this.form.valid) {
-			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/`;
-			console.log(this.form)
-			const formData = new FormData();
-			formData.append('id_deporte', this.form.get('deporte')?.value);
-			formData.append('nombre', this.form.get('nombre')?.value);
-			formData.append('id_centro_deportivo', this.form.get('centro')?.value);
-			formData.append('image', this.imagen);
-			formData.append('hora_inicial_es',this.form.get('weekdaysStartTime')?.value);
-			formData.append('hora_final_es', this.form.get('weekdaysEndTime')?.value);
-			formData.append('hora_inicial_fds', this.form.get('weekendStartTime')?.value);
-			formData.append('hora_final_fds', this.form.get('weekendEndTime')?.value);
-			this.http.post(url, formData).subscribe((response: any) => {
-				  // La solicitud se ha completado exitosamente
-				this.form.reset();
-				console.log('La solicitud POST se ha completado exitosamente:', response);
-				this.iamgen = null;
-			},
-				(error) => {
-				  // Se produjo un error al realizar la solicitud
-				  console.error('Error al realizar la solicitud POST:', error);
-				}
-			  );
-		  } else {
+			const confirmacion = confirm('¿Estás seguro de que deseas crear un Instalacion Deportiva?');
+    		if (confirmacion) {
+				const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/`;
+				console.log(this.form)
+				const formData = new FormData();
+				formData.append('id_deporte', this.form.get('deporte')?.value);
+				formData.append('nombre', this.form.get('nombre')?.value);
+				formData.append('id_centro_deportivo', this.form.get('centro')?.value);
+				formData.append('image', this.imagen);
+				formData.append('hora_inicial_es',this.form.get('weekdaysStartTime')?.value);
+				formData.append('hora_final_es', this.form.get('weekdaysEndTime')?.value);
+				formData.append('hora_inicial_fds', this.form.get('weekendStartTime')?.value);
+				formData.append('hora_final_fds', this.form.get('weekendEndTime')?.value);
+				this.http.post(url, formData).subscribe((response: any) => {
+					  // La solicitud se ha completado exitosamente
+					this.form.reset();
+					console.log('La solicitud POST se ha completado exitosamente:', response);
+					this.iamgen = null;
+					alert('Instalacion Deportiva creada con exito.')
+				},
+					(error) => {
+					  // Se produjo un error al realizar la solicitud
+					  console.error('Error al realizar la solicitud POST:', error);
+					}
+				  );
+			  } 
+			} else {
 			alert('Por favor, completa todos los campos requeridos.');
 		}	
 	  }
@@ -320,3 +324,4 @@ export class NewAforoComponent implements OnInit{
 	  }
   
   }
+

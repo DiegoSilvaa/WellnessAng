@@ -26,7 +26,7 @@ export class AlertasComponent {
       this.notificacionesArray = Array.isArray(this.notificaciones) ? this.notificaciones : [this.notificaciones];
     });
 
-    this.refreshInterval = interval(10000).subscribe(() => {
+    this.refreshInterval = interval(1000).subscribe(() => {
       this.http.get<any[]>(this.API).subscribe((results: any) => {
         this.notificaciones = Object.values(results.data);
         console.log(this.notificaciones)
@@ -64,6 +64,7 @@ export class AlertasComponent {
     this.http.delete(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/${not.id_aviso}`).subscribe(
       () => {
         console.log('Elemento eliminado exitosamente');
+        alert('Alerta eliminada con exito')
       },
       error => {
         console.error('Error al eliminar el elemento', error);

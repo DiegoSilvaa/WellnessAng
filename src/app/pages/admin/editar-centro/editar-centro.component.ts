@@ -57,6 +57,7 @@ export class EditarCentroComponent implements OnInit {
 					this.form.reset();
 					console.log('La solicitud POST se ha completado exitosamente:', response);
 					this.iamgen = null;
+					alert("Centro Deportivo editado existosamente");
 				},
 					(error) => {
 					  // Se produjo un error al realizar la solicitud

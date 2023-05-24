@@ -28,30 +28,36 @@ export class CrearAvisoComponent implements OnInit {
 
   submit() {
 	if (this.form.valid) {
-		const url = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/num_nomina/admin1';
-
-	    const formData = new FormData();
-	    formData.append('titulo', this.form.get('titulo')?.value);
-	    formData.append('contenido', this.form.get('descripcion')?.value);
-	    formData.append('image', this.imagen);
-	    formData.append('fecha_publicacion', this.form.get('start')?.value);
-	    formData.append('fecha_inicio', this.form.get('start')?.value);
-	    formData.append('fecha_fin', this.form.get('end')?.value);
-		//console.log(formData)
-	    this.http.post(url, formData).subscribe((response: any) => {
-	          // La solicitud se ha completado exitosamente
-			this.form.reset();
-			this.iamgen = null;
-			console.log('La solicitud POST se ha completado exitosamente:', response);
-		},
-	        (error) => {
-	          // Se produjo un error al realizar la solicitud
-	          console.error('Error al realizar la solicitud POST:', error);
-	        }
-	      );
-	  } else {
-		alert('Por favor, completa todos los campos requeridos.');
-	}
+		const confirmacion = confirm('¿Estás seguro de que deseas crear una alerta?');
+    	if (confirmacion) {
+			const url = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/num_nomina/admin1';
+	
+		    const formData = new FormData();
+		    formData.append('titulo', this.form.get('titulo')?.value);
+		    formData.append('contenido', this.form.get('descripcion')?.value);
+		    formData.append('image', this.imagen);
+		    formData.append('fecha_publicacion', this.form.get('start')?.value);
+		    formData.append('fecha_inicio', this.form.get('start')?.value);
+		    formData.append('fecha_fin', this.form.get('end')?.value);
+			//console.log(formData)
+		    this.http.post(url, formData).subscribe((response: any) => {
+		          // La solicitud se ha completado exitosamente
+				this.form.reset();
+				this.iamgen = null;
+				console.log('La solicitud POST se ha completado exitosamente:', response);
+				alert("Alerta creada exitosamente")
+			},
+		        (error) => {
+		          // Se produjo un error al realizar la solicitud
+		          console.error('Error al realizar la solicitud POST:', error);
+		        }
+		      );
+		  } else {
+			return;
+		  }
+		} else {
+			alert('Por favor, completa todos los campos requeridos.');
+		}
   }
 
    // Subir Imagen

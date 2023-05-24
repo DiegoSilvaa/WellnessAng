@@ -4,15 +4,17 @@
   <div class="contents">
     <div class="table-container">
       <div class="export-container">
-        <mat-form-field  appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Selecciona una fecha</mat-label>
           <input matInput [matDatepicker]="picker" (dateChange)="filterButtons($event.value)">
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="exportTable()">Exportar</button>
+        <button mat-raised-button color="primary" 
+        style="background-color: #408dff; color: rgb(255, 255, 255); margin-left: 20px;"
+        (click)="exportTable()">Export Material Table</button>
       </div>
-          <table mat-table id="ExampleMaterialTable" [dataSource]="registroArray" class="mat-elevation-z8">
+        <table mat-table id="MaterialTable" [dataSource]="filteredDataSource" class="custom-table">
             <ng-container matColumnDef="id_registro">
               <th mat-header-cell *matHeaderCellDef> No. </th>
               <td mat-cell *matCellDef="let element"> {{element.id_registro}} </td>
@@ -32,8 +34,8 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-    </div>
+          </table>  
+      </div>       
     <div class="chart-container">
         <div class="line-chart-container">
           <div class="chart-header">

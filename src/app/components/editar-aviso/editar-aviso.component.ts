@@ -33,27 +33,33 @@ export class EditarAvisoComponent {
 
   submit() {
 	if (this.form.valid) {
-		const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/${this.currNot.id_aviso}`;
-
-	    const formData = new FormData();
-	    formData.append('titulo', this.form.get('titulo')?.value);
-	    formData.append('contenido', this.form.get('descripcion')?.value);
-	    formData.append('image', this.imagen);
-	    formData.append('fecha_publicacion', this.form.get('start')?.value);
-	    formData.append('fecha_inicio', this.form.get('start')?.value);
-	    formData.append('fecha_fin', this.form.get('end')?.value);
-		console.log(formData);
-	    this.http.put(url, formData).subscribe((response: any) => {
-	          // La solicitud se ha completado exitosamente
-			this.form.reset();
-			console.log('La solicitud POST se ha completado exitosamente:', response);
-			this.iamgen = null;
-		},
-	        (error) => {
-	          // Se produjo un error al realizar la solicitud
-	          console.error('Error al realizar la solicitud POST:', error);
-	        }
-	      );
+		const confirmacion = confirm('¿Estás seguro de que deseas editar esta alerta?');
+    	if (confirmacion) {
+			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/${this.currNot.id_aviso}`;
+	
+		    const formData = new FormData();
+		    formData.append('titulo', this.form.get('titulo')?.value);
+		    formData.append('contenido', this.form.get('descripcion')?.value);
+		    formData.append('image', this.imagen);
+		    formData.append('fecha_publicacion', this.form.get('start')?.value);
+		    formData.append('fecha_inicio', this.form.get('start')?.value);
+		    formData.append('fecha_fin', this.form.get('end')?.value);
+			console.log(formData);
+		    this.http.put(url, formData).subscribe((response: any) => {
+		          // La solicitud se ha completado exitosamente
+				this.form.reset();
+				console.log('La solicitud POST se ha completado exitosamente:', response);
+				this.iamgen = null;
+				alert("Alerta editada exitosamente")
+			},
+		        (error) => {
+		          // Se produjo un error al realizar la solicitud
+		          console.error('Error al realizar la solicitud POST:', error);
+		        }
+		      );
+			} else {
+				return;
+			}
 	  } else {
 		alert('Por favor, completa todos los campos requeridos.');
 	}	

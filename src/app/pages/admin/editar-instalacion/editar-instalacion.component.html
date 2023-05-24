@@ -17,7 +17,7 @@
       <div class="name-deporte">
           <div class="form-field">
             <mat-form-field appearance="outline">
-              <mat-label><i class="material-icons">person</i> {{editIns.nombre}}</mat-label>
+              <mat-label><i class="material-icons">person</i> {{currInst.nombre}}</mat-label>
               <input type="text" id="nombre" name="nombre" matInput formControlName="nombre" required>
             </mat-form-field>
           </div>
@@ -25,26 +25,36 @@
             <mat-form-field appearance="outline">
               <mat-label><i class="material-icons">sports_soccer</i> Deporte:</mat-label>
               <mat-select id="deporte" name="deporte" formControlName="deporte" required>
-                <mat-option *ngFor="let opcion of deportes" [value]="opcion.id_deporte">{{ opcion.nombre_deporte }}</mat-option>
+                <mat-option *ngFor="let opcion of deportes" [value]="opcion.id_deporte">
+                  <div class="button-cont">
+                    <span>{{ opcion.nombre_deporte}}</span>
+                    <button mat-icon-button color="primary" (click)="editOption(opcion)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteOption(opcion)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
       </div>   
-      <button style="margin-bottom: 15px;" class="form-submit-btn2">
+      <button type="button" style="margin-bottom: 15px;" class="form-submit-btn2" (click)="openModal()">
         Añadir Deporte
       </button>   
       <label class="titleDips">Disponibilidad:</label>
       <div style="flex-direction: row; display: flex; width: 100%; align-items: center; justify-content: space-evenly;">
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon> {{editIns.hora_inicial_es}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_inicial_es}}</mat-label>
             <input matInput [min]="minWeekdaysTime" [max]="maxWeekdaysTime" placeholder="Seleccione una hora" formControlName="weekdaysStartTime" required>
           </mat-form-field>
         </div>
       
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon> {{editIns.hora_final_es}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_es}}</mat-label>
             <input matInput [min]="minWeekdaysTime" [max]="maxWeekdaysTime" placeholder="Seleccione una hora" formControlName="weekdaysEndTime" required>
           </mat-form-field>
         </div>
@@ -52,14 +62,14 @@
       <div style="flex-direction: row; display: flex; width: 100%; align-items: center; justify-content: space-evenly;">
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon> {{editIns.hora_inicial_fds}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon>{{currInst.hora_inicial_fds}}</mat-label>
             <input matInput [min]="minWeekendTime" [max]="maxWeekendTime" placeholder="Seleccione una hora" formControlName="weekendStartTime" required>
           </mat-form-field>
         </div>
         
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon> {{editIns.hora_final_fds}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_fds}}</mat-label>
             <input matInput [min]="minWeekendTime" [max]="maxWeekendTime" placeholder="Seleccione una hora" formControlName="weekendEndTime" required>
           </mat-form-field>
         </div>    
