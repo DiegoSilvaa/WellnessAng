@@ -49,6 +49,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 // Services
@@ -78,11 +79,13 @@ import { InstalacionesDisplayComponent } from './pages/user/instalaciones-displa
 import { NewCentroComponent } from './pages/admin/new-centro/new-centro.component';
 import { EditarCentroComponent } from './pages/admin/editar-centro/editar-centro.component';
 import { EditarInstalacionComponent } from './pages/admin/editar-instalacion/editar-instalacion.component';
-
+import { ModalComponent } from './pages/admin/new-aforo/new-aforo.component';
+import { ModalComponentEdit } from './pages/admin/new-aforo/new-aforo.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ModalComponentEdit,
     HomeComponent,
     SidebarComponent,
     PerfilComponent,
@@ -112,6 +115,7 @@ import { EditarInstalacionComponent } from './pages/admin/editar-instalacion/edi
     NewCentroComponent,
     EditarCentroComponent,
     EditarInstalacionComponent,
+    ModalComponent
   ],
   imports: [
     MatSlideToggleModule,
@@ -122,6 +126,7 @@ import { EditarInstalacionComponent } from './pages/admin/editar-instalacion/edi
     MatPaginatorModule,
     BrowserModule,
     AppRoutingModule,
+    MatMenuModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,

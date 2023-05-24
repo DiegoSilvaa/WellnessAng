@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { FormGroupDirective } from '@angular/forms';
 import { ReservaService } from 'src/app/services/reserva.service';
 @Component({
@@ -10,19 +11,16 @@ import { ReservaService } from 'src/app/services/reserva.service';
 })
 export class EditarCentroComponent implements OnInit {
 	form!: FormGroup;
-	formSubmitted = false;
-	minWeekdaysTime: string = '08:00';
-	maxWeekdaysTime: string = '18:00';
-	minWeekendTime: string = '09:00';
-	maxWeekendTime: string = '20:00';
-
+	APIGen : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/';
+	
 	isFieldInvalid(fieldName: string): boolean {
 		const field = this.form.get(fieldName);
 		return field?.invalid && (field?.dirty || field?.touched) || false;
 	  }
 	  
 	  
-	constructor(private formBuilder: FormBuilder, private resSer: ReservaService) {}
+	constructor(private formBuilder: FormBuilder, private http:HttpClient, private resSer: ReservaService ) {}
+  
   
   // LLmar a centro para editar
   editCentro: any = this.resSer.centro;
@@ -37,42 +35,66 @@ export class EditarCentroComponent implements OnInit {
 	}
 
 	submit() {
-		this.formSubmitted = true;
 		if (this.form.valid) {
-		  // El formulario es válido, puedes continuar con el procesamiento
-		  console.log(this.form.value);
-		} else {
-		  // Mostrar la alerta de error
-		  alert('Por favor, completa todos los campos requeridos.');
+			if (!this.imagen) {
+				alert('Por favor, selecciona una imagen.');
+				return;
+			}
+				const confirmacion = confirm('¿Estás seguro de que deseas editar este Centro Deportivo?');
+	    		if (confirmacion) {
+				console.log(this.form)
+				const dispSel = this.form.get('disponibilidad')?.value;
+				const dispBool = dispSel === 'Habilitado';
+				const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${this.editCentro.id_centro_deportivo}`;
+		
+				const formData = new FormData();
+				formData.append('nombre', this.form.get('nombre')?.value);
+				formData.append('ubicacion', this.form.get('ubicacion')?.value);
+				formData.append('image', this.imagen);
+				formData.append('esta_habilitado', dispBool.toString());
+				this.http.put(url, formData).subscribe((response: any) => {
+					  // La solicitud se ha completado exitosamente
+					this.form.reset();
+					console.log('La solicitud POST se ha completado exitosamente:', response);
+					this.iamgen = null;
+				},
+					(error) => {
+					  // Se produjo un error al realizar la solicitud
+					  console.error('Error al realizar la solicitud POST:', error);
+					}
+				  );
+			  } else {
+				alert('Por favor, completa todos los campos requeridos.');
+			}	
 		}
 	  }
 
+// Subir Imagen 
+  imagen!: File;
+  iamgen: any  = this.editCentro.imagen;
+  msg = "";
+  selectFile(event: any) { 
+	  if(!event.target.files[0] || event.target.files[0].length == 0) {
+		  this.msg = 'You must select an image';
+		  return;
+	  }
 	  
-
-  // Subir Imagen 
-	url: any; 
-	msg = "";
-	
-	
-	selectFile(event: any) {
-		if(!event.target.files[0] || event.target.files[0].length == 0) {
-			this.msg = 'You must select an image';
-			return;
-		}
-		
-		var mimeType = event.target.files[0].type;
-		
-		if (mimeType.match(/image\/*/) == null) {
-			this.msg = "Only images are supported";
-			return;
-		}
-		
-		var reader = new FileReader();
-		reader.readAsDataURL(event.target.files[0]);
-		
-		reader.onload = (_event) => {
-			this.msg = "";
-			this.url = reader.result; 
-		}
-	}	
+	  var mimeType = event.target.files[0].type;
+	  
+	  if (mimeType.match(/image\/*/) == null) {
+		  this.msg = "Only images are supported";
+		  return;
+	  }
+	  
+	  this.imagen = event.target.files[0];
+	  var reader = new FileReader();
+	  reader.readAsDataURL(event.target.files[0]);
+	  
+	  reader.onload = (_event) => {
+		  this.msg = "";
+		  this.imagen = event.target.files[0]; 
+		  this.iamgen = reader.result; 
+		  console.log(this.imagen)
+	  }
+  }
 }

@@ -25,12 +25,22 @@
             <mat-form-field appearance="outline">
               <mat-label><i class="material-icons">sports_soccer</i> Deporte:</mat-label>
               <mat-select id="deporte" name="deporte" formControlName="deporte" required>
-                <mat-option *ngFor="let opcion of deportes" [value]="opcion.id_deporte">{{ opcion.nombre_deporte }}</mat-option>
+                <mat-option *ngFor="let opcion of deportes" [value]="opcion.id_deporte">
+                  <div class="button-cont">
+                    <span>{{ opcion.nombre_deporte}}</span>
+                    <button mat-icon-button color="primary" (click)="editOption(opcion)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteOption(opcion)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
       </div>   
-      <button style="margin-bottom: 15px;" class="form-submit-btn2">
+      <button type="button" style="margin-bottom: 15px;" class="form-submit-btn2" (click)="openModal()">
         Añadir Deporte
       </button>   
       <label class="titleDips">Disponibilidad:</label>

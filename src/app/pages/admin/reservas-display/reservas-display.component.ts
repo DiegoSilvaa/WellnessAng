@@ -42,6 +42,10 @@ export class ReservasDisplayComponent implements OnInit {
     this.resSer.statsInstalacion(reservation);
   }
 
+  onEdit(reservation: any): void {
+    this.resSer.editarInstalacion(reservation);
+  }
+
   toggleChanged(instalacion: any) {
     console.log(instalacion)
     const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${instalacion.id_instalacion}/cambiar_estado`;

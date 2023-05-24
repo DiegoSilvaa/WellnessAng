@@ -11,9 +11,12 @@
             <mat-card-title>{{ reservation.matricula }}</mat-card-title>
             <mat-card-subtitle>{{ reservation.fecha }}</mat-card-subtitle>
           </mat-card-header>
+          <div *ngFor="let instalacion of reservation.instalacion">
+            <img mat-card-image class="card-image" src="{{instalacion.imagen}}" alt="{{instalacion.imagen}}">
           <mat-card-content>
-            {{reservation.num_cancha}}
+            {{instalacion.nombre}}
           </mat-card-content>
+          </div>
           <mat-card-actions>
               <button mat-button color="primary" 
               style="background-color: #408dff; color: rgb(255, 255, 255);" 

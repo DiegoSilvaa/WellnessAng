@@ -12,36 +12,89 @@ import { Subscription, interval } from 'rxjs';
 })
 
 export class ReservaPageComponent {
-  constructor(private router: Router, private resService: ReservaService) { }
-  
-  
+
   selectedReserva = this.resService.selectedInstalacion;
   
   selected?: Date;
   
-  hours = [
-    { label: '10:00 am', selected: false },
-    { label: '11:00 am', selected: false },
-    { label: '12:00 pm', selected: false },
-    { label: '1:00 pm', selected: false },
-    { label: '2:00 pm', selected: false },
-    { label: '3:00 pm', selected: false },
-    { label: '4:00 pm', selected: false },
-    { label: '5:00 pm', selected: false },
-    { label: '6:00 pm', selected: false }
-  ];
+  // hora_final_es: "1970-01-01T20:00:00.000Z"
+  // hora_final_fds: "1970-01-01T20:00:00.000Z"
+  // hora_inicial_es: "1970-01-01T08:00:00.000Z"
+  // hora_inicial_fds: "1970-01-01T10:00:00.000Z"
+  
+  
+  initialDate!: Date;
+  finalDate!: Date;
+  hours: any[] = [];
+
+  constructor(private router: Router, private resService: ReservaService, private http: HttpClient) { 
+  }
+
+  getHoras() {
+    this.initialDate = new Date(this.selectedReserva.hora_inicial_es);
+    this.finalDate = new Date(this.selectedReserva.hora_final_es);
+    this.finalDate.setHours(this.finalDate.getHours() + 6);
+    this.initialDate.setHours(this.initialDate.getHours() + 6); 
+
+    // Genera el array de horas en intervalos de 1 hora
+    let currentHour = this.initialDate;
+    console.log(this.initialDate)
+    console.log(currentHour)
+
+    while (currentHour <= this.finalDate) {
+      this.hours.push({
+        label: this.formatHour(currentHour),
+        selected: false,
+        disabled: this.disableFecha(currentHour)
+      });
+      currentHour.setHours(currentHour.getHours() + 1);
+    }
+  }
+
+  formatHour(date: Date): string {
+    // Función auxiliar para formatear la hora en el formato deseado
+    return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  }
+
+  disableFecha(date: Date) : boolean {
+    // Obtiene la hora actual del objeto Date
+    let currentDateString = new Date(date);
+    return this.horasArray.some((obj:any) => {
+      let newDate = new Date(obj.hora)
+      newDate.setHours(newDate.getHours() + 6);
+      let c1 = newDate.toLocaleTimeString();
+      let c2 = currentDateString.toLocaleTimeString();
+      console.log(c1, c2);
+      return c1 === c2;
+    })
+  }
+
 
   toggleSelection(hour: any) {
     hour.selected = !hour.selected;
   }
+  
 
+  onDateSelected(): void {
+    // Aquí puedes hacer lo que necesites con la fecha seleccionada
+    this.hours = [];
+    this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${this.selectedReserva.id_instalacion}/horarios_reservados_en_fecha/${this.selected}`)
+      .subscribe((results: any) => {
+        this.horasArray = Object.values(results.data);
+        this.getHoras();
+        console.log(this.horasArray);
+      })
+  }
+
+
+
+  horasArray: any;
   confirmReservation() {
     if (!this.selected || this.hours.every(hour => !hour.selected)) {
       alert('Por favor, selecciona una fecha y hora antes de reservar.');
     } else {
       // Lógica para confirmar la reserva si se selecciona la fecha y hora
       // Redirecciona a la página de confirmación de reserva u otra acción deseada
-      this.router.navigate(['/reservaConf']);
     }
   }
 }

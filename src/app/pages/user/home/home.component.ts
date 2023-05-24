@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getCentros();
     this.refreshInterval = interval(100000).subscribe(() => {
-    
+      this.getCentros();
     });
   }
 

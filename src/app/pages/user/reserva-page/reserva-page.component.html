@@ -10,7 +10,7 @@
           <div class="calendar-cont">
             <h2 class="fechaLabel"> Selecciona una Fecha: </h2>
             <mat-card class="calendar-card">
-              <mat-calendar [(selected)]="selected"></mat-calendar>
+              <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected()"></mat-calendar>
             </mat-card>
           </div>
           <div class="child-container">
@@ -18,7 +18,7 @@
             <p style="text-align: center;">Fecha Seleccionada: {{selected}}</p>
             <div class="chip-container">
               <mat-chip-listbox aria-label="Horas" style="text-align: center;">
-                <mat-chip-option *ngFor="let hour of hours" [selected]="hour.selected" (click)="toggleSelection(hour)">
+                <mat-chip-option *ngFor="let hour of hours" [selected]="hour.selected" (click)="toggleSelection(hour)" [disabled]="hour.disabled">
                   <mat-icon>access_time</mat-icon>
                   {{ hour.label }}
                 </mat-chip-option>

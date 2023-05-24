@@ -34,7 +34,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
   }
 
-  form {
+  .form {
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     border-radius: 10px;
@@ -66,7 +66,7 @@
   
   
   .form-submit-btn {
-    width: 15%;
+    width: 20%;
     padding: 10px;
     background-color: #4d90fe;
     color: #fff;
@@ -104,9 +104,10 @@
   width: 100%;
   padding-bottom: 10px;
   padding-top: 10px;
-  border-radius: 10px;
   margin-bottom: 20px;
   font-weight: 500;
+  border-top-left-radius: 10px;
+  border-top-right-radius:10px;
   font-size: 20px;
 }
 
@@ -130,4 +131,42 @@
 
 .form-submit-btn2:hover {
   background-color: #357ae8;
+}
+
+.modal-container {
+  width: 600px;
+  height: 700px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.modal-form-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.modal-image-container {
+  width: 80%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.button-cont{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content:right;
 }

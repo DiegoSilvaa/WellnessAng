@@ -10,11 +10,6 @@ import { FormGroupDirective } from '@angular/forms';
 })
 export class NewCentroComponent implements OnInit{
 	form!: FormGroup;
-	formSubmitted = false;
-	minWeekdaysTime: string = '08:00';
-	maxWeekdaysTime: string = '18:00';
-	minWeekendTime: string = '09:00';
-	maxWeekendTime: string = '20:00';
 	APIGen : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/';
 	
 	isFieldInvalid(fieldName: string): boolean {
@@ -34,29 +29,39 @@ export class NewCentroComponent implements OnInit{
 	}
 
 	submit() {
+		console.log(this.form)
 		if (this.form.valid) {
-			const dispSel = this.form.get('disponibilidad')?.value;
-			const dispBool = dispSel === 'Habilitado';
-			console.log(dispBool);
-			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/`;
-	
-			const formData = new FormData();
-			formData.append('nombre', this.form.get('nombre')?.value);
-			formData.append('ubicacion', this.form.get('ubicacion')?.value);
-			formData.append('image', this.imagen);
-			formData.append('esta_habilitado', dispBool.toString());
-			console.log(formData);
-			this.http.post(url, formData).subscribe((response: any) => {
-				  // La solicitud se ha completado exitosamente
-				this.form.reset();
-				console.log('La solicitud POST se ha completado exitosamente:', response);
-				this.iamgen = null;
-			},
-				(error) => {
-				  // Se produjo un error al realizar la solicitud
-				  console.error('Error al realizar la solicitud POST:', error);
-				}
-			  );
+			if (!this.imagen) {
+				alert('Por favor, selecciona una imagen.');
+				return;
+			}
+			const confirmacion = confirm('¿Estás seguro de que deseas crear un Centro Deportivo?');
+    		if (confirmacion) {
+				const dispSel = this.form.get('disponibilidad')?.value;
+				const dispBool = dispSel === 'Habilitado';
+				console.log(dispBool);
+				const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/`;
+		
+				const formData = new FormData();
+				formData.append('nombre', this.form.get('nombre')?.value);
+				formData.append('ubicacion', this.form.get('ubicacion')?.value);
+				formData.append('image', this.imagen);
+				formData.append('esta_habilitado', dispBool.toString());
+				console.log(formData);
+				this.http.post(url, formData).subscribe((response: any) => {
+					  // La solicitud se ha completado exitosamente
+					this.form.reset();
+					console.log('La solicitud POST se ha completado exitosamente:', response);
+					this.iamgen = null;
+				},
+					(error) => {
+					  // Se produjo un error al realizar la solicitud
+					  console.error('Error al realizar la solicitud POST:', error);
+					}
+				  );
+			} else {
+				return;
+			}
 		  } else {
 			alert('Por favor, completa todos los campos requeridos.');
 		}	

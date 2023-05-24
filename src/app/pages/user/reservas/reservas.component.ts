@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Booking } from 'src/app/clases/booking';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, interval } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-reservas',
@@ -19,18 +20,9 @@ export class ReservasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get<any[]>(this.API).subscribe((results: any) => {
-      this.reservas = Object.values(results.data);
-      console.log(this.reservas)
-      this.reservasArray = Array.isArray(this.reservas) ? this.reservas : [this.reservas];
-    });
-
-    this.refreshInterval = interval(10000).subscribe(() => {
-      this.http.get<any[]>(this.API).subscribe((results: any) => {
-        this.reservas = Object.values(results.data);
-        console.log(this.reservas)
-        this.reservasArray = Array.isArray(this.reservas) ? this.reservas : [this.reservas];
-      });
+    this.getCentros();
+    this.refreshInterval = interval(100000).subscribe(() => {
+      this.getCentros();
     });
   }
 
@@ -38,6 +30,27 @@ export class ReservasComponent implements OnInit {
     if (this.refreshInterval) {
       this.refreshInterval.unsubscribe();
     }
+  }
+  
+
+  getCentros() {
+    this.http.get<any[]>(this.API).subscribe((results: any) => {
+      this.reservasArray = Object.values(results.data);
+      console.log(this.reservasArray);
+  
+      const observables = this.reservasArray.map((item: any) => {
+        const id_instalacion = item.id_instalacion;
+        return this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${id_instalacion}`);
+      });
+  
+      forkJoin(observables).subscribe((resultsArray: any) => {
+        resultsArray.forEach((results: any, index: number) => {
+          const instalacion = Object.values(results.data);
+          //console.log(deportes);
+          this.reservasArray[index].instalacion = instalacion; // Almacena los deportes correspondientes en la propiedad 'deportes' del centro
+        });
+      });
+    });
   }
 
   deleteBooking(booking: any) {

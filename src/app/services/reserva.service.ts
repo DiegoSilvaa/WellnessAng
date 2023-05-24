@@ -41,4 +41,9 @@ export class ReservaService {
     this.instalacionStats = inst;
     this.router.navigate(['/graficasAdmin'])
   }  
+
+  editarInstalacion(inst: any) {
+    this.instalacionStats = inst;
+    this.router.navigate(['/editInstalacion'])
+  }  
 }

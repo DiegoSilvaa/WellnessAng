@@ -35,7 +35,7 @@
     <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
       <div class="imagenDisp"><img [src]="iamgen" *ngIf="iamgen" [style.width.px]="300" [style.height.px]="300"></div>
       <p>
-        <input type="file" (change)="selectFile($event)">
+        <input type="file" (change)="selectFile($event)" required>
       </p>
     </div>
   </div>
