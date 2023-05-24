@@ -19,13 +19,17 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient, private resService: ReservaService) { 
     this.General = [];
   }
-
-
-
+  
+  // Selecconar Centro para editar
+  
+  onEditCentro(centro: any) {
+    this.resService.selectedCentro(centro);
+  }
+  
   // METODO INICIALIZADOR DE PANTALLA
   ngOnInit() {
     this.getCentros();
-    this.refreshInterval = interval(10000).subscribe(() => {
+    this.refreshInterval = interval(1000).subscribe(() => {
       this.getCentros();
     });
   }
@@ -89,5 +93,13 @@ export class DashboardComponent implements OnInit {
 
   onReservationClick(reservation: any): void {
     this.resService.selectCentro(reservation);
+  }
+
+  toggleChanged(centro: any) {
+    const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${centro.id_centro_deportivo}/cambiar_estado`;
+    
+    this.http.put(url,null).subscribe((results: any) => {
+      console.log(results)
+    })
   }
 }

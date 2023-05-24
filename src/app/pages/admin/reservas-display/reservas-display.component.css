@@ -72,3 +72,18 @@ mat-card {
     border-radius: 10px;
   }
   
+  .gray-card {
+    background-color: rgba(186, 181, 181, 0.8);
+  }
+
+  .no-reservas-text {
+    font-size: 80px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0.5;
+    background-color: gray;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    width: 90% ;
+  }

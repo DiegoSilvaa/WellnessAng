@@ -15,9 +15,6 @@
           <input matInput type="text" placeholder="Ingresa tu nombre" [(ngModel)]="searchQuery" (keyup)="filterButtons()">
           <button matSuffix mat-button><mat-icon >search</mat-icon></button>
       </mat-form-field>
-      <button mat-icon-button (click)="openDialog()">
-        <mat-icon>help_outline</mat-icon>
-      </button>
       </div>
   </div>  
   </div> 
@@ -25,8 +22,9 @@
   <ng-container *ngIf="deportesFiltrados?.length; else noReservas">
   <div class="centros-container" *ngFor="let centro of deportesFiltrados">
     <label class="titleCen">{{ centro.nombre }}</label>
-    <div class="horizontal-scroll-container" >
-      <mat-card *ngFor="let deporte of centro.deportes" class="example-card" [ngClass]="{ 'disable-card':!deporte.esta_habilitado_deporte}">
+    <ng-container *ngIf="centro.deportes?.length; else noReservas">
+    <div class="horizontal-scroll-container">
+      <mat-card *ngFor="let deporte of centro.deportes" class="example-card" [ngClass]="{ 'disable-card':!centro.esta_habilitado}">
         <mat-card-header>
           <mat-icon mat-card-avatar>sports_soccer</mat-icon>
           <mat-card-title>{{ deporte.nombre_deporte }}</mat-card-title>
@@ -34,13 +32,16 @@
         <img mat-card-image class="card-image" src="{{ deporte.imagen_deporte }}" alt="Photo of a Shiba Inu">
         <mat-card-actions>
           <button mat-button color="primary" style="background-color: #408dff; color: rgb(255, 255, 255);"
-            class="mat-elevation-z4" (click)="onReservationClick(centro,deporte)"  [disabled]="!deporte.esta_habilitado_deporte
-            ">
+            class="mat-elevation-z4" (click)="onReservationClick(centro,deporte)"  [disabled]="!centro.esta_habilitado">
             <mat-icon>add</mat-icon>Reservar
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
+    </ng-container>
+    <ng-template #noReservas>
+      <div class="no-reservas-text"> No existen "Instalaciones Deportivas" en {{ centro.nombre }} </div>
+    </ng-template> 
   </div>
   </ng-container>
   <ng-template #noReservas>

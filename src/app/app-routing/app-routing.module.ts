@@ -20,6 +20,7 @@ import { EditarAvisoComponent } from '../components/editar-aviso/editar-aviso.co
 import { ReservasDisplayComponent } from '../pages/admin/reservas-display/reservas-display.component';
 import { GraficasAdminComponent } from '../pages/admin/graficas-admin/graficas-admin.component';
 import { StatsAforoComponent } from '../pages/admin/stats-aforo/stats-aforo.component';
+import { EditarCentroComponent } from '../pages/admin/editar-centro/editar-centro.component';
 // Registro Modulo
 
 import { RegistroModuloComponent } from '../pages/register/registro-modulo/registro-modulo.component';
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'graficasAdmin', component: GraficasAdminComponent,  },
   { path: 'statsAdmin', component: StatsAforoComponent,  },
   { path: 'instalacionesUser', component: InstalacionesDisplayComponent, },
+  { path: 'editCentro', component: EditarCentroComponent, },
   { path: '**', component: ErrorComponent},
 ];
 

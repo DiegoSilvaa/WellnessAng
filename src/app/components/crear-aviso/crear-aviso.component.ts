@@ -28,32 +28,34 @@ export class CrearAvisoComponent implements OnInit {
 
   submit() {
 	if (this.form.valid) {
-		const url = ' http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos';
-	  	const data = {
-			"num_nomina": this.form.get('numeroNom')?.value,
-			"titulo": this.form.get('titulo')?.value,
-			"contenido": this.form.get('descripcion')?.value,
-			"imagen": this.iamgen,
-			"fecha_publicacion": this.form.get('start')?.value,
-			"fecha_inicio": this.form.get('start')?.value,
-			"fecha_fin": this.form.get('end')?.value
-		};
-	
-		this.http.post(url, data).subscribe(
-		  response => {
-			console.log(response);
+		const url = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/num_nomina/admin1';
+
+	    const formData = new FormData();
+	    formData.append('titulo', this.form.get('titulo')?.value);
+	    formData.append('contenido', this.form.get('descripcion')?.value);
+	    formData.append('image', this.imagen);
+	    formData.append('fecha_publicacion', this.form.get('start')?.value);
+	    formData.append('fecha_inicio', this.form.get('start')?.value);
+	    formData.append('fecha_fin', this.form.get('end')?.value);
+		//console.log(formData)
+	    this.http.post(url, formData).subscribe((response: any) => {
+	          // La solicitud se ha completado exitosamente
 			this.form.reset();
-		  },
-		  error => {
-			console.error(error);
-		  }
-		);
-	} else {
+			this.iamgen = null;
+			console.log('La solicitud POST se ha completado exitosamente:', response);
+		},
+	        (error) => {
+	          // Se produjo un error al realizar la solicitud
+	          console.error('Error al realizar la solicitud POST:', error);
+	        }
+	      );
+	  } else {
 		alert('Por favor, completa todos los campos requeridos.');
 	}
   }
 
    // Subir Imagen
+    imagen!: File;
 	iamgen: any;
 	msg = "";
 	selectFile(event: any) { 
@@ -69,13 +71,15 @@ export class CrearAvisoComponent implements OnInit {
 			return;
 		}
 		
+		this.imagen = event.target.files[0];
 		var reader = new FileReader();
 		reader.readAsDataURL(event.target.files[0]);
 		
 		reader.onload = (_event) => {
 			this.msg = "";
+			this.imagen = event.target.files[0]; 
 			this.iamgen = reader.result; 
-			console.log(this.iamgen)
+			console.log(this.imagen)
 		}
 	}
 }

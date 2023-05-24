@@ -40,7 +40,7 @@
     <div class="image-selector">
       <label class="titleDips">Selecciona una Imagen:</label>
       <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-        <div class="imagenDisp"><img [src]="url" *ngIf="url" [style.width.px]="300" [style.height.px]="300"></div>
+        <div class="imagenDisp"><img [src]="iamgen" *ngIf="iamgen" [style.width.px]="300" [style.height.px]="300"></div>
         <p>
           <input type="file" (change)="selectFile($event)">
         </p>

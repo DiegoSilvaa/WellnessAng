@@ -4,6 +4,12 @@
   <div class="contents">
     <div class="table-container">
       <div class="export-container">
+        <mat-form-field  appearance="outline">
+          <mat-label>Selecciona una fecha</mat-label>
+          <input matInput [matDatepicker]="picker" (dateChange)="filterButtons($event.value)">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         <button mat-raised-button color="primary" (click)="exportTable()">Exportar</button>
       </div>
           <table mat-table id="ExampleMaterialTable" [dataSource]="registroArray" class="mat-elevation-z8">

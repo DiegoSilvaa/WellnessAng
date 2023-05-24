@@ -49,19 +49,10 @@ export class NewreservacionesComponent {
       location: 'Ciudad 3',
       description: 'Descripción de la reserva 3'
     },
-    {
-      title: 'Reserva 7',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    },
-    {
-      title: 'Reserva 8',
-      date: '03/01/2023',
-      customerName: 'Cliente 3',
-      location: 'Ciudad 3',
-      description: 'Descripción de la reserva 3'
-    }
   ];
+
+  selectedStatus: string = '';
+  installationName: string = '';
+  centerName: string = '';
+
 }

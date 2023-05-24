@@ -91,22 +91,4 @@ export class HomeComponent implements OnInit {
   onReservationClick(reservation: any, id: any): void {
     this.resService.selectReservation(reservation, id);
   }
-
-  
-  openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
-  }
-}
-
-@Component({
-  selector: 'dialog-message',
-  templateUrl: 'dialog-mesaage.html',
-  styleUrls: ['./home.component.css']
-})
-export class DialogElementsExampleDialog {
-  constructor(public dialogRef: MatDialogRef<HomeComponent>) {}
-
-  onClose(): void {
-    this.dialogRef.close();
-  }
 }

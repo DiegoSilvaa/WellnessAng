@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormGroupDirective } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-aforo',
@@ -19,7 +20,7 @@ export class NewAforoComponent implements OnInit{
 	minWeekendTime: string = '09:00';
 	maxWeekendTime: string = '20:00';	  
 	  
-	constructor(private formBuilder: FormBuilder) {}
+	constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
   
 	ngOnInit() {
 	  this.form = this.formBuilder.group({
@@ -31,27 +32,68 @@ export class NewAforoComponent implements OnInit{
 		weekendStartTime: ['', Validators.required],
 		weekendEndTime: ['', Validators.required]
 	  });
+
+	  this.getCentros();
+	  this.getDeportes();
 	}
 
 	submit() {
-		this.formSubmitted = true;
 		if (this.form.valid) {
-		  // El formulario es válido, puedes continuar con el procesamiento
-		  console.log(this.form.value);
-		} else {
-		  // Mostrar la alerta de error
-		  alert('Por favor, completa todos los campos requeridos.');
-		}
+			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/`;
+			console.log(this.form)
+			const formData = new FormData();
+			formData.append('id_deporte', this.form.get('deporte')?.value);
+			formData.append('nombre', this.form.get('nombre')?.value);
+			formData.append('id_centro_deportivo', this.form.get('centro')?.value);
+			formData.append('image', this.imagen);
+			formData.append('hora_inicial_es',this.form.get('weekdaysStartTime')?.value);
+			formData.append('hora_final_es', this.form.get('weekdaysEndTime')?.value);
+			formData.append('hora_inicial_fds', this.form.get('weekendStartTime')?.value);
+			formData.append('hora_final_fds', this.form.get('weekendEndTime')?.value);
+
+			console.log(formData);
+			this.http.post(url, formData).subscribe((response: any) => {
+				  // La solicitud se ha completado exitosamente
+				this.form.reset();
+				console.log('La solicitud POST se ha completado exitosamente:', response);
+				this.iamgen = null;
+			},
+				(error) => {
+				  // Se produjo un error al realizar la solicitud
+				  console.error('Error al realizar la solicitud POST:', error);
+				}
+			  );
+		  } else {
+			alert('Por favor, completa todos los campos requeridos.');
+		}	
 	  }
+
+	centros: any;
+	getCentros() {
+		const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/`;
+		this.http.get<any[]>(url).subscribe((results: any) => { 
+			this.centros = results.data;
+			console.log(results.data)
+
+		})
+	}
+
+	deportes:any;
+	getDeportes() {
+		const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/deporte`;
+		this.http.get<any[]>(url).subscribe((results: any) => { 
+			this.deportes = results.data;
+			console.log(results.data)
+		})
+	}
 
 	  
 
-  // Subir Imagen 
-	url: any; 
+	// Subir Imagen 
+	imagen!: File;
+	iamgen: any;
 	msg = "";
-	
-	
-	selectFile(event: any) {
+	selectFile(event: any) { 
 		if(!event.target.files[0] || event.target.files[0].length == 0) {
 			this.msg = 'You must select an image';
 			return;
@@ -64,12 +106,15 @@ export class NewAforoComponent implements OnInit{
 			return;
 		}
 		
+		this.imagen = event.target.files[0];
 		var reader = new FileReader();
 		reader.readAsDataURL(event.target.files[0]);
 		
 		reader.onload = (_event) => {
 			this.msg = "";
-			this.url = reader.result; 
+			this.imagen = event.target.files[0]; 
+			this.iamgen = reader.result; 
+			console.log(this.imagen)
 		}
-	}	
+	}
 }

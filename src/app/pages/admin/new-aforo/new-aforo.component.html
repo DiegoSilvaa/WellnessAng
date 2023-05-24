@@ -9,9 +9,7 @@
         <mat-form-field appearance="outline">
           <mat-label><i class="material-icons">business</i> Centro deportivo:</mat-label>
           <mat-select id="centro" name="centro" formControlName="centro" required>
-            <mat-option value="opcion1">Opción 1</mat-option>
-            <mat-option value="opcion2">Opción 2</mat-option>
-            <mat-option value="opcion3">Opción 3</mat-option>
+            <mat-option *ngFor="let opcion of centros" [value]="opcion.id_centro_deportivo">{{ opcion.nombre }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -27,9 +25,7 @@
             <mat-form-field appearance="outline">
               <mat-label><i class="material-icons">sports_soccer</i> Deporte:</mat-label>
               <mat-select id="deporte" name="deporte" formControlName="deporte" required>
-                <mat-option value="opcion1">Opción 1</mat-option>
-                <mat-option value="opcion2">Opción 2</mat-option>
-                <mat-option value="opcion3">Opción 3</mat-option>
+                <mat-option *ngFor="let opcion of deportes" [value]="opcion.id_deporte">{{ opcion.nombre_deporte }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -74,7 +70,7 @@
   <div class="image-selector">
     <label class="titleDips">Selecciona una Imagen:</label>
     <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-      <div class="imagenDisp"><img [src]="url" *ngIf="url" [style.width.px]="300" [style.height.px]="300"></div>
+      <div class="imagenDisp"><img [src]="iamgen" *ngIf="iamgen" [style.width.px]="300" [style.height.px]="300"></div>
       <p>
         <input type="file" (change)="selectFile($event)">
       </p>

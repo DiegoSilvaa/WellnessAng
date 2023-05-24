@@ -26,5 +26,19 @@ export class ReservaService {
   selectedCentroAdmin: any;
   selectCentro(reservation: any): void {
     this.selectedCentroAdmin = reservation;
-    this.router.navigate(['/dispReserva'])  }
+    this.router.navigate(['/dispReserva'])  
+  }
+
+  centro: any;
+  selectedCentro(reserva: any): void {
+    this.centro = reserva;
+    this.router.navigate(['/editCentro'])  
+  }
+
+
+  instalacionStats: any;
+  statsInstalacion(inst: any) {
+    this.instalacionStats = inst;
+    this.router.navigate(['/graficasAdmin'])
+  }  
 }

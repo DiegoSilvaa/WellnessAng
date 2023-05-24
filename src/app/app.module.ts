@@ -76,6 +76,8 @@ import { GraficasAdminComponent } from './pages/admin/graficas-admin/graficas-ad
 import { StatsAforoComponent } from './pages/admin/stats-aforo/stats-aforo.component';
 import { InstalacionesDisplayComponent } from './pages/user/instalaciones-display/instalaciones-display.component';
 import { NewCentroComponent } from './pages/admin/new-centro/new-centro.component';
+import { EditarCentroComponent } from './pages/admin/editar-centro/editar-centro.component';
+import { EditarInstalacionComponent } from './pages/admin/editar-instalacion/editar-instalacion.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +110,8 @@ import { NewCentroComponent } from './pages/admin/new-centro/new-centro.componen
     StatsAforoComponent,
     InstalacionesDisplayComponent,
     NewCentroComponent,
+    EditarCentroComponent,
+    EditarInstalacionComponent,
   ],
   imports: [
     MatSlideToggleModule,

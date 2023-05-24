@@ -108,6 +108,9 @@ export class StatsAforoComponent implements OnInit {
       })
   }
 
+  filterButtons(search: any) {
+
+  }
 
 
 }

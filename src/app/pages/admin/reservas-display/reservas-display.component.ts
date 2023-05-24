@@ -18,9 +18,9 @@ export class ReservasDisplayComponent implements OnInit {
   instalaciones: any;
   // METODO INICIALIZADOR DE PANTALLA
   ngOnInit() {
-    console.log(this.currentInstalacion)
+    //console.log(this.currentInstalacion)
     this.getInstalacion();
-    this.refreshInterval = interval(100000).subscribe(() => {
+    this.refreshInterval = interval(1000).subscribe(() => {
       this.getInstalacion();
     });
   }
@@ -39,6 +39,15 @@ export class ReservasDisplayComponent implements OnInit {
   }
 
   onReservationClick(reservation: any): void {
-    this.router.navigate(['/graficasAdmin'])
+    this.resSer.statsInstalacion(reservation);
+  }
+
+  toggleChanged(instalacion: any) {
+    console.log(instalacion)
+    const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${instalacion.id_instalacion}/cambiar_estado`;
+    
+    this.http.put(url,null).subscribe((results: any) => {
+      console.log(results)
+    })
   }
 }

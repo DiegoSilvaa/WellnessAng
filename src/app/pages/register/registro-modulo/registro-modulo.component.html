@@ -30,11 +30,17 @@
     </div> 
     <div class="table-container">
       <div class="export-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Selecciona una fecha</mat-label>
+          <input matInput [matDatepicker]="picker" (dateChange)="filterButtons($event.value)">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         <button mat-raised-button color="primary" 
-        style="background-color: #408dff; color: rgb(255, 255, 255);"
+        style="background-color: #408dff; color: rgb(255, 255, 255); margin-left: 20px;"
         (click)="exportTable()">Export Material Table</button>
       </div>
-        <table mat-table id="MaterialTable" [dataSource]="registroArray" class="custom-table">
+        <table mat-table id="MaterialTable" [dataSource]="filteredDataSource" class="custom-table">
             <ng-container matColumnDef="id_registro">
               <th mat-header-cell *matHeaderCellDef> No. </th>
               <td mat-cell *matCellDef="let element"> {{element.id_registro}} </td>

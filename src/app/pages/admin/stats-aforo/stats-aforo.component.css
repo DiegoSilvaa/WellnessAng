@@ -8,6 +8,7 @@
     flex-direction: column;
     overflow-y: auto;
     padding-bottom: 2%;
+    flex:1;
 }
   
   .mat-form-field {

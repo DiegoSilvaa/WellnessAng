@@ -94,6 +94,7 @@ mat-icon {
   padding-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  flex:1
 }
 
 .aforo-container {
@@ -198,4 +199,8 @@ mat-icon {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
   border-radius: 10px;
   width: 90% ;
+}
+
+.gray-card {
+  background-color: rgba(186, 181, 181, 0.8);
 }
