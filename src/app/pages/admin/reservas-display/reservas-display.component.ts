@@ -46,6 +46,20 @@ export class ReservasDisplayComponent implements OnInit {
     this.resSer.editarInstalacion(reservation);
   }
 
+  //eliminar centro deportivo
+  onEliminar(button:any) {
+    const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${button.id_instalacion}`;
+    const confirmacion = confirm('¿Estás seguro de que deseas borrar esta Instalacion Deportiva?');
+    		if (confirmacion) {
+          this.http.delete(url).subscribe((results: any) => {
+            console.log(results)
+            alert('Borraste la instalacion con exito!')
+          })
+        } else {
+          return;
+        }
+  }
+
   toggleChanged(instalacion: any) {
     console.log(instalacion)
     const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${instalacion.id_instalacion}/cambiar_estado`;

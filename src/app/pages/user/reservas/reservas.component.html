@@ -7,7 +7,7 @@
     <div class="cards">
       <mat-card *ngFor="let reservation of reservasArray" [ngClass]="{'aceptado': reservation.id_estatus === 1, 'en-espera': reservation.id_estatus === 2, 'cancelada': reservation.id_estatus === 3}">
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
+            <mat-icon mat-card-avatar >date_range</mat-icon>
             <mat-card-title>{{ reservation.matricula }}</mat-card-title>
             <mat-card-subtitle>{{ reservation.fecha }}</mat-card-subtitle>
           </mat-card-header>

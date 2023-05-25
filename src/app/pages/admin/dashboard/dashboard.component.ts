@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
       forkJoin(observables).subscribe((resultsArray: any) => {
         this.numCentros = resultsArray.map((instalaciones: any) => instalaciones.data.length);
         //console.log(this.numCentros);
-        this.createBarChart();
+        //this.createBarChart();
 
       });
     });
@@ -94,6 +94,21 @@ export class DashboardComponent implements OnInit {
   onReservationClick(reservation: any): void {
     this.resService.selectCentro(reservation);
   }
+
+  //eliminar centro deportivo
+  onEliminar(button:any) {
+    const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${button.id_centro_deportivo}`;
+    const confirmacion = confirm('¿Estás seguro de que deseas borrar este Centro Deportivo?');
+    		if (confirmacion) {
+          this.http.delete(url).subscribe((results: any) => {
+            console.log(results)
+            alert('Borraste el centro deportivo')
+          })
+        } else {
+          return;
+        }
+  }
+  
 
   toggleChanged(centro: any) {
     const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${centro.id_centro_deportivo}/cambiar_estado`;

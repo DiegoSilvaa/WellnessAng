@@ -169,18 +169,18 @@ mat-icon {
 
 .custom-button {
   margin-top: 40px;
-  background-color: #F5F5F5; /* Color de fondo */
-  color: #333333; /* Color del texto */
+  background-color: #408dff;
+  color: #ffffff; /* Color del texto */
   border: 1px solid #CCCCCC; /* Borde */
   padding: 10px 20px; /* Espaciado interno */
   font-size: 16px; /* Tamaño de fuente */
   border-radius: 5px; /* Bordes redondeados */
-  width: 70%;
+  width: 60%;
 }
 
 .custom-button:hover {
-  background-color: #E0E0E0; /* Cambio de color de fondo al pasar el mouse */
-  color: #000000; /* Cambio de color de texto al pasar el mouse */
+  background-color: #408dff;
+  color: #ffffff; /* Cambio de color de texto al pasar el mouse */
 }
 
 .custom-button .mat-icon {
@@ -201,4 +201,21 @@ mat-icon {
 
 .gray-card {
   background-color: rgba(186, 181, 181, 0.8);
+}
+
+
+.custom-button2 {
+  background-color: #408dff;
+  color: #fff;
+  border: none;
+  margin-right: 10px;
+}
+
+.custom-button2:hover {
+  background-color: #316cc9;
+}
+
+.custom-button2 mat-icon {
+  margin-right: 5px;
+  color: white;
 }

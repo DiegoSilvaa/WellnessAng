@@ -5,9 +5,11 @@
     <mat-form-field appearance="outline" class="filter-field">
       <mat-label>Estado</mat-label>
       <mat-select [(ngModel)]="selectedStatus">
-        <mat-option value="option1">Opción 1</mat-option>
-        <mat-option value="option2">Opción 2</mat-option>
-        <mat-option value="option3">Opción 3</mat-option>
+        <mat-option value="">Todos</mat-option>
+        <mat-option value="1">Pendiente</mat-option>
+        <mat-option value="2">En Progreso</mat-option>
+        <mat-option value="3">Finalizada</mat-option>
+        <mat-option value="4">Cancelada</mat-option>
       </mat-select>
     </mat-form-field>
   
@@ -22,21 +24,25 @@
       <input matInput [(ngModel)]="centerName" placeholder="Ingrese un centro">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
+    <button mat-raised-button color="primary" (click)="aplicarFiltros()"
+     style="margin-right: 10px; margin-bottom: 20px;">Aplicar Filtros</button>
   </div>  
-  <ng-container *ngIf="bookings?.length; else noReservas">
+  <ng-container *ngIf="reservas?.length; else noReservas">
   <div class="container">
     <div class="cards">
-      <mat-card *ngFor="let reservation of bookings">
+      <mat-card *ngFor="let reservation of reservasFiltradas" [ngClass]="{'aceptado': reservation.id_estatus === 1, 'en-espera': reservation.id_estatus === 2, 'cancelada': reservation.id_estatus === 3}">
         <mat-card-header>
-          <mat-icon mat-card-avatar>event</mat-icon>
-          <mat-card-title>{{ reservation.title }}</mat-card-title>
-          <mat-card-subtitle>{{ reservation.date }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image class="card-image" [src]="" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          {{reservation.description}}
-        </mat-card-content>
-      </mat-card>
+            <mat-icon mat-card-avatar >date_range</mat-icon>
+            <mat-card-title>{{ reservation.matricula }}</mat-card-title>
+            <mat-card-subtitle>{{ reservation.fecha }}</mat-card-subtitle>
+          </mat-card-header>
+          <div *ngFor="let instalacion of reservation.instalacion">
+            <img mat-card-image class="card-image" src="{{instalacion.imagen}}" alt="{{instalacion.imagen}}">
+          <mat-card-content>
+            {{instalacion.nombre_instalacion}} - {{instalacion.nombre_centro_deportivo}}
+          </mat-card-content>
+          </div>
+        </mat-card>
     </div>
   </div>
   </ng-container>
