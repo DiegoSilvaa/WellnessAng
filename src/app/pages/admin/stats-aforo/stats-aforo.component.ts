@@ -19,9 +19,9 @@ export class StatsAforoComponent implements OnInit {
   registro: any;
   registroArray: any;
   filteredDataSource: MatTableDataSource<any>; // Reemplaza 'YourDataType' con el tipo de dato de tus registros
+  startDate!: Date;
+  endDate!: Date;
 
-
-  form!: FormGroup;
   displayedColumns = ['id_registro', 'matricula', 'fecha'];
   private refreshInterval!: Subscription;
   constructor(private http: HttpClient, private formBuilder: FormBuilder) { 
@@ -30,15 +30,7 @@ export class StatsAforoComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.form = this.formBuilder.group({
-  		aforoMax: ['', Validators.required],
-  		aforoActual: ['', Validators.required],
-	  });
     this.getRegistro();
-    this.createLineChart1();
-    this.createLineChart2();
-    this.refreshInterval = interval(10000).subscribe(() => {
-    });
   }
 
   ngOnDestroy() {
@@ -55,6 +47,34 @@ export class StatsAforoComponent implements OnInit {
       this.filteredDataSource = new MatTableDataSource(this.registroArray);
     });
   }
+
+  // Obtener datos de fechas y cantidad de matriculas en esa fecha
+  fechas:any;
+  getAlumnosPorFecha(fechaIni: any, fechaFin: any) {
+    this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio/estadisticas_personas_por_dia/fecha_inicial/${fechaIni}/fecha_final/${fechaFin}`)
+    .subscribe((results: any) => {
+      this.fechas = Object.values(results.data);
+      this.createLineChart1();
+      console.log(this.fechas)
+    });
+  }
+
+  // Obtener datos de fechas y cantidad de matriculas en esa fecha
+  alumnosReg:any;
+  getAlumnosMasRegistros(fechaIni: any, fechaFin: any) {
+    this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio/top_asistencia_alumnos/fecha_inicial/${fechaIni}/fecha_final/${fechaFin}`)
+    .subscribe((results: any) => {
+      this.alumnosReg = Object.values(results.data);
+      this.createLineChart2();
+      console.log(this.alumnosReg)
+    });
+  }
+
+  // Filtrar Graficas
+  FiltroGraficas() {
+    this.getAlumnosMasRegistros(this.startDate,this.endDate);
+    this.getAlumnosPorFecha(this.startDate,this.endDate);
+  }
   
   
   // Exportar tablas de Registro a Excel
@@ -65,69 +85,29 @@ export class StatsAforoComponent implements OnInit {
     TableUtil.exportTableToExcel("MaterialTable");
   }
   
-  
-  // Cambiar Aforo
 
-  guardarCambios() {
-    if (this.form.valid) {
-      // El formulario es válido, puedes continuar con el procesamiento
-      const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/gimnasio/1`;
-      const data = {
-        "aforo_maximo": this.form.get('aforoMax')?.value,
-        "aforo_actual": this.form.get('aforoActual')?.value,
-      };
-      
-      this.http.put(url, data).subscribe((results: any) => {
-        console.log(results);
-      });
-      
-      this.form.reset();
-    } else {
-      // Mostrar la alerta de error
-      alert('Por favor, completa todos los campos requeridos.');
-      this.form.reset();
-    }
-  }
-  
-  
-  fecha1 = '';
-  fecha2 = '';
-  filterButtons(selectedDate: any) {
-    const filteredData = this.registroArray.filter((element:any) => {
-      // En este ejemplo, se filtra si la fecha del elemento es igual a la fecha seleccionada
-      const elementDate = new Date(element.fecha);
-      elementDate.setDate(elementDate.getDate() + 1); // Suma 1 día a la fecha
-    
-      const selectedDateValue = new Date(selectedDate);
-      selectedDateValue.setDate(selectedDateValue.getDate() + 1); // Suma 1 día a la fecha
+  Linechart1!: Chart;
 
-      this.fecha1 = formatDate(selectedDateValue, 'yyyy-MM-dd', 'en');
-      // Formatear fecha2
-      this.fecha2 = formatDate(elementDate, 'yyyy-MM-dd', 'en');
-
-      // Filtrar si las fechas son iguales
-
-      console.log(this.fecha1)
-      console.log(this.fecha2)
-
-      return this.fecha1 === this.fecha2;
-    });
-
-    this.filteredDataSource.data = filteredData;
-  }
-
-  public Linechart1: any;
-  public Linechart2: any;
 
   /// LINE CHART 1 
   createLineChart1(){
+    if (this.Linechart1) {
+      this.Linechart1.destroy();
+    }
+    const labels = this.fechas.map((item:any) => {
+      // Aquí puedes personalizar el formato de la etiqueta según tus necesidades
+      return new Date(item.fecha).toLocaleDateString();
+    });
+
+    const values = this.fechas.map((item:any) => item.cantidad_registros);
+
     this.Linechart1 = new Chart('Line1', {
       type: 'line',
       data: {
-        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+        labels: labels,
         datasets: [{
-          label: 'Ventas',
-          data: [12, 19, 3, 5, 2, 3, 10],
+          label: 'Registros Por Fecha',
+          data: values,
           borderColor: 'rgb(75, 192, 192)',
           fill: false
         }]
@@ -140,28 +120,37 @@ export class StatsAforoComponent implements OnInit {
             }
           }
         }
-      })
+    })
   }
 
+  pie!: Chart<'pie'>;
+
   createLineChart2(){
-    this.Linechart2 = new Chart('Line2', {
-      type: 'line',
+    if (this.pie) {
+      this.pie.destroy();
+    }
+    const labels = this.alumnosReg.map((item:any) => item.matricula);
+    const values = this.alumnosReg.map((item:any) => item.cantidad_repeticiones);
+
+    this.pie = new Chart("Pie1", {
+      type: 'pie', //this denotes tha type of chart
       data: {
-        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+        labels: labels,
         datasets: [{
           label: 'Ventas',
-          data: [12, 19, 3, 5, 2, 3, 10],
-          borderColor: 'rgb(75, 192, 192)',
-          fill: false
+          data: values,
+          backgroundColor: [
+            '#408dff',
+            '#007bff',
+            '#66a3ff',
+            '#005cbf',
+            '#3377ff',
+            '#003f7f'
+          ],
         }]
       },
       options: {
         responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            }
-          }
         }
       })
   }

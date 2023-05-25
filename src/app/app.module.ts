@@ -116,7 +116,7 @@ import { ModalComponentEdit } from './pages/admin/new-aforo/new-aforo.component'
     NewCentroComponent,
     EditarCentroComponent,
     EditarInstalacionComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
     MatSlideToggleModule,

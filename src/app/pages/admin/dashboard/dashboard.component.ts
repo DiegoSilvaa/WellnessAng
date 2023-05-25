@@ -32,6 +32,9 @@ export class DashboardComponent implements OnInit {
     this.refreshInterval = interval(1000).subscribe(() => {
       this.getCentros();
     });
+    setTimeout(() => {
+      this.createBarChart();
+    }, 1000);
   }
 
 
@@ -58,16 +61,17 @@ export class DashboardComponent implements OnInit {
       forkJoin(observables).subscribe((resultsArray: any) => {
         this.numCentros = resultsArray.map((instalaciones: any) => instalaciones.data.length);
         //console.log(this.numCentros);
-        this.createBarChart();
-
       });
     });
     
   }
   
   // Grafico de centros/Instlaciones
-  public BarChart: any;
+  BarChart!: Chart<'pie'>;
   createBarChart(){
+    if (this.BarChart) {
+      this.BarChart.destroy();
+    }
     this.BarChart = new Chart("barChart", {
       type: 'pie', //this denotes tha type of chart
       data: {

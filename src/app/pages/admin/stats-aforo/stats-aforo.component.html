@@ -4,12 +4,6 @@
   <div class="contents">
     <div class="table-container">
       <div class="export-container">
-        <mat-form-field appearance="outline">
-          <mat-label>Selecciona una fecha</mat-label>
-          <input matInput [matDatepicker]="picker" (dateChange)="filterButtons($event.value)">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
         <button mat-raised-button color="primary" 
         style="background-color: #408dff; color: rgb(255, 255, 255); margin-left: 20px;"
         (click)="exportTable()">Export Material Table</button>
@@ -37,20 +31,31 @@
           </table>  
       </div>       
     <div class="chart-container">
+      <form></form>
+      <div class="form-field">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label><mat-icon>event</mat-icon> Fecha:</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate [(ngModel)]="startDate" placeholder="Start date">
+              <input matEndDate [(ngModel)]="endDate" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>     
+        <button mat-raised-button color="primary" 
+        style="background-color: #408dff; color: rgb(255, 255, 255); margin-bottom: 20px; width: 20%;"
+        (click)="FiltroGraficas()">Filtrar</button> 
+        <label class="titleGraf"> Registros de Alumnos por Fecha  </label>
         <div class="line-chart-container">
-          <div class="chart-header">
-            <h2>Gráfico 1</h2>
-          </div>
           <div class="chart-body">
             <canvas id="Line1">{{Linechart1}}</canvas>
           </div>
         </div>
-        <div class="line-chart-container">
-          <div class="chart-header">
-            <h2>Gráfico 2</h2>
-          </div>
+        <label class="titleGraf"> Personas con mayor asistencia al Gimansio </label>
+        <div class="line-bar-container">
           <div class="chart-body">
-            <canvas id="Line2">{{Linechart2}}</canvas>
+            <canvas id="Pie1">{{pie}}</canvas>
           </div>
         </div>
     </div>

@@ -56,7 +56,6 @@ const routes: Routes = [
   { path: 'instalacionesUser', component: InstalacionesDisplayComponent, },
   { path: 'editCentro', component: EditarCentroComponent, },
   { path: 'editInstalacion', component: EditarInstalacionComponent, },
-
   { path: '**', component: ErrorComponent},
 ];
 

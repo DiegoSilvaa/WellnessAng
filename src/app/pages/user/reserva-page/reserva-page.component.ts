@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, interval } from 'rxjs';
+import { DateAdapter } from '@angular/material/core';
 
 
 @Component({
@@ -14,20 +15,13 @@ import { Subscription, interval } from 'rxjs';
 export class ReservaPageComponent {
 
   selectedReserva = this.resService.selectedInstalacion;
-  
-  selected?: Date;
-  
-  // hora_final_es: "1970-01-01T20:00:00.000Z"
-  // hora_final_fds: "1970-01-01T20:00:00.000Z"
-  // hora_inicial_es: "1970-01-01T08:00:00.000Z"
-  // hora_inicial_fds: "1970-01-01T10:00:00.000Z"
-  
-  
+  selected: Date = new Date();
   initialDate!: Date;
   finalDate!: Date;
   hours: any[] = [];
 
-  constructor(private router: Router, private resService: ReservaService, private http: HttpClient) { 
+  constructor(private router: Router, private resService: ReservaService, private http: HttpClient, private dateAdapter: DateAdapter<Date>) { 
+    this.dateAdapter.setLocale('es'); // Opcional: establece el idioma del calendario
   }
 
   getHoras() {
@@ -97,4 +91,13 @@ export class ReservaPageComponent {
       // Redirecciona a la página de confirmación de reserva u otra acción deseada
     }
   }
+
+
+  // desactivar fechas pasadas a la actual
+  getDateClass = (date: Date): string => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Establece la hora a las 00:00:00
+
+    return date < today ? 'disabled-date' : '';
+  };
 }

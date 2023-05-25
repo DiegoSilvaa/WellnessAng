@@ -160,3 +160,7 @@ mat-chip-option {
 }
 
   
+.disabled-date button {
+  pointer-events: none;
+  opacity: 0.5;
+}
