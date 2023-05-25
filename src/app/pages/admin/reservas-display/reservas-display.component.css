@@ -87,3 +87,9 @@ mat-card {
     border-radius: 10px;
     width: 90% ;
   }
+
+  .button-toggle-custom {
+    width: 150px; /* Ajusta el tamaño según tus necesidades */
+    height: 40px; /* Ajusta el tamaño según tus necesidades */
+    text-align: center;
+  }

@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
       forkJoin(observables).subscribe((resultsArray: any) => {
         this.numCentros = resultsArray.map((instalaciones: any) => instalaciones.data.length);
         //console.log(this.numCentros);
-        //this.createBarChart();
+        this.createBarChart();
 
       });
     });

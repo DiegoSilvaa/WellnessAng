@@ -33,22 +33,23 @@
         <mat-card-content>
           <p>{{ button.ubicacion }}</p>
         </mat-card-content>
-        <mat-card-actions style="justify-content: space-between;">
-          <button mat-raised-button (click)="onReservationClick(button)" style="background-color: #408dff; color: white">
-            <mat-icon style="color: white;">remove_red_eye</mat-icon>
-            Ver
-          </button>
-          
-          <button mat-raised-button  (click)="onEditCentro(button)" style="background-color: #408dff; color: white">
-            <mat-icon style="color: white;">edit</mat-icon>
-            Editar
-          </button>
-          
-          <button mat-raised-button (click)="onEliminar(button)" style="background-color: #408dff; color: white">
-            <mat-icon style="color: white;">delete</mat-icon>
-            Eliminar
-          </button>
-          
+        <mat-card-actions style="text-align: center; align-items: center; display: flex; justify-content: center;">
+          <mat-button-toggle-group name="buttonGroup">
+            <mat-button-toggle (click)="onReservationClick(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">
+              <mat-icon style="color: white">remove_red_eye</mat-icon>
+              Ver
+            </mat-button-toggle>
+            
+            <mat-button-toggle (click)="onEditCentro(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">
+              <mat-icon style="color: white">edit</mat-icon>
+              Editar
+            </mat-button-toggle>
+            
+            <mat-button-toggle (click)="onEliminar(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">
+              <mat-icon style="color: white">delete</mat-icon>
+              Eliminar
+            </mat-button-toggle>
+          </mat-button-toggle-group>                   
         </mat-card-actions>
       </mat-card>      
     </div>  

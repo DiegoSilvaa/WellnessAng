@@ -50,7 +50,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // Services
 import { AuthServiceService } from './services/auth-service.service';
@@ -119,6 +120,7 @@ import { ModalComponentEdit } from './pages/admin/new-aforo/new-aforo.component'
   ],
   imports: [
     MatSlideToggleModule,
+    MatButtonToggleModule,
     MatChipsModule,
     MatNativeDateModule,
     MatDatepickerModule,
@@ -134,6 +136,7 @@ import { ModalComponentEdit } from './pages/admin/new-aforo/new-aforo.component'
     MatInputModule,
     ReactiveFormsModule,
     MatSidenavModule,
+    MatTabsModule,
     MatListModule,
     MatIconModule,
     MatProgressSpinnerModule,
