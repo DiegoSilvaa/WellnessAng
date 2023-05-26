@@ -14,17 +14,25 @@
           <div class="child-container">
             <h2 class="fechaLabel">Horas Disponibles</h2>
             <p style="text-align: center;">Fecha Seleccionada: {{selected}}</p>
-            <div class="chip-container">
-              <mat-chip-listbox aria-label="Horas" style="text-align: center;">
-                <mat-chip-option *ngFor="let hour of hours" [selected]="hour.selected" (click)="toggleSelection(hour)" [disabled]="hour.disabled">
-                  <mat-icon>access_time</mat-icon>
-                  {{ hour.label }}
-                </mat-chip-option>
-              </mat-chip-listbox>
-            </div>
+            <form [formGroup]="form" class="chip-container">
+              <mat-form-field appearance="outline">
+                <mat-label><i class="material-icons">access_time</i> Horas:</mat-label>
+                <mat-select id="horas" name="horas" formControlName="hora" required>
+                  <mat-option *ngFor="let hour of horasArray" [value]="hour.hora">
+                    <mat-icon>access_time</mat-icon>
+                    {{ hour.hora }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> 
+              <mat-form-field appearance="outline">
+                <mat-label>Cantidad de Personas:</mat-label>
+                <input matInput type="number" formControlName="cantidad" required>
+                <mat-icon matSuffix>person_add_alt_1</mat-icon>
+              </mat-form-field>             
+            </form>
             <div class="btt-cont">
               <button mat-button color="primary" 
-              style="background-color: #408dff; color: rgb(255, 255, 255); width: 40%; font-size: 15px;" 
+              style="background-color: #408dff; color: rgb(255, 255, 255); width: 30%; font-size: 15px;" 
               (click)="confirmReservation()"> Reserva </button>
             </div>
         </div>

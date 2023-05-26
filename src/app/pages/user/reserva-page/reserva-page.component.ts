@@ -4,7 +4,8 @@ import { ReservaService } from 'src/app/services/reserva.service';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, interval } from 'rxjs';
 import { DateAdapter } from '@angular/material/core';
-
+import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reserva-page',
@@ -12,92 +13,86 @@ import { DateAdapter } from '@angular/material/core';
   styleUrls: ['./reserva-page.component.css']
 })
 
-export class ReservaPageComponent {
+export class ReservaPageComponent implements OnInit{
 
   selectedReserva = this.resService.selectedInstalacion;
   selected: Date = new Date();
   initialDate!: Date;
   finalDate!: Date;
-  hours: any[] = [];
+  constructor(private router: Router, private resService: ReservaService, private http: HttpClient,private formBuilder: FormBuilder) {}
 
-  constructor(private router: Router, private resService: ReservaService, private http: HttpClient, private dateAdapter: DateAdapter<Date>) { 
-    this.dateAdapter.setLocale('es'); // Opcional: establece el idioma del calendario
-  }
-
-  getHoras() {
-    this.initialDate = new Date(this.selectedReserva.hora_inicial_es);
-    this.finalDate = new Date(this.selectedReserva.hora_final_es);
-    this.finalDate.setHours(this.finalDate.getHours() + 6);
-    this.initialDate.setHours(this.initialDate.getHours() + 6); 
-
-    // Genera el array de horas en intervalos de 1 hora
-    let currentHour = this.initialDate;
-    console.log(this.initialDate)
-    console.log(currentHour)
-
-    while (currentHour <= this.finalDate) {
-      this.hours.push({
-        label: this.formatHour(currentHour),
-        selected: false,
-        disabled: this.disableFecha(currentHour)
+  form!: FormGroup;
+  ngOnInit(): void {
+      this.onDateSelected();
+      this.form = this.formBuilder.group({
+        hora: ['', Validators.required],
+        cantidad: ['', [Validators.required, Validators.min(1), Validators.max(20)]]
       });
-      currentHour.setHours(currentHour.getHours() + 1);
-    }
   }
 
-  formatHour(date: Date): string {
-    // Función auxiliar para formatear la hora en el formato deseado
-    return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-  }
-
-  disableFecha(date: Date) : boolean {
-    // Obtiene la hora actual del objeto Date
-    let currentDateString = new Date(date);
-    return this.horasArray.some((obj:any) => {
-      let newDate = new Date(obj.hora)
-      newDate.setHours(newDate.getHours() + 6);
-      let c1 = newDate.toLocaleTimeString();
-      let c2 = currentDateString.toLocaleTimeString();
-      console.log(c1, c2);
-      return c1 === c2;
-    })
-  }
-
-
+  hora: any;
   toggleSelection(hour: any) {
     hour.selected = !hour.selected;
+    this.hora = hour.label;
+  }
+  
+  horasArray: any[] = [];
+  onDateSelected(): void {
+    // Aquí puedes hacer lo que necesites con la fecha seleccionada
+    console.log(this.selectedReserva);
+    this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${this.selectedReserva.id_instalacion}/get_horarios_disponibles/fecha/${this.selected}`)
+      .subscribe((results: any[]) => {
+        this.horasArray = results;
+        console.log(results);
+  
+        for (let i = 0; i < this.horasArray.length; i++) {
+          const fecha = new Date(this.horasArray[i].hora);
+          const horas = fecha.getHours();
+          const minutos = fecha.getMinutes();
+          const segundos = fecha.getSeconds();
+          const horaCompleta = horas.toString().padStart(2, '0') + ':' + minutos.toString().padStart(2, '0') + ':' + segundos.toString().padStart(2, '0');
+          this.horasArray[i].hora = horaCompleta;
+        }
+      });
   }
   
 
-  onDateSelected(): void {
-    // Aquí puedes hacer lo que necesites con la fecha seleccionada
-    this.hours = [];
-    this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${this.selectedReserva.id_instalacion}/horarios_reservados_en_fecha/${this.selected}`)
-      .subscribe((results: any) => {
-        this.horasArray = Object.values(results.data);
-        this.getHoras();
-        console.log(this.horasArray);
-      })
-  }
 
 
-
-  horasArray: any;
   confirmReservation() {
-    if (!this.selected || this.hours.every(hour => !hour.selected)) {
-      alert('Por favor, selecciona una fecha y hora antes de reservar.');
+    if (this.form.valid) {
+      console.log(this.form)
+			const confirmacion = confirm('¿Estás seguro de que deseas Reservar este Instalacion?');
+      if (confirmacion) {
+        const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/reservacion/matricula/A00832361/instalacion/${this.selectedReserva.id_instalacion}`;
+				console.log(this.form)
+        console.log(this.selected)
+				const formData = new FormData();
+				formData.append('fecha', this.selected.toDateString());
+				formData.append('hora', this.form.get('hora')?.value);
+				formData.append('cantidad_personas',this.form.get('cantidad')?.value);
+
+        const data = {
+          'fecha' : this.selected,
+          'hora' : this.form.get('hora')?.value,
+          'cantidad_personas': this.form.get('cantidad')?.value,
+        }
+
+				this.http.post(url, data).subscribe((response: any) => {
+					  // La solicitud se ha completado exitosamente
+					this.form.reset();
+					console.log('La solicitud POST se ha completado exitosamente:', response);
+          alert('Reservaste esta instalacion con exito.')
+				},
+					(error) => {
+					  // Se produjo un error al realizar la solicitud
+					  console.error('Error al realizar la solicitud POST:', error);
+            alert('Error en la Reserva.')
+					}
+        );
+      }
     } else {
-      // Lógica para confirmar la reserva si se selecciona la fecha y hora
-      // Redirecciona a la página de confirmación de reserva u otra acción deseada
+      alert("Completa los Campos Requeridos.")
     }
   }
-
-
-  // desactivar fechas pasadas a la actual
-  getDateClass = (date: Date): string => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Establece la hora a las 00:00:00
-
-    return date < today ? 'disabled-date' : '';
-  };
 }

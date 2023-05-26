@@ -5,6 +5,8 @@
   <div class="containers">
     <form [formGroup]="form" (ngSubmit)="submit()" class="form">
       <label class="titleDips">Informacion Instalacion:</label>
+      <div class="name-deporte">
+
       <div class="form-field">
         <mat-form-field appearance="outline">
           <mat-label><i class="material-icons">business</i> Centro deportivo:</mat-label>
@@ -13,6 +15,18 @@
           </mat-select>
         </mat-form-field>
       </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label><i class="material-icons">schedule</i> Intervalo de tiempo (Horas):</mat-label>
+        <mat-select id="intervalo" name="intervalo" formControlName="intervalo" required>
+          <mat-option value="1">0:30</mat-option>
+          <mat-option value="1">1:00</mat-option>
+          <mat-option value="2">1:30</mat-option>
+          <mat-option value="3">2:00</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      </div> 
       
       <div class="name-deporte">
           <div class="form-field">

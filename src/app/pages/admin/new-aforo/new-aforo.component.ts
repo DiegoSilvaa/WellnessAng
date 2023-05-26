@@ -29,6 +29,7 @@ export class NewAforoComponent implements OnInit{
 	ngOnInit() {
 	  this.form = this.formBuilder.group({
 		centro: ['', Validators.required],
+		intervalo: ['', Validators.required],
 		nombre: ['', Validators.required],
 		deporte: ['', Validators.required],
 		weekdaysStartTime: ['', Validators.required],
@@ -39,10 +40,6 @@ export class NewAforoComponent implements OnInit{
 
 	  this.getCentros();
 	  this.getDeportes();
-	  this.refreshInterval = interval(1000).subscribe(() => {
-		this.getCentros();
-		this.getDeportes();
-	  });
 	}
 
 	submit() {
@@ -131,7 +128,8 @@ export class NewAforoComponent implements OnInit{
 		const dialogRef = this.dialog.open(ModalComponent);
 	  
 		dialogRef.afterClosed().subscribe(result => {
-		  console.log('El modal ha sido cerrado');
+			this.getDeportes();
+		  	console.log('El modal ha sido cerrado');
 		});
 	  }
 
@@ -141,7 +139,8 @@ export class NewAforoComponent implements OnInit{
 		});
 	  
 		dialogRef.afterClosed().subscribe(result => {
-		  console.log('El modal ha sido cerrado');
+			this.getDeportes();
+		  	console.log('El modal ha sido cerrado');
 		});
 	  }
 

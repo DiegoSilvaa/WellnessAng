@@ -42,7 +42,11 @@ export class ReservaPageConfComponent implements OnInit{
 
   submit() {
     if (this.dataSource.data.length > 0) {
-      this.router.navigate(["/home"])
+      const confirmacion = confirm('¿Estás seguro de que deseas crear un Instalacion Deportiva?');
+    		if (confirmacion) {
+          
+          this.router.navigate(["/home"])
+        }
     } else {
         alert('Por favor, ingresa al menos un nombre.')
     }
