@@ -50,6 +50,7 @@ export class NewAforoComponent implements OnInit{
 				console.log(this.form)
 				const formData = new FormData();
 				formData.append('id_deporte', this.form.get('deporte')?.value);
+				formData.append('id_intervalo', this.form.get('intervalo')?.value);
 				formData.append('nombre', this.form.get('nombre')?.value);
 				formData.append('id_centro_deportivo', this.form.get('centro')?.value);
 				formData.append('image', this.imagen);
@@ -151,6 +152,8 @@ export class NewAforoComponent implements OnInit{
 		if (response.data[0].tiene_instalaciones === false) {
 			this.http.delete(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/deporte/${opcion.id_deporte}`).subscribe((response:any) =>{
 				console.log(response);
+				alert("Deporte Borrado")
+				this.getDeportes();
 			})
 		} else {
 			alert("El deporte tiene Instalaciones Activas no se puede eliminar.")

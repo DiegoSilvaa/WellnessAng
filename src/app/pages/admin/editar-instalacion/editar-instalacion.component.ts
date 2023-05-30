@@ -34,6 +34,7 @@ export class EditarInstalacionComponent implements OnInit {
 		centro: ['', Validators.required],
 		nombre: ['', Validators.required],
 		deporte: ['', Validators.required],
+		intervalo: ['', Validators.required],
 		weekdaysStartTime: ['', Validators.required],
 		weekdaysEndTime: ['', Validators.required],
 		weekendStartTime: ['', Validators.required],
@@ -42,7 +43,7 @@ export class EditarInstalacionComponent implements OnInit {
 
 	  this.getCentros();
 	  this.getDeportes();
-	  this.refreshInterval = interval(1000).subscribe(() => {
+	  this.refreshInterval = interval(100000).subscribe(() => {
 		this.getCentros();
 		this.getDeportes();
 	  });
@@ -52,10 +53,11 @@ export class EditarInstalacionComponent implements OnInit {
 		if (this.form.valid) {
       const confirmacion = confirm('¿Estás seguro de que deseas editar esta Instalacion Deportiva?');
     		if (confirmacion) {
-  			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/`;
+  			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${this.currInst.id_instalacion}`;
   			console.log(this.form)
   			const formData = new FormData();
   			formData.append('id_deporte', this.form.get('deporte')?.value);
+			formData.append('id_intervalo', this.form.get('intervalo')?.value);
   			formData.append('nombre', this.form.get('nombre')?.value);
   			formData.append('id_centro_deportivo', this.form.get('centro')?.value);
   			formData.append('image', this.imagen);
@@ -63,7 +65,7 @@ export class EditarInstalacionComponent implements OnInit {
   			formData.append('hora_final_es', this.form.get('weekdaysEndTime')?.value);
   			formData.append('hora_inicial_fds', this.form.get('weekendStartTime')?.value);
   			formData.append('hora_final_fds', this.form.get('weekendEndTime')?.value);
-  			this.http.post(url, formData).subscribe((response: any) => {
+  			this.http.put(url, formData).subscribe((response: any) => {
   				  // La solicitud se ha completado exitosamente
   				this.form.reset();
   				console.log('La solicitud POST se ha completado exitosamente:', response);
@@ -86,7 +88,7 @@ export class EditarInstalacionComponent implements OnInit {
 		const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/`;
 		this.http.get<any[]>(url).subscribe((results: any) => { 
 			this.centros = results.data;
-			console.log(results.data)
+			//console.log(results.data)
 		})
 	}
 
@@ -95,7 +97,7 @@ export class EditarInstalacionComponent implements OnInit {
 		const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/deporte`;
 		this.http.get<any[]>(url).subscribe((results: any) => { 
 			this.deportes = results.data;
-			console.log(results.data)
+			//console.log(results.data)
 		})
 	}
 

@@ -39,7 +39,7 @@ export class ReservaPageComponent implements OnInit{
   horasArray: any[] = [];
   onDateSelected(): void {
     // Aquí puedes hacer lo que necesites con la fecha seleccionada
-    console.log(this.selectedReserva);
+    console.log(this.selected);
     this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${this.selectedReserva.id_instalacion}/get_horarios_disponibles/fecha/${this.selected}`)
       .subscribe((results: any[]) => {
         this.horasArray = results;
@@ -47,10 +47,13 @@ export class ReservaPageComponent implements OnInit{
   
         for (let i = 0; i < this.horasArray.length; i++) {
           const fecha = new Date(this.horasArray[i].hora);
+          fecha.setHours(fecha.getHours() + 6);
+          
           const horas = fecha.getHours();
           const minutos = fecha.getMinutes();
           const segundos = fecha.getSeconds();
           const horaCompleta = horas.toString().padStart(2, '0') + ':' + minutos.toString().padStart(2, '0') + ':' + segundos.toString().padStart(2, '0');
+          
           this.horasArray[i].hora = horaCompleta;
         }
       });
