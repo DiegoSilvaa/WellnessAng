@@ -1,34 +1,50 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
     <div class="chart-container">
+      <div class="chart-container-header">
+        <div class="form-field">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label><mat-icon>event</mat-icon> Fecha:</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate [(ngModel)]="startDate" placeholder="Start date">
+              <input matEndDate [(ngModel)]="endDate" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div> 
+          <button mat-raised-button color="primary" 
+          style="background-color: #408dff; color: rgb(255, 255, 255); margin-bottom: 20px; width: 20%; margin-left: 20px;"
+          (click)="filtrarFecha()">Filtrar</button> 
+      </div>
+      <div class="chart-container2">
         <div class="line-chart-container">
-          <div class="chart-header">
-            <h2>Gráfico 1</h2>
-          </div>
-          <div class="chart-body">
-            <canvas id="Line1">{{Linechart1}}</canvas>
-          </div>
-        </div>
-        <div class="line-chart2-container">
-          <div class="chart-header">
-            <h2>Gráfico 2</h2>
-          </div>
-          <div class="chart-body">
-            <canvas id="Line2">{{Linechart2}}</canvas>
-          </div>
-        </div>
-    </div>
-    <div class="">
-        <div class="pie-chart-container">
-          <div class="chart-header">
-            <h2>Gráfico 3</h2>
+            <div class="chart-header">
+              <h2>Gráfico 1</h2>
+            </div>
             <div class="chart-body">
-                <canvas id="barChart">{{BarChart}}</canvas>
+              <canvas id="Line1">{{Linechart1}}</canvas>
             </div>
           </div>
-          <button mat-raised-button color="primary" 
-        style="background-color: #408dff; color: rgb(255, 255, 255); margin-bottom: 20px; width: 30%; margin-left: 20px; margin-top: 10px;"
-        (click)="verComentarios()"><mat-icon style="color: white">remove_red_eye</mat-icon>Ver Comentarios</button> 
+          <div class="pie-chart-container">
+            <div class="chart-header">
+              <h2>Cantidad de Registros por Calificacion:</h2>
+            </div> 
+              <div class="chart-body">
+                  <canvas id="barChart">{{BarChart}}</canvas>
+              </div>
+            </div>
         </div>
+    </div>
+    <div class="comentarios-container">
+      <div *ngFor="let comment of calificacion" class="card-container">
+      <div class="comment-header">
+        <mat-icon class="comment-icon">person</mat-icon>
+        <span class="comment-date">{{comment.fecha}}</span>
+      </div>
+      <div class="comment-text">
+        {{comment.comentarios}}
+      </div>
+    </div>
     </div>
 </div>

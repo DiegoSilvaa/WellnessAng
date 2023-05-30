@@ -8,6 +8,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { formatDate } from '@angular/common';
 import Chart from 'chart.js/auto';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-stats-aforo',
   templateUrl: './stats-aforo.component.html',
@@ -54,6 +56,17 @@ export class StatsAforoComponent implements OnInit {
     this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio/estadisticas_personas_por_dia/fecha_inicial/${fechaIni}/fecha_final/${fechaFin}`)
     .subscribe((results: any) => {
       this.fechas = Object.values(results.data);
+
+      const datePipe = new DatePipe('en-US');
+
+      this.fechas = this.fechas.map((item: any) => {
+        const fecha = datePipe.transform(item.fecha, 'dd/MM/yyyy');
+        return {
+          fecha: fecha,
+          cantidad_de_registros: item.cantidad_reservas
+        };
+      });
+      
       this.createLineChart1();
       console.log(this.fechas)
     });
