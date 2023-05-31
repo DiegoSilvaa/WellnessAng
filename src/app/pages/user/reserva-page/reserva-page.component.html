@@ -3,7 +3,7 @@
     <div class="rate-container">
         <h2 class="title">{{selectedReserva!.nombre}}</h2>
         <img class="logo" src="{{selectedReserva!.imagen}}" alt="iamgen instalacion">
-        <app-app-rating [rating]="3"></app-app-rating>
+        <app-app-rating [rating]="calificacion[0].promedio_calificaciones"></app-app-rating>
     </div>
     <div class="content-container">
         <div class="reserva-container">

@@ -36,8 +36,20 @@ export class ReservasComponent implements OnInit {
   getCentros() {
     this.http.get<any[]>(this.API).subscribe((results: any) => {
       this.reservasArray = Object.values(results.data);
-      console.log(this.reservasArray);
-  
+      // Convertir la fecha a formato "aa-mm-dd"
+      this.reservasArray.forEach((reserva: any) => {
+        const fecha = new Date(reserva.fecha);
+        const formattedFecha = fecha.toISOString().slice(0, 10);
+        reserva.fecha = formattedFecha;
+      });
+      
+      // Convertir la hora a formato "00:00:00"
+      this.reservasArray.forEach((reserva: any) => {
+        const hora = new Date(reserva.hora);
+        const formattedHora = hora.toTimeString().slice(0, 8);
+        reserva.hora = formattedHora;
+      });
+      
       const observables = this.reservasArray.map((item: any) => {
         const id_instalacion = item.id_instalacion;
         return this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${id_instalacion}`);
@@ -46,8 +58,7 @@ export class ReservasComponent implements OnInit {
       forkJoin(observables).subscribe((resultsArray: any) => {
         resultsArray.forEach((results: any, index: number) => {
           const instalacion = Object.values(results.data);
-          //console.log(deportes);
-          this.reservasArray[index].instalacion = instalacion; // Almacena los deportes correspondientes en la propiedad 'deportes' del centro
+          this.reservasArray[index].instalacion = instalacion;
         });
       });
     });

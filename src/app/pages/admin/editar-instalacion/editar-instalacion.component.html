@@ -62,14 +62,18 @@
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_inicial_es}}</mat-label>
-            <input matInput [min]="minWeekdaysTime" [max]="maxWeekdaysTime" placeholder="Seleccione una hora" formControlName="weekdaysStartTime" required>
+            <mat-select formControlName="weekdaysStartTime" placeholder="Seleccione una hora" required>
+              <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
+            </mat-select>  
           </mat-form-field>
         </div>
       
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_es}}</mat-label>
-            <input matInput [min]="minWeekdaysTime" [max]="maxWeekdaysTime" placeholder="Seleccione una hora" formControlName="weekdaysEndTime" required>
+            <mat-select placeholder="Seleccione una hora" formControlName="weekdaysEndTime" required>
+              <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
+            </mat-select>  
           </mat-form-field>
         </div>
       </div>
@@ -77,14 +81,18 @@
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label><mat-icon>access_time</mat-icon>{{currInst.hora_inicial_fds}}</mat-label>
-            <input matInput [min]="minWeekendTime" [max]="maxWeekendTime" placeholder="Seleccione una hora" formControlName="weekendStartTime" required>
+            <mat-select placeholder="Seleccione una hora" formControlName="weekendStartTime" required>
+              <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
+            </mat-select>           
           </mat-form-field>
         </div>
         
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_fds}}</mat-label>
-            <input matInput [min]="minWeekendTime" [max]="maxWeekendTime" placeholder="Seleccione una hora" formControlName="weekendEndTime" required>
+            <mat-select placeholder="Seleccione una hora" formControlName="weekendEndTime" required>
+              <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
+            </mat-select>  
           </mat-form-field>
         </div>    
       </div>

@@ -20,17 +20,22 @@ export class AlertasComponent {
   }
 
   ngOnInit() {
+    this.getAlertas();
+  }
+
+  getAlertas() {
     this.http.get<any[]>(this.API).subscribe((results: any) => {
       this.notificaciones = Object.values(results.data);
       console.log(this.notificaciones)
       this.notificacionesArray = Array.isArray(this.notificaciones) ? this.notificaciones : [this.notificaciones];
-    });
+      this.notificacionesArray.forEach((reserva: any) => {
+        const fecha = new Date(reserva.fecha_fin);
+        const formattedFecha = fecha.toISOString().slice(0, 10);
+        const fecha2 = new Date(reserva.fecha_inicio);
+        const formattedFecha2 = fecha2.toISOString().slice(0, 10);
 
-    this.refreshInterval = interval(1000).subscribe(() => {
-      this.http.get<any[]>(this.API).subscribe((results: any) => {
-        this.notificaciones = Object.values(results.data);
-        console.log(this.notificaciones)
-        this.notificacionesArray = Array.isArray(this.notificaciones) ? this.notificaciones : [this.notificaciones];
+        reserva.fecha_fin = formattedFecha;
+        reserva.fecha_inicio = formattedFecha2;
       });
     });
   }

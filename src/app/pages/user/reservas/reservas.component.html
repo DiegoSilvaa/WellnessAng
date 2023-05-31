@@ -8,7 +8,7 @@
         <mat-card-header>
             <mat-icon mat-card-avatar >date_range</mat-icon>
             <mat-card-title>{{ reservation.matricula }}</mat-card-title>
-            <mat-card-subtitle>{{ reservation.fecha }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ reservation.fecha }} - {{reservation.hora}}</mat-card-subtitle>
           </mat-card-header>
           <div *ngFor="let instalacion of reservation.instalacion">
             <img mat-card-image class="card-image" src="{{instalacion.imagen}}" alt="{{instalacion.imagen}}">

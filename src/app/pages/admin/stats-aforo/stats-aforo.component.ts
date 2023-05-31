@@ -46,6 +46,11 @@ export class StatsAforoComponent implements OnInit {
       this.registro = Object.values(results.data);
       console.log(this.registro)
       this.registroArray = Array.isArray(this.registro) ? this.registro : [this.registro];
+      this.registroArray.forEach((reserva: any) => {
+        const fecha = new Date(reserva.fecha);
+        const formattedFecha = fecha.toISOString().slice(0, 10);
+        reserva.fecha = formattedFecha;
+      });
       this.filteredDataSource = new MatTableDataSource(this.registroArray);
     });
   }
@@ -56,17 +61,6 @@ export class StatsAforoComponent implements OnInit {
     this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio/estadisticas_personas_por_dia/fecha_inicial/${fechaIni}/fecha_final/${fechaFin}`)
     .subscribe((results: any) => {
       this.fechas = Object.values(results.data);
-
-      const datePipe = new DatePipe('en-US');
-
-      this.fechas = this.fechas.map((item: any) => {
-        const fecha = datePipe.transform(item.fecha, 'dd/MM/yyyy');
-        return {
-          fecha: fecha,
-          cantidad_de_registros: item.cantidad_reservas
-        };
-      });
-      
       this.createLineChart1();
       console.log(this.fechas)
     });
@@ -100,8 +94,6 @@ export class StatsAforoComponent implements OnInit {
   
 
   Linechart1!: Chart;
-
-
   /// LINE CHART 1 
   createLineChart1(){
     if (this.Linechart1) {

@@ -23,6 +23,7 @@ export class ReservaPageComponent implements OnInit{
 
   form!: FormGroup;
   ngOnInit(): void {
+      this.getCalificacion();
       this.onDateSelected();
       this.form = this.formBuilder.group({
         hora: ['', Validators.required],
@@ -57,6 +58,16 @@ export class ReservaPageComponent implements OnInit{
           this.horasArray[i].hora = horaCompleta;
         }
       });
+  }
+
+  // Calificacion de Una Instalacion
+  calificacion:any;
+  getCalificacion() {
+    this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/calificacion_instalacion/${this.selectedReserva.id_instalacion}/calificacion_promedio`)
+    .subscribe((results: any) => {
+      this.calificacion = results.data;
+      console.log(results.data);
+    });
   }
   
 

@@ -67,7 +67,10 @@ export class GraficasAdminComponent {
     if (this.Linechart1) {
       this.Linechart1.destroy();
     }
-    const labels = this.reservasFecha.map((item:any) => item.fecha);
+    const labels = this.reservasFecha.map((item:any) => {
+      // Aquí puedes personalizar el formato de la etiqueta según tus necesidades
+      return new Date(item.fecha).toLocaleDateString();
+    });
     const values = this.reservasFecha.map((item:any) => item.cantidad_reservas);
 
     this.Linechart1 = new Chart('Line1', {

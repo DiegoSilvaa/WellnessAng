@@ -25,7 +25,20 @@ export class NewreservacionesComponent implements OnInit{
       this.reservas = Object.values(results.data);
       this.reservasFiltradas = Object.values(results.data);
       console.log(this.reservas);
-  
+      // Convertir la fecha a formato "aa-mm-dd"
+      this.reservasFiltradas.forEach((reserva: any) => {
+        const fecha = new Date(reserva.fecha);
+        const formattedFecha = fecha.toISOString().slice(0, 10);
+        reserva.fecha = formattedFecha;
+      });
+      
+      // Convertir la hora a formato "00:00:00"
+      this.reservasFiltradas.forEach((reserva: any) => {
+        const hora = new Date(reserva.hora);
+        const formattedHora = hora.toTimeString().slice(0, 8);
+        reserva.hora = formattedHora;
+      });
+
       const observables = this.reservas.map((item: any) => {
         const id_instalacion = item.id_instalacion;
         return this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/${id_instalacion}/con_centro_deportivo`);

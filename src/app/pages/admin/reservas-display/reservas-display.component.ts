@@ -34,6 +34,30 @@ export class ReservasDisplayComponent implements OnInit {
   getInstalacion() {
     this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/centro_deportivo/${this.currentInstalacion.id_centro_deportivo}/instalaciones`).subscribe((results: any) => {
       this.instalaciones = Object.values(results.data);
+      // Convertir la hora a formato "00:00:00"
+      this.instalaciones.forEach((reserva: any) => {
+        const hora = new Date(reserva.hora_final_es);
+        const formattedHora = hora.toTimeString().slice(0, 8);
+        reserva.hora_final_es = formattedHora;
+      });
+
+      this.instalaciones.forEach((reserva: any) => {
+        const hora = new Date(reserva.hora_final_fds);
+        const formattedHora = hora.toTimeString().slice(0, 8);
+        reserva.hora_final_fds = formattedHora;
+      });
+
+      this.instalaciones.forEach((reserva: any) => {
+        const hora = new Date(reserva.hora_inicial_es);
+        const formattedHora = hora.toTimeString().slice(0, 8);
+        reserva.hora_inicial_es = formattedHora;
+      });
+
+      this.instalaciones.forEach((reserva: any) => {
+        const hora = new Date(reserva.hora_inicial_fds);
+        const formattedHora = hora.toTimeString().slice(0, 8);
+        reserva.hora_inicial_fds = formattedHora;
+      });
       console.log(this.instalaciones);
     } );
   }

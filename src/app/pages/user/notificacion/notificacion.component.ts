@@ -20,17 +20,27 @@ export class NotificacionComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    this.getNoti();
+    this.refreshInterval = interval(10000).subscribe(() => {
+      this.getNoti();
+    });
+  }
+
+  getNoti() {
     this.http.get<any[]>(this.API).subscribe((results: any) => {
       this.notificaciones = Object.values(results.data);
       console.log(this.notificaciones)
       this.notificacionesArray = Array.isArray(this.notificaciones) ? this.notificaciones : [this.notificaciones];
-    });
+      // Convertir la fecha a formato "aa-mm-dd"
+      this.notificacionesArray.forEach((reserva: any) => {
+        const fecha = new Date(reserva.fecha_fin);
+        const formattedFecha = fecha.toISOString().slice(0, 10);
+        const fecha2 = new Date(reserva.fecha_inicio);
+        const formattedFecha2 = fecha2.toISOString().slice(0, 10);
 
-    this.refreshInterval = interval(10000).subscribe(() => {
-      this.http.get<any[]>(this.API).subscribe((results: any) => {
-        this.notificaciones = Object.values(results.data);
-        console.log(this.notificaciones)
-        this.notificacionesArray = Array.isArray(this.notificaciones) ? this.notificaciones : [this.notificaciones];
+        reserva.fecha_fin = formattedFecha;
+        reserva.fecha_inicio = formattedFecha2;
       });
     });
   }
