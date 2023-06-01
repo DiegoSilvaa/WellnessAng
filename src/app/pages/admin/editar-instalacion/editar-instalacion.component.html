@@ -71,7 +71,7 @@
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_es}}</mat-label>
-            <mat-select placeholder="Seleccione una hora" formControlName="weekdaysEndTime" required>
+            <mat-select placeholder="Seleccione una hora" formControlName="weekdays EndTime" required>
               <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
             </mat-select>  
           </mat-form-field>
