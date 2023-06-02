@@ -12,16 +12,17 @@ import { HttpClient } from '@angular/common/http';
 export class EditarAvisoComponent {
 
   constructor(private router: Router, private alertaService: AdminAlertaService, private http: HttpClient,private formBuilder: FormBuilder) { }
-  currNot = this.alertaService.selectedReservation;
+  currNot = this.alertaService.selectedReservation; // Propiedad para almacenar la reserva seleccionada
 
-  form!: FormGroup;
+  form!: FormGroup; // Propiedad para almacenar el formulario
 
 	ngOnInit() {
-	  	this.buildForm();
+	  	this.buildForm(); // Llamar al método para construir el formulario
     	console.log(this.currNot);
 	}
   
 	buildForm() {
+		// Construir el formulario usando el FormBuilder
 	  this.form = this.formBuilder.group({
 		titulo: ['', Validators.required],
 		numeroNom: ['', Validators.required],

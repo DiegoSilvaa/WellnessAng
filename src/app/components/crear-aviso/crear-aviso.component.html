@@ -1,21 +1,25 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
   <div class="containers">
+    <!-- Formulario -->
     <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
       <label class="titleDips">Informacion Alerta:</label>
       <div class="form-field">
+        <!-- Campo de entrada de texto para el título -->
         <mat-form-field appearance="outline" style="width: 90%;">
           <mat-label><mat-icon>title</mat-icon> Título:</mat-label>
           <input type="text" id="titulo" name="titulo" matInput formControlName="titulo" required>
         </mat-form-field>
       </div>
       <div class="form-field">
+        <!-- Campo de entrada de texto para el número de nómina -->
         <mat-form-field appearance="outline" style="width: 90%;">
           <mat-label><mat-icon>badge</mat-icon> Número de Nómina:</mat-label>
           <input type="text" id="numeroNom" name="numeroNom" matInput formControlName="numeroNom" required>
         </mat-form-field>
       </div>
       <div class="form-field">
+        <!-- Campo de entrada de rango de fechas -->
         <mat-form-field appearance="outline" style="width: 90%;">
           <mat-label><mat-icon>event</mat-icon> Fecha:</mat-label>
           <mat-date-range-input [rangePicker]="picker">
@@ -27,21 +31,26 @@
         </mat-form-field>
       </div>      
       <div class="form-field">
+        <!-- Campo de entrada de texto para la descripción aviso -->
         <mat-form-field appearance="outline" style="width: 90%;">
           <mat-label><mat-icon>description</mat-icon> Descripción:</mat-label>
           <input type="text" id="descripcion" name="descripcion" matInput formControlName="descripcion" required>
         </mat-form-field>
       </div>
+      <!-- Botón para agregar -->
       <button type="submit" class="form-submit-btn">Agregar</button>
     </form>
     
     
-    
+    <!-- Selector de imagen -->
     <div class="image-selector">
       <label class="titleDips">Selecciona una Imagen:</label>
       <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-        <div class="imagenDisp"><img [src]="iamgen" *ngIf="iamgen" [style.width.px]="300" [style.height.px]="300"></div>
+        <div class="imagenDisp">
+          <!-- Mostrar la imagen seleccionada si existe -->
+          <img [src]="iamgen" *ngIf="iamgen" [style.width.px]="300" [style.height.px]="300"></div>
         <p>
+          <!-- Campo para seleccionar archivo -->
           <input type="file" (change)="selectFile($event)">
         </p>
       </div>

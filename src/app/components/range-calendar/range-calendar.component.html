@@ -1,5 +1,6 @@
 
 <div class="container-main">
+  <!-- Primer grupo de campos de formulario -->
     <div class="">
     <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Entre Semana </mat-label>
@@ -8,10 +9,14 @@
           [rangePicker]="campaignOnePicker"
           [comparisonStart]="campaignTwo.value.start"
           [comparisonEnd]="campaignTwo.value.end">
+          <!-- Selección de rango de fechas -->
+          <!-- Entrada para la fecha de inicio -->
           <input matStartDate placeholder="Start date" formControlName="start">
+          <!-- Entrada para la fecha de fin -->
           <input matEndDate placeholder="End date" formControlName="end">
         </mat-date-range-input>
         <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+        <!-- Selector de rango de fechas -->
         <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
       </mat-form-field>
       <div class="name-deporte">
@@ -25,6 +30,7 @@
         </div>
       </div>
     </div>
+  <!-- Segundo grupo de campos de formulario -->
   <div class="">
   <mat-form-field class="example-form-field" appearance="fill">
     <mat-label>Fin de Semana</mat-label>
@@ -33,10 +39,13 @@
       [rangePicker]="campaignTwoPicker"
       [comparisonStart]="campaignOne.value.start"
       [comparisonEnd]="campaignOne.value.end">
+      <!-- Entrada para la fecha de inicio -->
       <input matStartDate placeholder="Start date" formControlName="start">
+      <!-- Entrada para la fecha de fin -->
       <input matEndDate placeholder="End date" formControlName="end">
     </mat-date-range-input>
     <mat-datepicker-toggle matIconSuffix [for]="campaignTwoPicker"></mat-datepicker-toggle>
+    <!-- Selector de rango de fechas -->
     <mat-date-range-picker #campaignTwoPicker></mat-date-range-picker>
   </mat-form-field>
   <div class="name-deporte">

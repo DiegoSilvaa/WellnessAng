@@ -1,9 +1,12 @@
+<!-- Se presenta un sistema de calificacion de estrellas con numero-->
 <div class="rating-container">
+  <!-- Recorre la calificación máxima y muestra un ícono de estrella para cada calificación -->
     <span class="star" *ngFor="let _ of maxRating; let i = index">
       <i class="material-icons" [ngClass]="{'yellow': rating >= i + 1, 'gray': rating < i + 1}">
         star
       </i>
     </span>
+    <!-- Se despliega la calificacion con maximo 5 -->
     <span class="rating-number">{{ rating }} / {{ 5 }}</span>
 </div>
   

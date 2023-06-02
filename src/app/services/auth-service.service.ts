@@ -12,6 +12,7 @@ export class AuthServiceService {
   pending = false;
   error = false;
 
+  //Checar si el username es valido acorde a sus credenciales
   login(username: string, password: string): boolean {
     this.pending = true;
     if (username === 'diego') {
@@ -36,13 +37,15 @@ export class AuthServiceService {
       this.success = true;
       return true;
     }
+
+    //Si el ususario es invalido, da error = true
     this.error = true;
     this.pending = false;
     console.log(this.error)
     return false;
   }
 
-  
+  //Se reinician las variables de autentificacion
   logout(): void {
     this.isLoggedIn = false;
     this.userType = '';
