@@ -19,7 +19,9 @@
   <label class="titleDown"> Centros Deportivos </label>
   <ng-container *ngIf="deportesFiltrados?.length; else noReservas">
   <div class="centros-container" *ngFor="let centro of deportesFiltrados">
-    <label class="titleCen">{{ centro.nombre }}</label>
+    <label class="titleCen">{{ centro.nombre }} <a mat-button color="primary" (click)="redirectToGoogleMaps(centro)">
+      <mat-icon>map</mat-icon> Ubicación
+    </a></label>
     <ng-container *ngIf="centro.deportes?.length; else noReservas">
     <div class="horizontal-scroll-container">
       <mat-card *ngFor="let deporte of centro.deportes" class="example-card" [ngClass]="{ 'disable-card':!centro.esta_habilitado}">

@@ -36,10 +36,7 @@ export class EditarCentroComponent implements OnInit {
 
 	submit() {
 		if (this.form.valid) {
-			if (!this.imagen) {
-				alert('Por favor, selecciona una imagen.');
-				return;
-			}
+
 				const confirmacion = confirm('¿Estás seguro de que deseas editar este Centro Deportivo?');
 	    		if (confirmacion) {
 				console.log(this.form)

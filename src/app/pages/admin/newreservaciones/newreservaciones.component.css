@@ -89,8 +89,8 @@
     margin-inline: 10px;
   }
 
-  .aceptado {
-    background-color: rgba(123, 255, 123, 0.8);
+  .pendiente {
+    background-color: rgba(231, 231, 231, 0.8);
     color: rgb(0, 0, 0);
   }
   
@@ -101,5 +101,10 @@
   
   .cancelada {
     background-color: rgb(255, 104, 104,0.8);
+    color: rgb(0, 0, 0);
+  }
+  
+  .finalizada {
+    background-color: rgba(116, 255, 66, 0.8);
     color: rgb(0, 0, 0);
   }

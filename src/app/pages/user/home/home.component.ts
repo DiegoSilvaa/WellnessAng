@@ -91,4 +91,21 @@ export class HomeComponent implements OnInit {
   onReservationClick(reservation: any, id: any): void {
     this.resService.selectReservation(reservation, id);
   }
+
+  redirectToGoogleMaps(button: any): void {
+    const location = button.ubicacion.trim();
+  
+    // Expresión regular para verificar si la ubicación es una URL
+    const urlRegex = /^(http|https):\/\/[^ "]+$/;
+  
+    if (urlRegex.test(location)) {
+      // La ubicación es una URL, redirigir directamente a Google Maps
+      window.open(location, '_blank');
+    } else {
+      // La ubicación es una dirección, construir el query de búsqueda
+      const encodedLocation = encodeURIComponent(location);
+      const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedLocation}`;
+      window.open(googleMapsUrl, '_blank');
+    }
+  }
 }

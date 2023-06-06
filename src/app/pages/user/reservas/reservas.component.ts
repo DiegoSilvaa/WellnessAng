@@ -21,9 +21,6 @@ export class ReservasComponent implements OnInit {
 
   ngOnInit() {
     this.getCentros();
-    this.refreshInterval = interval(100000).subscribe(() => {
-      this.getCentros();
-    });
   }
 
   ngOnDestroy() {
@@ -63,14 +60,15 @@ export class ReservasComponent implements OnInit {
       });
     });
   }
-
-  deleteBooking(booking: any) {
-    this.http.delete(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/reservacion/${booking.id_reservacion}`)
-      .subscribe((response: any) => {
-        console.log(response)
-      }, (error) => {
-        // Manejar errores si la eliminación falla
-        console.error(error);
-      });
-  }
+  
+	submit(booking: any) {
+    const confirmacion = confirm('¿Estás seguro de que cancelar esta Reservacion?');
+      if (confirmacion) {
+          const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/reservacion/${booking.id_reservacion}/cambiar_estatus/4`;      
+          this.http.put(url,null).subscribe((results: any) => {
+            console.log(results)
+            this.getCentros();
+        })
+      }
+		}
 }

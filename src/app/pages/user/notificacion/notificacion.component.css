@@ -1,7 +1,7 @@
 .main-container {
   background-size: contain;
   flex-direction: column;
-  flex: 1;
+  height: 100vh;
   display: flex;
   padding-top: 1%;
   align-items: center;

@@ -1,4 +1,4 @@
-
+<app-sidebar></app-sidebar>
 <div class="main-container">
     <div class="rate-container">
         <h2 class="title">{{selectedReserva!.nombre}}</h2>
@@ -9,7 +9,7 @@
         <div class="reserva-container">
           <div class="calendar-cont">
             <h2 class="fechaLabel"> Selecciona una Fecha: </h2>
-              <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected()"></mat-calendar>
+              <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected()" [minDate]="minDate" [maxDate]="maxDate"></mat-calendar>
           </div>
           <div class="child-container">
             <h2 class="fechaLabel">Horas Disponibles</h2>
@@ -37,5 +37,5 @@
             </div>
         </div>
       </div>
-      
+    </div>
 </div>  

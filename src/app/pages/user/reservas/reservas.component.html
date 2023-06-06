@@ -4,7 +4,7 @@
   <ng-container *ngIf="reservasArray?.length; else noReservas">
   <div class="container">
     <div class="cards">
-      <mat-card *ngFor="let reservation of reservasArray" [ngClass]="{'aceptado': reservation.id_estatus === 1, 'en-espera': reservation.id_estatus === 2, 'cancelada': reservation.id_estatus === 3}">
+      <mat-card *ngFor="let reservation of reservasArray" [ngClass]="{'pendiente': reservation.id_estatus === 1, 'en-espera': reservation.id_estatus === 2, 'finalizada': reservation.id_estatus === 3, 'cancelada': reservation.id_estatus === 4}">
         <mat-card-header>
             <mat-icon mat-card-avatar >date_range</mat-icon>
             <mat-card-title>{{ reservation.matricula }}</mat-card-title>
@@ -19,7 +19,8 @@
           <mat-card-actions>
               <button mat-button color="primary" 
               style="background-color: #408dff; color: rgb(255, 255, 255);" 
-              (click)="deleteBooking(reservation)"> Eliminar </button>
+              (click)="submit(reservation)"
+              *ngIf="reservation.id_estatus !== 2 && reservation.id_estatus !== 3 && reservation.id_estatus !== 4"> Cancelar </button>
           </mat-card-actions>
         </mat-card>
     </div>

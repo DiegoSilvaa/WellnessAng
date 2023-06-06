@@ -10,7 +10,7 @@ import { Subscription, interval } from 'rxjs';
   styleUrls: ['./alertas.component.css']
 })
 export class AlertasComponent {
-  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos';
+  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/administrador';
   notificaciones: any;
   notificacionesArray: any;
   private refreshInterval!: Subscription;

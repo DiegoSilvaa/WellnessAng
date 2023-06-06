@@ -1,6 +1,6 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
-  <h2 class="titleCen"> Vista de Adminstrador </h2>
+  <h2 class="titleCen"> Vista de administrador </h2>
   <div class="contents">
     <div class="aforo-container">
       <label class="title"> Aforo del Gimansio</label>
@@ -30,9 +30,13 @@
           </div>
         </mat-card-header>
         <img mat-card-image class="card-image" src="{{ button.imagen }}" alt="Imagen de Centro">
-        <mat-card-content>
-          <p>{{ button.ubicacion }}</p>
+        <mat-card-content style="margin-top: 10px; align-items: center; width: 90%;">
+          <a mat-button color="primary" (click)="redirectToGoogleMaps(button)">
+            <mat-icon>map</mat-icon>
+            {{ button.ubicacion }}
+          </a>
         </mat-card-content>
+        
         <mat-card-actions style="text-align: center; align-items: center; display: flex; justify-content: center;">
           <mat-button-toggle-group name="buttonGroup">
             <mat-button-toggle (click)="onReservationClick(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">

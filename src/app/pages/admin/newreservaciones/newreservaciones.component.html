@@ -30,7 +30,7 @@
   <ng-container *ngIf="reservas?.length; else noReservas">
   <div class="container">
     <div class="cards">
-      <mat-card *ngFor="let reservation of reservasFiltradas" [ngClass]="{'aceptado': reservation.id_estatus === 1, 'en-espera': reservation.id_estatus === 2, 'cancelada': reservation.id_estatus === 3}">
+      <mat-card *ngFor="let reservation of reservasFiltradas" [ngClass]="{'pendiente': reservation.id_estatus === 1, 'en-espera': reservation.id_estatus === 2, 'finalizada': reservation.id_estatus === 3, 'cancelada': reservation.id_estatus === 4}">
         <mat-card-header>
             <mat-icon mat-card-avatar >date_range</mat-icon>
             <mat-card-title>{{ reservation.matricula }}</mat-card-title>

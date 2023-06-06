@@ -41,11 +41,11 @@
               <mat-select id="deporte" name="deporte" formControlName="deporte" required>
                 <mat-option *ngFor="let opcion of deportes" [value]="opcion.id_deporte">
                   <div class="button-cont">
-                    <span>{{ opcion.nombre_deporte}}</span>
+                    {{ opcion.nombre_deporte}}
                     <button mat-icon-button color="primary" (click)="editOption(opcion)">
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button color="warn" (click)="deleteOption(opcion)">
+                    <button mat-icon-button color="warn" (click)="deleteOption(opcion)" >
                       <mat-icon>delete</mat-icon>
                     </button>
                   </div>

@@ -6,6 +6,7 @@ import { Subscription, interval } from 'rxjs';
 import { DateAdapter } from '@angular/material/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-reserva-page',
@@ -19,10 +20,16 @@ export class ReservaPageComponent implements OnInit{
   selected: Date = new Date();
   initialDate!: Date;
   finalDate!: Date;
+  minDate!: Date;
+  maxDate!: Date;
+
   constructor(private router: Router, private resService: ReservaService, private http: HttpClient,private formBuilder: FormBuilder) {}
 
   form!: FormGroup;
   ngOnInit(): void {
+      this.minDate = new Date(); // Fecha actual
+      this.maxDate = new Date(); // Fecha actual
+      this.maxDate.setDate(this.maxDate.getDate() + 7);
       this.getCalificacion();
       this.onDateSelected();
       this.form = this.formBuilder.group({
@@ -101,7 +108,7 @@ export class ReservaPageComponent implements OnInit{
 					(error) => {
 					  // Se produjo un error al realizar la solicitud
 					  console.error('Error al realizar la solicitud POST:', error);
-            alert('Error en la Reserva.')
+            alert('No se puede reservar la misma instalacion en esta fecha.')
 					}
         );
       }

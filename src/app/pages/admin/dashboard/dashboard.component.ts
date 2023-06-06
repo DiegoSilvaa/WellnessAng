@@ -29,9 +29,6 @@ export class DashboardComponent implements OnInit {
   // METODO INICIALIZADOR DE PANTALLA
   ngOnInit() {
     this.getCentros();
-    this.refreshInterval = interval(1000).subscribe(() => {
-      this.getCentros();
-    });
     setTimeout(() => {
       this.createBarChart();
     }, 1000);
@@ -121,4 +118,23 @@ export class DashboardComponent implements OnInit {
       console.log(results)
     })
   }
+
+  redirectToGoogleMaps(button: any): void {
+    const location = button.ubicacion.trim();
+  
+    // Expresión regular para verificar si la ubicación es una URL
+    const urlRegex = /^(http|https):\/\/[^ "]+$/;
+  
+    if (urlRegex.test(location)) {
+      // La ubicación es una URL, redirigir directamente a Google Maps
+      window.open(location, '_blank');
+    } else {
+      // La ubicación es una dirección, construir el query de búsqueda
+      const encodedLocation = encodeURIComponent(location);
+      const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedLocation}`;
+      window.open(googleMapsUrl, '_blank');
+    }
+  }
+  
+
 }
