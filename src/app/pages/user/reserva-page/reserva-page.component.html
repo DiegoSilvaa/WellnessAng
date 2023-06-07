@@ -1,41 +1,41 @@
 <app-sidebar></app-sidebar>
 <div class="main-container">
+  <label class="title"> {{selectedReserva.nombre}} </label>
+  <div class="contents">
     <div class="rate-container">
-        <h2 class="title">{{selectedReserva!.nombre}}</h2>
-        <img class="logo" src="{{selectedReserva!.imagen}}" alt="iamgen instalacion">
         <app-app-rating [rating]="calificacion[0].promedio_calificaciones"></app-app-rating>
+        <img class="logo" src="{{selectedReserva!.imagen}}" alt="iamgen instalacion">
     </div>
-    <div class="content-container">
-        <div class="reserva-container">
-          <div class="calendar-cont">
-            <h2 class="fechaLabel"> Selecciona una Fecha: </h2>
-              <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected()" [minDate]="minDate" [maxDate]="maxDate"></mat-calendar>
-          </div>
-          <div class="child-container">
-            <h2 class="fechaLabel">Horas Disponibles</h2>
-            <p style="text-align: center;">Fecha Seleccionada: {{selected}}</p>
-            <form [formGroup]="form" class="chip-container">
-              <mat-form-field appearance="outline">
-                <mat-label><i class="material-icons">access_time</i> Horas:</mat-label>
-                <mat-select id="horas" name="horas" formControlName="hora" required>
-                  <mat-option *ngFor="let hour of horasArray" [value]="hour.hora">
-                    <mat-icon>access_time</mat-icon>
-                    {{ hour.hora }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field> 
-              <mat-form-field appearance="outline">
-                <mat-label>Cantidad de Personas:</mat-label>
-                <input matInput type="number" formControlName="cantidad" required>
-                <mat-icon matSuffix>person_add_alt_1</mat-icon>
-              </mat-form-field>             
-            </form>
-            <div class="btt-cont">
-              <button mat-button color="primary" 
-              style="background-color: #408dff; color: rgb(255, 255, 255); width: 30%; font-size: 15px;" 
-              (click)="confirmReservation()"> Reserva </button>
-            </div>
-        </div>
+    <div class="reserva-container">
+      <div class="calendar-cont">
+        <h2 class="fechaLabel"> Selecciona una Fecha: </h2>
+          <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected()" [minDate]="minDate" [maxDate]="maxDate" style="width: 100%;"></mat-calendar>
       </div>
+      <div class="child-container">
+        <h2 class="fechaLabel">Horas Disponibles</h2>
+        <p style="text-align: center;">Fecha Seleccionada: {{selected}}</p>
+        <form [formGroup]="form" class="chip-container">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label><i class="material-icons">access_time</i> Horas:</mat-label>
+            <mat-select id="horas" name="horas" formControlName="hora" required>
+              <mat-option *ngFor="let hour of horasArray" [value]="hour.hora">
+                <mat-icon>access_time</mat-icon>
+                {{ hour.hora }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Cantidad de Personas:</mat-label>
+            <input matInput type="number" formControlName="cantidad" required>
+            <mat-icon matSuffix>person_add_alt_1</mat-icon>
+          </mat-form-field>             
+        </form>
+        <div class="btt-cont">
+          <button mat-button color="primary" 
+          style="background-color: #408dff; color: rgb(255, 255, 255); width: 30%; font-size: 15px;" 
+          (click)="confirmReservation()"> Reserva </button>
+        </div>
     </div>
+  </div>
+  </div>
 </div>  

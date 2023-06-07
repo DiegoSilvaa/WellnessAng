@@ -3,7 +3,6 @@
   flex-direction: column;
   height: 100vh;
   display: flex;
-  padding-top: 1%;
   align-items: center;
   margin-left: 15%;
   background-image: url('../../../../assets/back3.png');
@@ -11,10 +10,13 @@
   
 
   .container {
-    width: 100%;
+    width: 90%;
     padding: 10px 0px 10px 0px;
     background-color: rgb(195, 188, 188, 0.8);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    flex: 1;
+    margin-bottom: 10px;
   }
   
   .no-reservas-text {
@@ -31,8 +33,9 @@
   
   
   .TitleCen {
-    color: rgb(0, 0, 0);
-    background-color: white;
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
+    background-color: #1465bb;
     width: 100%;
     text-align: center;
     padding-top: 10px;

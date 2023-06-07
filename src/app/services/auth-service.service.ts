@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
+  constructor(private http: HttpClient) { }
 
   isLoggedIn = false;
   userType = '';
@@ -14,27 +16,42 @@ export class AuthServiceService {
 
   //Checar si el username es valido acorde a sus credenciales
   login(username: string, password: string): boolean {
-    this.pending = true;
+		const url = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/login';
+
+    // Cuerpo de datos que enviarás en la solicitud POST
+    const body = {
+      "matricula": username,
+      "password": password
+    };
+
+    this.http.post(url, body).subscribe(
+      response => {
+        console.log('Respuesta:', response);
+        // Realiza acciones con la respuesta del servidor
+        this.userType = 'user';
+        this.isLoggedIn = true;
+      },
+      error => {
+        console.error('Error:', error);
+        // Realiza acciones en caso de error
+      }
+    );
+
+
     if (username === 'diego') {
       this.userType = 'user';
-      this.pending = false;
       this.isLoggedIn = true;
       this.username = username;
-      this.success = true;
       return true;
     } else if (username === 'alan') {
       this.userType = 'registro';
-      this.pending = false;
       this.isLoggedIn = true;
       this.username = username;
-      this.success = true;
       return true;
     } else if (username === 'perro'){
       this.userType = 'admin';
-      this.pending = false;
       this.isLoggedIn = true;
       this.username = username;
-      this.success = true;
       return true;
     }
 

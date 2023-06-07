@@ -2,58 +2,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 15px;
-    flex: 1;
+    height: 100vh;
     background-image: url('../../../../assets/back2.png');
     background-size: contain;
     margin-left: 13%;
     padding-left: 20px;
 }
   
-.table-container {
-  width: 90%;
-  margin-top: 1rem;
-  overflow-y: auto;
-  background-color: white;
-  padding-top: 10px;
-  padding-bottom: 20px;
-  border-radius: 10px;
-  margin-top: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-}
-
-.custom-table {
-  font-size: 20px; /* Tamaño de fuente */
-  width: 90%; /* Ancho de la tabla */
-}
-
-.custom-table mat-header-cell,
-.custom-table mat-cell {
-  padding: 5px; /* Espaciado interno de las celdas */
-  font-size: 10px;
-}
-
-.custom-table mat-header-row {
-  height: 30px; /* Altura de las filas de encabezado */
-}
-
-.custom-table mat-row {
-  height: 25px; /* Altura de las filas de datos */
-}
-
-.export-container {
-  text-align: right;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-right: 20px;
-}
 
 .title {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
+  color: rgb(255, 255, 255);
+  background-color: #1465bb;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+}
+
+.titleContents {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
   color: rgb(0, 0, 0);
-  background-color: #f1f1f1;
+  background-color: #b9ffff;
   width: 100%;
   text-align: center;
   padding-top: 10px;
@@ -78,6 +53,7 @@
   border-radius: 10px;
   align-items: center;
   display: flex;
+  flex: 1;
   flex-direction: column;
   margin-inline: 20px;
   width: 100%;
@@ -93,6 +69,7 @@ form {
   flex-direction: column;
   margin-inline: 20px;
   width: 100%;
+  flex: 1;
 }
 
 .mat-form-field {
@@ -113,13 +90,6 @@ form {
   margin-top: 6%;
 }
 
-.valid-form .mat-form-field-outline {
-  border-color: green;
-}
-
-.valid-form .mat-input-element {
-  background-color: lightgreen;
-}
 
 .rounded-input {
   border-radius: 20px;

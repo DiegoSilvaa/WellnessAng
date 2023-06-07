@@ -5,7 +5,6 @@
     background-image: url('../../../../assets/back.png');
     background-size: contain;
     margin-left: 13%;
-    padding-left: 20px;
     flex-direction: column;
   }
 
@@ -20,7 +19,7 @@
     justify-content: space-between;
     width: 100%;
     text-align: center;
-    height: 100%;
+    flex: 1;
   }
   
   .containers{
@@ -42,9 +41,10 @@
     display: flex;
     flex-direction: column;
     margin-inline: 20px;
-    width: 100%;
+    width: 100%;  
     padding-bottom: 10px;
     text-align: center;
+    flex: 1;
   }
 
   .name-deporte {
@@ -89,18 +89,16 @@
 .titleAd{
   font-size: 30px;
   font-weight: 500;
-  color: rgb(0, 0, 0);
-  background-color: white;
-  width: 90%;
+  color: rgb(255, 255, 255);
+  background-color: #1465bb;
+  width: 100%;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-  border-radius: 10px;
 }
 
 .titleDips{
-  background-color: #ccc;
+  background-color: #b9ffff;
   width: 100%;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -110,13 +108,6 @@
   border-top-right-radius:10px;
   font-size: 20px;
 }
-
-.imagenDisp{
-  background-color: #4d90fe;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-}
-
 
 .form-submit-btn2 {
   width: 30%;
@@ -140,6 +131,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: space-evenly;
   text-align: center;
 }
 
@@ -152,16 +144,22 @@
   border-radius: 10px;
   margin-bottom: 20px;
   padding-bottom: 20px;
+  margin-top: 10px;
 }
 
 .modal-image-container {
-  width: 80%;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-inline: 20px;
+    justify-content: space-between;
+    width: 80%;
+    text-align: center;
+    flex: 1;
+    margin-bottom: 10px;
 }
 
 .button-cont{
@@ -170,3 +168,17 @@
   flex-direction: row;
   justify-content:right;
 }
+
+@media (max-width: 768px) {
+  .containers {
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .image-selector {
+    margin-top: 10px;
+  }
+  
+  .main-container {
+    height: 120vh;
+  }
+  }

@@ -1,37 +1,17 @@
-mat-sidenav-container, mat-sidenav-content {
-  height: 100%;
-  color: white;
-}
 
-mat-sidenav {
-  width: 200px;
-  color: white;
-}
 
 @media (max-width: 600px) {
   mat-sidenav {
-    width: 80%;
-    color: white;
+    width: 100%;
   }
 }
 .sidenav-container {
   height: 100%;
   position: fixed;
-  color: white;
-  width: 15%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .sidenav {
-  width: 300px;
-  color: white;
-  background-color: #ffffff;
-}
-
-.example-spacer {
-  flex: 1 1 auto;
-}
-
-mat-toolbar {
-  position: relative;
+  width: 230px;
+  background-color: #2196f3;
+  opacity: 0.85;
 }

@@ -1,5 +1,7 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
+  <h2 class="titleCen"> Estadisticas de {{instalacionGraf.nombre}}</h2>
+  <div class="contents">
     <div class="chart-container">
       <div class="chart-container-header">
         <div class="form-field">
@@ -18,25 +20,34 @@
           (click)="filtrarFecha()">Filtrar</button> 
       </div>
       <div class="chart-container2">
-        <div class="line-chart-container">
+          <div class="line-chart-container">
             <div class="chart-header">
-              <h2>Reservaciones</h2>
+              <label>Reservaciones</label>
+            </div>
+            <div *ngIf="!Linechart1 " class="no-reservas-text">
+              <p>Los gráficos no se han generado.</p>
             </div>
             <div class="chart-body" style="display: flex; justify-content: center; align-items: center; flex: 1;">
               <canvas id="Line1">{{Linechart1}}</canvas>
             </div>
-          </div>
-          <div class="pie-chart-container">
-            <div class="chart-header">
-              <h2>Calificación De Registros:</h2>
-            </div> 
-              <div class="chart-body" style="display: flex; justify-content: center; align-items: center; flex: 1;">
-                  <canvas id="barChart">{{BarChart}}</canvas>
-              </div>
-            </div>
         </div>
+        <div class="pie-chart-container">
+          <div class="chart-header">
+            <label>Calificación De Registros:</label>
+          </div> 
+          <div *ngIf=" !BarChart || calificacion?.length === 0" class="no-reservas-text">
+            <p>Los gráficos no se han generado.</p>
+          </div>
+            <div class="chart-body" style="display: flex; justify-content: center; align-items: center; flex: 1;">
+                <canvas id="barChart">{{BarChart}}</canvas>
+            </div>
+          </div>
+      </div>
     </div>
     <div class="comentarios-container">
+      <div *ngIf="calificacion?.length === 0" class="no-reservas-text">
+        <p> No existen comentarios.</p>
+      </div>
       <div *ngFor="let comment of calificacion" class="card-container">
       <div class="comment-header">
         <mat-icon class="comment-icon">person</mat-icon>
@@ -47,4 +58,5 @@
       </div>
     </div>
     </div>
+  </div>  
 </div>

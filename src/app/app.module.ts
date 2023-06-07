@@ -82,6 +82,7 @@ import { EditarCentroComponent } from './pages/admin/editar-centro/editar-centro
 import { EditarInstalacionComponent } from './pages/admin/editar-instalacion/editar-instalacion.component';
 import { ModalComponent } from './pages/admin/new-aforo/new-aforo.component';
 import { ModalComponentEdit } from './pages/admin/new-aforo/new-aforo.component';
+import { TablaGymComponent } from './pages/admin/tabla-gym/tabla-gym.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,6 +118,7 @@ import { ModalComponentEdit } from './pages/admin/new-aforo/new-aforo.component'
     EditarCentroComponent,
     EditarInstalacionComponent,
     ModalComponent,
+    TablaGymComponent,
   ],
   imports: [
     MatSlideToggleModule,

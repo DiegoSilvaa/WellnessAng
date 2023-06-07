@@ -6,14 +6,13 @@
   flex-direction: column;
   display: flex;
   margin-left: 13%;
-  padding-left: 20px;
-  padding-top: 2%;
-  padding-bottom: 2%;
+  height: 100vh;
 }
 
 
 .container {
   width: 90%;
+  flex: 1;
   padding: 10px 0px 10px 0px;
   border-radius: 20px;
   background-color: rgb(195, 188, 188, 0.8);
@@ -21,17 +20,17 @@
 }
 
 .TitleCen {
-  color: rgb(0, 0, 0);
-  background-color: white;
-  width: 90%;
+  color: rgb(255, 255, 255);
+  background-color: #1465bb;
+  width: 100%;
   text-align: center;
   font-size: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
   font-weight: 500;
+  margin-top: 10px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .no-reservas-text {

@@ -1,23 +1,21 @@
 <div class="modal-container">
-    <label class="titleDips"> Crear nuevo "Deporte" </label>
+    <label class="titleAd"> Editar {{data.nombre_deporte}} </label>
         <form [formGroup]="form" (ngSubmit)="submit()" class="modal-form-container">
             <label class="titleDips">Selecciona un nombre:</label>
             <div class="form-field">
                 <mat-form-field appearance="outline">
-                <mat-label><i class="material-icons">person</i> {{data.nombre_deporte}} </mat-label>
+                <mat-label><i class="material-icons">person</i> Nombre: </mat-label>
                 <input type="text" id="nombre" name="nombre" matInput formControlName="nombre" required>
                 </mat-form-field>
             </div>
             <button type="submit" class="form-submit-btn">Habilitar</button>
         </form>
     <div class="modal-image-container">
-        <div class="image-selector">
             <label class="titleDips">Selecciona una Imagen:</label>
             <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
                 <div class="imagenDisp"><img [src]="iamgen" *ngIf="iamgen" [style.width.px]="300" [style.height.px]="300"></div>
                 <p>
                 <input type="file" (change)="selectFile($event)">
                 </p>
-            </div>
     </div>
 </div>

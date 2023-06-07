@@ -22,6 +22,7 @@ import { GraficasAdminComponent } from '../pages/admin/graficas-admin/graficas-a
 import { StatsAforoComponent } from '../pages/admin/stats-aforo/stats-aforo.component';
 import { EditarCentroComponent } from '../pages/admin/editar-centro/editar-centro.component';
 import { EditarInstalacionComponent } from '../pages/admin/editar-instalacion/editar-instalacion.component';
+import { TablaGymComponent } from '../pages/admin/tabla-gym/tabla-gym.component';
 // Registro Modulo
 
 import { RegistroModuloComponent } from '../pages/register/registro-modulo/registro-modulo.component';
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'instalacionesUser', component: InstalacionesDisplayComponent, },
   { path: 'editCentro', component: EditarCentroComponent, },
   { path: 'editInstalacion', component: EditarInstalacionComponent, },
+  { path: 'tablaGym', component: TablaGymComponent, },
   { path: '**', component: ErrorComponent},
 ];
 

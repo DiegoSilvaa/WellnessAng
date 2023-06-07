@@ -3,22 +3,36 @@
     <mat-sidenav mode="side" opened class="sidenav">
       <mat-nav-list>
         <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
-          <mat-icon>home</mat-icon> Dashboard
+          <mat-icon style="color: white; margin-right: 20px;">home</mat-icon> 
+          <span style="color: white;"> Pantalla Inicial</span> 
         </a>
         <a mat-list-item routerLink="/newCentro" routerLinkActive="active">
-          <mat-icon>business_center</mat-icon> Centro Deportivo
+          <mat-icon style="color: white;margin-right: 20px;">domain</mat-icon> 
+          <span style="color: white;">Centro Deportivo </span>
         </a>
         <a mat-list-item routerLink="/aforo" routerLinkActive="active">
-          <mat-icon>fitness_center</mat-icon> Instalacion Deportiva
+          <mat-icon style="color: white;margin-right: 20px;">store_mall_directory</mat-icon>
+          <span style="color: white;">  Instalacion</span>
         </a>
         <a mat-list-item routerLink="/alertas" routerLinkActive="active">
-          <mat-icon>message</mat-icon> Alertas
+          <mat-icon style="color: white;margin-right: 20px;">message</mat-icon> 
+          <span style="color: white;">Alertas </span>
         </a>
         <a mat-list-item routerLink="/newReservas" routerLinkActive="active">
-            <mat-icon>book</mat-icon> Reservaciones
+            <mat-icon style="color: white;margin-right: 20px;">book</mat-icon> 
+            <span style="color: white;">Reservaciones </span>
+        </a>
+        <a mat-list-item routerLink="/registroModulo" routerLinkActive="active">
+          <mat-icon style="color: white;margin-right: 20px;">fitness_center</mat-icon> 
+          <span style="color: white;">Gimnasio </span>
+        </a>
+        <a mat-list-item routerLink="/tablaGym" routerLinkActive="active">
+          <mat-icon style="color: white;margin-right: 20px;">table_chart</mat-icon> 
+          <span style="color: white;">Registro </span>
         </a>
         <a mat-list-item routerLink="/" routerLinkActive="active" (click)="onSubmitLog()">
-            <mat-icon>close</mat-icon> Logout
+            <mat-icon style="color: white;margin-right: 20px;">close</mat-icon> 
+            <span style="color: white;"> Cerrar Sesion</span>
         </a>
       </mat-nav-list>
     </mat-sidenav>

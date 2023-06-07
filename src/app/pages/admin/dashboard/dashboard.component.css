@@ -1,30 +1,30 @@
 .main-container {
-    display: flex;
-    align-items: center;
-    background-image: url('../../../../assets/back2.png');
-    margin-left: 13%;
-    padding-left: 20px;
-    background-size: contain;
-    flex-direction: column;
-    overflow-y: auto;
-    padding-bottom: 2%;
+  display: flex;
+  align-items: center;
+  background-image: url('../../../../assets/back2.png');
+  margin-left: 13%;
+  padding-left: 20px;
+  background-size: contain;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 1;
 }
-  
+
 .grid-container {
-    grid-gap: 1em; /* Espacio entre los cards */
-    height: 100%; /* Altura máxima del contenedor */
-    width: 90%;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas de ancho flexible */
-    margin-top: 20px;
-    align-items: center;
-    justify-items: center;
-    background-color: rgb(255, 255, 255);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-  }
+  grid-gap: 1em;
+  height: 100%;
+  width: 90%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;
+  align-items: center;
+  justify-items: center;
+  background-color: rgb(255, 255, 255);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
 
 .example-card {
   background-color: #f2f2f2;
@@ -39,39 +39,24 @@
   right: 10px;
 }
 
-
-
-.titleAd{
-  font-size: 30px;
-  font-weight: 500;
-  color: rgb(0, 0, 0);
-  background-color: #ccc;
-  width: 100%;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-}
 .titleCen {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
-  color: rgb(0, 0, 0);
-  background-color: white;
+  color: rgb(255, 255, 255);
+  background-color: #1465bb;
   width: 100%;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
-
 
 .title {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
   color: rgb(0, 0, 0);
-  background-color: #f1f1f1;
+  background-color: #b9ffff;
   width: 100%;
   text-align: center;
   padding-top: 10px;
@@ -92,7 +77,7 @@ mat-icon {
   padding-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-  flex:1
+  flex: 1;
 }
 
 .aforo-container {
@@ -120,24 +105,13 @@ mat-icon {
 }
 
 .card-image {
-  width: 100%; /* Establece el ancho deseado */
-  height: 180px; /* Establece la altura deseada */
+  width: 100%;
+  height: 180px;
 }
 
 .disable-card {
-  background-color: #ccc; /* Cambia el color de fondo a gris */
-  opacity: 0.5; /* Puedes ajustar la opacidad según tus preferencias */
-  /* Agrega otros estilos personalizados para las tarjetas deshabilitadas */
-}
-
-
-.pie-chart-container {
-  width: 80%;
-  height: 420px;
-  background-color: #fff;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+  background-color: #ccc;
+  opacity: 0.5;
 }
 
 .chart-header {
@@ -154,37 +128,44 @@ mat-icon {
   padding: 10px;
 }
 
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .chart-container {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .contents {
     flex-wrap: wrap;
   }
 
-  .line-chart-container,
-  .pie-chart-container {
-    width: 100%;
-    margin-bottom: 20px;
-    margin-right: 20px;
+  .stats-container{
+    margin-top: 10px;
   }
 }
 
 .custom-button {
-  margin-top: 40px;
+  margin-top: 10px;
   background-color: #408dff;
-  color: #ffffff; /* Color del texto */
-  border: 1px solid #CCCCCC; /* Borde */
-  padding: 10px 20px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de fuente */
-  border-radius: 5px; /* Bordes redondeados */
-  width: 60%;
+  color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 40%;
 }
 
 .custom-button:hover {
   background-color: #408dff;
-  color: #ffffff; /* Cambio de color de texto al pasar el mouse */
+  color: #ffffff;
 }
 
 .custom-button .mat-icon {
-  margin-right: 5px; /* Espaciado a la derecha del icono */
+  margin-right: 5px;
 }
 
 .no-reservas-text {
@@ -196,7 +177,7 @@ mat-icon {
   background-color: gray;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
   border-radius: 10px;
-  width: 90% ;
+  width: 90%;
 }
 
 .gray-card {
@@ -204,7 +185,13 @@ mat-icon {
 }
 
 .button-toggle-custom {
-  width: 150px; /* Ajusta el tamaño según tus necesidades */
-  height: 40px; /* Ajusta el tamaño según tus necesidades */
+  width: 150px;
+  height: 40px;
   text-align: center;
+}
+
+.pie-chart-container{ 
+  align-items: center;
+  flex: 1;
+  display: flex;
 }

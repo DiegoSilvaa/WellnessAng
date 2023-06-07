@@ -1,0 +1,42 @@
+<app-side-bar-admin></app-side-bar-admin>
+<div class="main-container">
+    <label class="title"> Registro modulo de gimnasio </label>
+    <div class="table-container">
+        <div class="export-container">
+          <mat-form-field appearance="outline">
+            <mat-label>Selecciona una fecha</mat-label>
+            <input matInput [matDatepicker]="picker" (dateChange)="filterButtons($event.value)">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="primary" 
+          style="background-color: #408dff; color: rgb(255, 255, 255); margin-left: 20px;"
+          (click)="exportTable()">Export Material Table</button>
+        </div>
+        <div *ngIf="filteredDataSource.data.length === 0" class="no-reservas-text">
+                No se encontraron registros.
+        </div>
+        <table mat-table id="MaterialTable" [dataSource]="filteredDataSource" *ngIf="filteredDataSource.data.length > 0" class="custom-table">
+            <ng-container matColumnDef="id_registro">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id_registro}} </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="matricula">
+            <th mat-header-cell *matHeaderCellDef> Matricula </th>
+            <td mat-cell *matCellDef="let element"> {{element.matricula}} </td>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef> Fecha de Ingreso </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>  
+    </div>      
+    <mat-paginator *ngIf="filteredDataSource.data.length > 0" [length]="resultsLength" [pageSize]="30" style="width: 90%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; margin-bottom: 10px;"></mat-paginator>
+</div>
