@@ -40,8 +40,6 @@ export class TablaGymComponent {
   		aforoActual: ['', Validators.required],
 	  });
     this.getRegistro();
-    this.refreshInterval = interval(10000).subscribe(() => {
-    });
   }
 
   ngOnDestroy() {
