@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
     } else {
       alert('Por favor, completa todos los campos requeridos.');
     }
+
   }
 }
 

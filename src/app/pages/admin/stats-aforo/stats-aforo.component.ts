@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableUtil } from 'src/app/components/export';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, interval } from 'rxjs';
-import { MatSort } from '@angular/material/sort';
-import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { formatDate } from '@angular/common';
@@ -15,12 +13,10 @@ import { DatePipe } from '@angular/common';
   templateUrl: './stats-aforo.component.html',
   styleUrls: ['./stats-aforo.component.css']
 })
-export class StatsAforoComponent implements OnInit {
+export class StatsAforoComponent {
   API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio';
   searchQuery = '';
   registro: any;
-  registroArray: any;
-  filteredDataSource: MatTableDataSource<any>; // Reemplaza 'YourDataType' con el tipo de dato de tus registros
   startDate!: Date;
   endDate!: Date;
 
@@ -28,32 +24,8 @@ export class StatsAforoComponent implements OnInit {
   private refreshInterval!: Subscription;
   constructor(private http: HttpClient, private formBuilder: FormBuilder) { 
     this.registro = [];
-    this.filteredDataSource = new MatTableDataSource(this.registroArray);
   }
   
-  ngOnInit() {
-    this.getRegistro();
-  }
-
-  ngOnDestroy() {
-    if (this.refreshInterval) {
-      this.refreshInterval.unsubscribe();
-    }
-  }
-
-  getRegistro() {
-    this.http.get<any[]>(this.API).subscribe((results: any) => {
-      this.registro = Object.values(results.data);
-      console.log(this.registro)
-      this.registroArray = Array.isArray(this.registro) ? this.registro : [this.registro];
-      this.registroArray.forEach((reserva: any) => {
-        const fecha = new Date(reserva.fecha);
-        const formattedFecha = fecha.toISOString().slice(0, 10);
-        reserva.fecha = formattedFecha;
-      });
-      this.filteredDataSource = new MatTableDataSource(this.registroArray);
-    });
-  }
 
   // Obtener datos de fechas y cantidad de matriculas en esa fecha
   fechas:any;
@@ -61,7 +33,6 @@ export class StatsAforoComponent implements OnInit {
     this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio/estadisticas_personas_por_dia/fecha_inicial/${fechaIni}/fecha_final/${fechaFin}`)
     .subscribe((results: any) => {
       this.fechas = Object.values(results.data);
-      this.createLineChart1();
       console.log(this.fechas)
     });
   }
@@ -72,7 +43,6 @@ export class StatsAforoComponent implements OnInit {
     this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio/top_asistencia_alumnos/fecha_inicial/${fechaIni}/fecha_final/${fechaFin}`)
     .subscribe((results: any) => {
       this.alumnosReg = Object.values(results.data);
-      this.createLineChart2();
       console.log(this.alumnosReg)
     });
   }
@@ -81,6 +51,10 @@ export class StatsAforoComponent implements OnInit {
   FiltroGraficas() {
     this.getAlumnosMasRegistros(this.startDate,this.endDate);
     this.getAlumnosPorFecha(this.startDate,this.endDate);
+    setTimeout(() => {
+      this.createLineChart1();
+      this.createLineChart2();
+    }, 1000);
   }
   
   
@@ -142,7 +116,7 @@ export class StatsAforoComponent implements OnInit {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Ventas',
+          label: 'Mas Ingresos',
           data: values,
           backgroundColor: [
             '#408dff',
@@ -157,6 +131,6 @@ export class StatsAforoComponent implements OnInit {
       options: {
         responsive: true,
         }
-      })
+    })
   }
 }
