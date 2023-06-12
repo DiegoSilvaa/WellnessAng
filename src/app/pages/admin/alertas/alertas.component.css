@@ -27,36 +27,38 @@
   .container {
     flex: 1;
     width: 90%;
-    padding: 10px 0px 10px 0px;
-    border-radius: 20px;
+    padding: 30px 30px 30px 30px;
+    border-radius: 10px;
     background-color: rgb(195, 188, 188, 0.8);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     align-items: center;
     display: flex;
     flex-direction: column;
+    
   }
 
   .containerDown {
     width: 90%;
-    padding: 10px 0px 10px 0px;
     border-radius: 20px;
     background-color: white;
-    padding: 30px 0px 30px 0px;
+    padding: 20px 0px 20px 0px;
   }
     
   .cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
     width: 100%;
     justify-items: center;
+    align-items: center;
   }
   
   
   mat-card {
     background-color: #f2f2f2;
-    width: 450px;
+    width: 350px;
     border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
   }
 
   .no-reservas-text {
