@@ -5,6 +5,7 @@
       <label class="title"> Aforo del Gimansio</label>
       <app-spinner-aforo></app-spinner-aforo>
     </div>
+    <!-- Contenido para buscar deportes -->
   <div class="stats-container">
     <label class="title"> Buscar Deportes </label>
       <div class="input-boton">
@@ -17,13 +18,17 @@
   </div>  
   </div> 
   <label class="titleDown"> Centros Deportivos </label>
+  <!-- Contenido si hay deportes filtrados -->
   <ng-container *ngIf="deportesFiltrados?.length; else noReservas">
+    <!-- Contenedor de los centros deportivos -->
   <div class="centros-container" *ngFor="let centro of deportesFiltrados">
     <label class="titleCen">{{ centro.nombre }} <a mat-button color="#81c9fa" (click)="redirectToGoogleMaps(centro)">
       <mat-icon>map</mat-icon> Ubicación
     </a></label>
+    <!-- Contenido si hay deportes en el centro deportivo -->
     <ng-container *ngIf="centro.deportes?.length; else noReservas">
     <div class="horizontal-scroll-container">
+      <!-- Tarjeta para mostrar información sobre un deporte -->
       <mat-card *ngFor="let deporte of centro.deportes" class="example-card" [ngClass]="{ 'disable-card':!centro.esta_habilitado}">
         <mat-card-header>
           <mat-icon mat-card-avatar>sports_soccer</mat-icon>

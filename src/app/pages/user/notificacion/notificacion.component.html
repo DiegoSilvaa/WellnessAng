@@ -1,9 +1,11 @@
 <app-sidebar></app-sidebar>
 <div class="main-container">
     <label class="TitleCen">Notificaciones </label>
+     <!-- Contenido si hay notificaciones en el array -->
     <ng-container *ngIf="notificacionesArray?.length; else noReservas">
     <div class="container">
         <div class="cards">
+          <!-- Tarjeta para mostrar una notificación -->
             <mat-card *ngFor="let reservation of notificacionesArray">
               <mat-card-header>
                 <mat-icon mat-card-avatar >notifications</mat-icon>

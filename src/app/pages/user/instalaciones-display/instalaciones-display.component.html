@@ -1,9 +1,11 @@
 <app-sidebar></app-sidebar>
 <div class="main-container">
   <label class="title"> {{idSelected.nombre_deporte}} </label>
+  <!-- Contenido si hay instalaciones deportivas en el array -->
   <ng-container *ngIf="arrayDeportes?.length; else noReservas">
     <div class="container">
       <div class="cards">
+         <!-- Tarjeta para mostrar información sobre una instalación deportiva -->
         <mat-card *ngFor="let button of arrayDeportes"  [ngClass]="{ 'disable-card':!button.esta_habilitada}">
           <mat-card-header>
             <mat-icon mat-card-avatar>fitness_center</mat-icon>
