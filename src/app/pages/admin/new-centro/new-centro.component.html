@@ -3,6 +3,7 @@
 <div class="main-container">
   <h2 class="titleAd"> Crear nuevo "Centro Deportivo" </h2>
   <div class="containers">
+    <!-- Formulario para crear el centro deportivo -->
     <form [formGroup]="form" (ngSubmit)="submit()" class="form">
       <label class="titleDips">Informacion Centro </label>
       <div class="form-field">
@@ -29,7 +30,7 @@
       
       <button type="submit" class="form-submit-btn">Habilitar</button>
     </form>
-
+<!-- Selección de imagen para el centro deportivo -->
   <div class="image-selector">
     <label class="titleDips">Selecciona una Imagen:</label>
     <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>

@@ -3,6 +3,7 @@
     <label class="title"> Registro modulo de gimnasio </label>
     <div class="table-container">
         <div class="export-container">
+           <!-- Seleccion de fechas  -->
           <mat-form-field appearance="outline">
             <mat-label>Selecciona una fecha</mat-label>
             <input matInput [matDatepicker]="picker" (dateChange)="filterButtons($event.value)">

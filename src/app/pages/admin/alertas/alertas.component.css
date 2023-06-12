@@ -35,14 +35,6 @@
     display: flex;
     flex-direction: column;
   }
-
-  .containerDown {
-    width: 90%;
-    padding: 10px 0px 10px 0px;
-    border-radius: 20px;
-    background-color: white;
-    padding: 30px 0px 30px 0px;
-  }
     
   .cards {
     display: grid;

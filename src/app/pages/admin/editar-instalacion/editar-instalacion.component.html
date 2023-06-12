@@ -7,6 +7,7 @@
       <label class="titleDips">Informacion Instalacion:</label>
       <div class="name-deporte">
 
+        <!-- Campo de selección para el centro deportivo -->
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label><i class="material-icons">business</i> Centro deportivo:</mat-label>
@@ -16,6 +17,7 @@
           </mat-form-field>
         </div>
   
+        <!-- Campo de selección para el intervalo de tiempo -->
         <mat-form-field appearance="outline">
           <mat-label><i class="material-icons">schedule</i> Intervalo de tiempo (Horas):</mat-label>
           <mat-select id="intervalo" name="intervalo" formControlName="intervalo" required>
@@ -29,12 +31,14 @@
         </div> 
       
       <div class="name-deporte">
+        <!-- Campo de entrada para el nombre de la instalación -->
           <div class="form-field">
             <mat-form-field appearance="outline">
               <mat-label><i class="material-icons">person</i> {{currInst.nombre}}</mat-label>
               <input type="text" id="nombre" name="nombre" matInput formControlName="nombre" required>
             </mat-form-field>
           </div>
+          <!-- Campo de selección para el deporte -->
           <div class="form-field">
             <mat-form-field appearance="outline">
               <mat-label><i class="material-icons">sports_soccer</i> Deporte:</mat-label>
@@ -86,7 +90,7 @@
             </mat-select>           
           </mat-form-field>
         </div>
-        
+         <!-- Campo de selección para la hora de fin en fines de semana -->
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_fds}}</mat-label>

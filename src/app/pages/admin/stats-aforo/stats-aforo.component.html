@@ -2,6 +2,7 @@
 <div class="main-container">
   <h2 class="title"> Estadisticas del Gimnasio </h2>
   <div class="contents">
+    <!-- Contenedor de las gráficas -->
     <div class="chart-container">
       <div class="form-field">
           <mat-form-field appearance="outline" style="width: 100%;">
@@ -21,6 +22,7 @@
         <div *ngIf="!Linechart1 || fechas?.length === 0" class="no-reservas-text">
           <p>Los gráficos no se han generado.</p>
         </div>
+        <!-- Contenedor de la gráfica de línea -->
         <div class="line-chart-container" *ngIf="Linechart1">
           <div class="chart-body">
             <canvas id="Line1">{{Linechart1}}</canvas>
@@ -30,6 +32,7 @@
         <div *ngIf=" !pie || alumnosReg?.length === 0" class="no-reservas-text">
           <p>Los gráficos no se han generado.</p>
         </div>
+        <!-- Contenedor de la gráfica de barras circulares -->
         <div class="line-bar-container" *ngIf="pie">
           <div class="chart-body">
             <canvas id="Pie1">{{pie}}</canvas>

@@ -1,6 +1,7 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
   <h2 class="titleCen"> Reservas de Estudiantes </h2>
+  <!-- Contenedor de filtros -->
   <div class="filter-container">
     <mat-form-field appearance="outline" class="filter-field">
       <mat-label>Estado</mat-label>
@@ -27,6 +28,7 @@
     <button mat-raised-button (click)="aplicarFiltros()"
      style="margin-right: 10px; margin-bottom: 20px; background-color: #4f72be; color: white;">Aplicar Filtros</button>
   </div>  
+   <!-- Contenedor de reservas -->
   <ng-container *ngIf="reservas?.length; else noReservas">
   <div class="container">
     <div class="cards">

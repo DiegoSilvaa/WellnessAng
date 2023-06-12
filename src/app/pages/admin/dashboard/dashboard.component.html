@@ -3,12 +3,14 @@
   <h2 class="titleCen"> Vista de administrador </h2>
   <div class="contents">
     <div class="aforo-container">
+      <!-- Contenedor del aforo del gimnasio -->
       <label class="title"> Aforo del Gimansio</label>
       <app-spinner-aforo></app-spinner-aforo>
       <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active" class="custom-button">
         <mat-icon style="color: white;">bar_chart</mat-icon> Aforo Gym
       </button>
     </div>
+    <!-- Contenedor de las estadísticas de centros deportivos -->
     <div class="stats-container">
       <label class="title"> Estadística Centros </label>
         <div class="pie-chart-container">
@@ -18,6 +20,7 @@
         </div>
   </div>
   </div>
+  <!-- Contenedor de centros deportivos -->
   <h2 class="titleCen"> Centros Deportivos </h2>
   <ng-container *ngIf="General?.length; else noReservas">
     <div class="grid-container">

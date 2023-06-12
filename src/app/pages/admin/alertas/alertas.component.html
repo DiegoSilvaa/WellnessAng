@@ -8,11 +8,10 @@
   margin-bottom: 10px;" 
   (click)="crearAviso()"><mat-icon style="margin-right: 5px;">add</mat-icon> Nuevo Aviso </button>
   
+    <!-- Contenedor de las alertas -->
   <div class="container"> 
 
     <ng-container *ngIf="notificacionesArray?.length; else noReservas">
-      <!--
-      <div class="containerDown" style="background-color: #0434a4; opacity: .85;"> -->
         <div class="cards">
         <mat-card *ngFor="let reservation of notificacionesArray">
           <mat-card-header>
@@ -21,6 +20,7 @@
             <mat-card-subtitle>{{ reservation.fecha_inicio }} // {{ reservation.fecha_fin }}</mat-card-subtitle>
           </mat-card-header>
           <img mat-card-image src="{{reservation.imagen}}" alt="{{reservation.imagen}}">
+          <!-- Contenido de la tarjeta -->
           <mat-card-content>
             {{ reservation.contenido }}
           </mat-card-content>
@@ -31,8 +31,6 @@
               (click)="confirmarEliminacion(reservation)"> Eliminar </button>
           </mat-card-actions>
         </mat-card>
-    <!--
-    </div> -->
     </div>
     </ng-container>
     <ng-template #noReservas>
