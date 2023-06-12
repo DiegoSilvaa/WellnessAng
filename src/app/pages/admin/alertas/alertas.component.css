@@ -34,14 +34,14 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    
   }
 
   .containerDown {
     width: 90%;
+    padding: 10px 0px 10px 0px;
     border-radius: 20px;
     background-color: white;
-    padding: 20px 0px 20px 0px;
+    padding: 30px 0px 30px 0px;
   }
     
   .cards {
@@ -50,7 +50,6 @@
     grid-gap: 10px;
     width: 100%;
     justify-items: center;
-    align-items: center;
   }
   
   
