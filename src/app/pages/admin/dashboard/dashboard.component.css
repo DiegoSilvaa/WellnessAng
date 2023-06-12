@@ -11,11 +11,11 @@
 }
 
 .grid-container {
-  grid-gap: 1em;
+  grid-gap: 1em; 
   height: 100%;
   width: 90%;
   border-radius: 10px;
-  display: grid;
+  display: flex; /*cambie grid a flex en mac */
   grid-template-columns: repeat(3, 1fr);
   margin-top: 20px;
   align-items: center;
@@ -24,6 +24,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 10px;
+  padding-left: 30px; /* agregue esto en mac */
 }
 
 .example-card {
@@ -31,6 +32,7 @@
   width: 350px;
   border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  display: flex; /* agregue esto en mac */
 }
 
 .switch-container {
@@ -55,7 +57,7 @@
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   background-color: #4f72be;
   width: 100%;
   text-align: center;
@@ -195,3 +197,4 @@ mat-icon {
   flex: 1;
   display: flex;
 }
+

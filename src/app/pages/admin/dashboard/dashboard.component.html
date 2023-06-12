@@ -24,7 +24,7 @@
   <h2 class="titleCen"> Centros Deportivos </h2>
   <ng-container *ngIf="General?.length; else noReservas">
     <div class="grid-container">
-      <mat-card *ngFor="let button of General" class="example-card" [ngClass]="{'gray-card': button.esta_habilitado === false}">
+      <mat-card *ngFor="let button of General" class="example-card"  [ngClass]="{'gray-card': button.esta_habilitado === false}">
         <mat-card-header>
           <mat-icon mat-card-avatar>business_center</mat-icon>
           <mat-card-title>{{ button.nombre }}</mat-card-title>
@@ -33,7 +33,7 @@
           </div>
         </mat-card-header>
         <img mat-card-image class="card-image" src="{{ button.imagen }}" alt="Imagen de Centro">
-        <mat-card-content style="margin-top: 10px; align-items: center; width: 90%;">
+        <mat-card-content style="margin-top: 10px; align-items: center; width: 90%; display: flex;">
           <a mat-button color="primary" (click)="redirectToGoogleMaps(button)">
             <mat-icon>map</mat-icon>
             {{ button.ubicacion }}
