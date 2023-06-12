@@ -58,7 +58,7 @@ form {
 font-size: 30px;
 font-weight: 500;
 color: rgb(255, 255, 255);
-background-color: #1465bb;
+background-color: #0434a4;
 width: 100%;
 text-align: center;
 padding-top: 10px;
@@ -67,7 +67,7 @@ box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .titleDips{
-background-color: #b9ffff;
+background-color: #4f72be;
 width: 100%;
 padding-bottom: 10px;
 padding-top: 10px;
@@ -78,7 +78,7 @@ font-size: 20px;
 }
 
 .imagenDisp{
-background-color: #4d90fe;
+background-color: #0434a4;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 border-radius: 20px;
 }

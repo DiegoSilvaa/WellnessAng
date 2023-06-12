@@ -44,7 +44,7 @@
   font-weight: 500;
   margin-bottom: 10px;
   color: rgb(255, 255, 255);
-  background-color: rgb(20,101,187,1);
+  background-color: rgb(4,52,164,1);
   width: 100%;
   text-align: center;
   padding-top: 10px;
@@ -56,7 +56,7 @@
   font-weight: 500;
   margin-bottom: 10px;
   color: rgb(0, 0, 0);
-  background-color: #b9ffff;
+  background-color: #4f72be;
   width: 100%;
   text-align: center;
   padding-top: 10px;
@@ -150,7 +150,7 @@ mat-icon {
 
 .custom-button {
   margin-top: 10px;
-  background-color: #408dff;
+  background-color: #4f72be;
   color: #ffffff;
   border: 1px solid #cccccc;
   padding: 10px 20px;
@@ -160,7 +160,7 @@ mat-icon {
 }
 
 .custom-button:hover {
-  background-color: #408dff;
+  background-color: #0434a4;
   color: #ffffff;
 }
 
