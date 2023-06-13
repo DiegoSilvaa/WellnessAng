@@ -111,11 +111,11 @@ mat-form-field {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);  
   padding-top: 10px;
   padding-bottom: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.horizontal-scroll-container::-webkit-scrollbar {
-  -webkit-appearance: none;
-}
 
 .centros-container {
   width: 100%;

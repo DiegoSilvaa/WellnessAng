@@ -19,7 +19,7 @@
         <table mat-table id="MaterialTable" [dataSource]="filteredDataSource" *ngIf="filteredDataSource.data.length > 0" class="custom-table">
             <ng-container matColumnDef="id_registro">
             <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.id_registro}} </td>
+            <td mat-cell *matCellDef="let element; let i = index;"> {{ i + 1 }} </td>
             </ng-container>
         
             <!-- Name Column -->
@@ -38,5 +38,9 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>  
     </div>      
-    <mat-paginator *ngIf="filteredDataSource.data.length > 0" [length]="resultsLength" [pageSize]="30" style="width: 90%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; margin-bottom: 10px;"></mat-paginator>
+    <mat-paginator 
+      *ngIf="filteredDataSource.data.length > 0" 
+      [length]="filteredDataSource.data.length"
+      [pageSizeOptions]="[10, 25, 50, 100]" [pageSize]="10"
+      style="width: 90%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; margin-bottom: 20px;"></mat-paginator>
 </div>

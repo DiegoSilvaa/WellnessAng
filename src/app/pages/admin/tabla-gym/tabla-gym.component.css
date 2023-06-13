@@ -10,28 +10,31 @@
 }
   
 .table-container {
+  position: relative;
+  min-height: 200px;
   width: 90%;
-  flex: 1;
-  margin-top: 1rem;
+  max-height: 700px;
+  overflow: auto;
   background-color: white;
   padding-top: 10px;
   padding-bottom: 20px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-top: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
 }
 
 .custom-table {
   font-size: 20px; /* Tamaño de fuente */
-  width: 90%; /* Ancho de la tabla */
-  background-color: rgb(69, 159, 255);
-  color: white;
+  position: relative;
 }
+
+table {
+  width: 100%;
+}
+
 
 .custom-table mat-header-cell,
 .custom-table mat-cell {
