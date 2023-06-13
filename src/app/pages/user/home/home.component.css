@@ -113,19 +113,18 @@ a:visited {
 .horizontal-scroll-container {
   width: 90%;
   height: 400px;
-  display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
   border-radius: 20px;
   background-color: rgb(195, 188, 188, 0.8);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);  
   padding-top: 10px;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.horizontal-scroll-container::-webkit-scrollbar {
-  -webkit-appearance: none;
-}
 
 .centros-container {
   width: 100%;
@@ -145,6 +144,7 @@ a:visited {
 .example-card {
   background-color: #f2f2f2;
   width: 350px;
+  min-width: 350px;
   border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
   margin-inline: 10px;

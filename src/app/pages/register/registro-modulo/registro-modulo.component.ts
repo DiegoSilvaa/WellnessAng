@@ -36,26 +36,13 @@ export class RegistroModuloComponent implements OnInit{
   		aforoMax: ['', Validators.required],
   		aforoActual: ['', Validators.required],
 	  });
-    this.getRegistro();
-    this.refreshInterval = interval(10000).subscribe(() => {
-    });
   }
 
   ngOnDestroy() {
     if (this.refreshInterval) {
       this.refreshInterval.unsubscribe();
     }
-  }
-
-  getRegistro() {
-    this.http.get<any[]>(this.API).subscribe((results: any) => {
-      this.registro = Object.values(results.data);
-      console.log(this.registro)
-      this.registroArray = Array.isArray(this.registro) ? this.registro : [this.registro];
-      this.filteredDataSource = new MatTableDataSource(this.registroArray);
-    });
-  }
-  
+  }  
   
   // Exportar tablas de Registro a Excel
   exportTable() {

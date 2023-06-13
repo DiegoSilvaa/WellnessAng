@@ -24,11 +24,11 @@ export class EditarAvisoComponent {
 	buildForm() {
 		// Construir el formulario usando el FormBuilder
 	  this.form = this.formBuilder.group({
-		titulo: ['', Validators.required],
-		numeroNom: ['', Validators.required],
-		descripcion: ['', Validators.required],
-		start: ['', Validators.required],
-		end: ['', Validators.required],
+		titulo: [this.currNot.titulo, Validators.required],
+		numeroNom: [this.currNot.num_nomina, Validators.required],
+		descripcion: [this.currNot.contenido, Validators.required],
+		start: [this.currNot.fecha_inicio, Validators.required],
+		end: [this.currNot.fecha_fin, Validators.required],
 	  });
 	}
 
@@ -37,7 +37,7 @@ export class EditarAvisoComponent {
 		const confirmacion = confirm('¿Estás seguro de que deseas editar esta alerta?');
     	if (confirmacion) {
 			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/${this.currNot.id_aviso}`;
-	
+			console.log(this.imagen)
 		    const formData = new FormData();
 		    formData.append('titulo', this.form.get('titulo')?.value);
 		    formData.append('contenido', this.form.get('descripcion')?.value);
@@ -68,7 +68,7 @@ export class EditarAvisoComponent {
 
    // Subir Imagen
    imagen!: File;
-   iamgen: any;
+   iamgen: any = this.currNot.imagen;
    msg = "";
    selectFile(event: any) { 
 	   if(!event.target.files[0] || event.target.files[0].length == 0) {

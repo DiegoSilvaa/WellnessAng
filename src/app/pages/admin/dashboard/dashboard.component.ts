@@ -116,6 +116,9 @@ export class DashboardComponent implements OnInit {
     
     this.http.put(url,null).subscribe((results: any) => {
       console.log(results)
+      setTimeout(() => {
+        this.getCentros();
+      }, 100);
     })
   }
 

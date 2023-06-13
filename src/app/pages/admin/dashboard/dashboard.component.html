@@ -33,8 +33,10 @@
           </div>
         </mat-card-header>
         <img mat-card-image class="card-image" src="{{ button.imagen }}" alt="Imagen de Centro">
-        <mat-card-content style="margin-top: 10px; align-items: center; width: 90%; display: flex;">
-          <a mat-button color="primary" (click)="redirectToGoogleMaps(button)">
+        <mat-card-content style="margin-top: 10px; align-items: center; width: 90%; display: flex; flex-wrap: wrap;">
+          <a mat-button color="primary" (click)="redirectToGoogleMaps(button)" 
+          style="width: 100%; flex: 1; white-space: nowrap;  
+          overflow: hidden;   text-overflow: ellipsis; flex-shrink: 0;">
             <mat-icon>map</mat-icon>
             {{ button.ubicacion }}
           </a>

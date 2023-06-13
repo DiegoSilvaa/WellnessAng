@@ -28,9 +28,9 @@ export class EditarCentroComponent implements OnInit {
 
 	ngOnInit() {
 	  this.form = this.formBuilder.group({
-		nombre: ['', Validators.required],
-		disponibilidad: ['', Validators.required],
-		ubicacion: ['', Validators.required],
+		nombre: [this.editCentro.nombre , Validators.required],
+		disponibilidad: [this.editCentro.esta_habilitado , Validators.required],
+		ubicacion: [this.editCentro.ubicacion , Validators.required],
 	  });
 	}
 

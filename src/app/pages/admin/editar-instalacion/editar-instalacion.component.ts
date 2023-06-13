@@ -77,14 +77,14 @@ export class EditarInstalacionComponent implements OnInit {
   currInst: any = this.resSer.instalacionStats;
 	ngOnInit() {
 	  this.form = this.formBuilder.group({
-		centro: ['', Validators.required],
-		nombre: ['', Validators.required],
-		deporte: ['', Validators.required],
-		intervalo: ['', Validators.required],
-		weekdaysStartTime: ['', Validators.required],
-		weekdaysEndTime: ['', Validators.required],
-		weekendStartTime: ['', Validators.required],
-		weekendEndTime: ['', Validators.required]
+		centro: [this.currInst.id_centro_deportivo, Validators.required],
+		nombre: [this.currInst.nombre, Validators.required],
+		deporte: [this.currInst.id_deporte, Validators.required],
+		intervalo: [this.currInst.id_intervalo, Validators.required],
+		weekdaysStartTime: [this.currInst.hora_inicial_es, Validators.required],
+		weekdaysEndTime: [this.currInst.hora_final_es, Validators.required],
+		weekendStartTime: [this.currInst.hora_inicial_fds, Validators.required],
+		weekendEndTime: [this.currInst.hora_final_fds, Validators.required]
 	  });
 
 	  this.getCentros();

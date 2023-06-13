@@ -116,10 +116,11 @@
   }
 
   .card-container {
-    background-color: white;
+    background-color: rgb(206, 206, 206);
     margin-bottom: 10px;
     border-radius: 5px;
     padding: 5px;
+    width: 90%;
   }
 
   .comment-header {

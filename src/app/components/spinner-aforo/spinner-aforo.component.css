@@ -30,4 +30,14 @@
     opacity: 0.5;
   }
 
+   
+  .spinner-text2 {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    color: #090909;
+  }
+
   

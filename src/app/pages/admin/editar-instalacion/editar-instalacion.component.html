@@ -34,7 +34,7 @@
         <!-- Campo de entrada para el nombre de la instalación -->
           <div class="form-field">
             <mat-form-field appearance="outline">
-              <mat-label><i class="material-icons">person</i> {{currInst.nombre}}</mat-label>
+              <mat-label><i class="material-icons">person</i> Nombre: </mat-label>
               <input type="text" id="nombre" name="nombre" matInput formControlName="nombre" required>
             </mat-form-field>
           </div>
@@ -65,7 +65,7 @@
       <div style="flex-direction: row; display: flex; width: 100%; align-items: center; justify-content: space-evenly;">
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_inicial_es}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon> Hora de inicio (entre semana)</mat-label>
             <mat-select formControlName="weekdaysStartTime" placeholder="Seleccione una hora" required>
               <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
             </mat-select>  
@@ -74,7 +74,7 @@
       
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_es}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon> Hora de fin (entre semana)</mat-label>
             <mat-select placeholder="Seleccione una hora" formControlName="weekdaysEndTime" required>
               <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
             </mat-select>  
@@ -84,7 +84,7 @@
       <div style="flex-direction: row; display: flex; width: 100%; align-items: center; justify-content: space-evenly;">
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon>{{currInst.hora_inicial_fds}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon>Hora de inicio (fin de semana)</mat-label>
             <mat-select placeholder="Seleccione una hora" formControlName="weekendStartTime" required>
               <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
             </mat-select>           
@@ -93,7 +93,7 @@
          <!-- Campo de selección para la hora de fin en fines de semana -->
         <div class="form-field">
           <mat-form-field appearance="outline">
-            <mat-label><mat-icon>access_time</mat-icon> {{currInst.hora_final_fds}}</mat-label>
+            <mat-label><mat-icon>access_time</mat-icon> Hora de fin (fin de semana)</mat-label>
             <mat-select placeholder="Seleccione una hora" formControlName="weekendEndTime" required>
               <mat-option *ngFor="let hour of hoursMap" [value]="hour.value">{{ hour.label }}</mat-option>
             </mat-select>  
