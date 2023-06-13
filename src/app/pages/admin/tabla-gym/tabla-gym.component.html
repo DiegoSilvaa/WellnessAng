@@ -2,18 +2,6 @@
 <div class="main-container">
     <label class="title"> Registro modulo de gimnasio </label>
     <div class="table-container">
-        <div class="export-container">
-           <!-- Seleccion de fechas  -->
-          <mat-form-field appearance="outline">
-            <mat-label>Selecciona una fecha</mat-label>
-            <input matInput [matDatepicker]="picker" (dateChange)="filterButtons($event.value)">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <button mat-raised-button color="primary" 
-          style="background-color: #4f72be; color: rgb(255, 255, 255); margin-left: 20px;"
-          (click)="exportTable()">Exportar Tabla</button>
-        </div>
         <div *ngIf="filteredDataSource.data.length === 0" class="no-reservas-text">
                 No se encontraron registros.
         </div>
