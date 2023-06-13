@@ -44,7 +44,7 @@ form {
   .form-submit-btn {
     width: 30%;
     padding: 10px;
-    background-color: #4d90fe;
+    background-color: #4f72be;
     color: #fff;
     font-size: 16px;
     border-radius: 5px;
@@ -53,7 +53,7 @@ form {
   }
   
   .form-submit-btn:hover {
-    background-color: #357ae8;
+    background-color: #0434a4;
   }
 
   .image-selector{
@@ -79,10 +79,4 @@ form {
     margin-bottom: 20px;
     font-weight: 500;
     font-size: 20px;
-  }
-
-  .imagenDisp{
-    background-color: #4d90fe;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
   }

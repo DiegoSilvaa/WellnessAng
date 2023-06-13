@@ -6,11 +6,13 @@
         <app-app-rating [rating]="calificacion[0].promedio_calificaciones"></app-app-rating>
         <img class="logo" src="{{selectedReserva!.imagen}}" alt="iamgen instalacion">
     </div>
+    <!-- Contenedor de la reserva -->
     <div class="reserva-container">
       <div class="calendar-cont">
         <h2 class="fechaLabel"> Selecciona una Fecha: </h2>
           <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected()" [minDate]="minDate" [maxDate]="maxDate" style="width: 100%;"></mat-calendar>
       </div>
+      <!-- Contenido relacionado con la reserva -->
       <div class="child-container">
         <h2 class="fechaLabel">Horas Disponibles</h2>
         <p style="text-align: center;">Fecha Seleccionada: {{selected}}</p>
@@ -32,7 +34,7 @@
         </form>
         <div class="btt-cont">
           <button mat-button color="primary" 
-          style="background-color: #408dff; color: rgb(255, 255, 255); width: 30%; font-size: 15px;" 
+          style="background-color: #4f72be; color: rgb(255, 255, 255); width: 30%; font-size: 15px;" 
           (click)="confirmReservation()"> Reserva </button>
         </div>
     </div>

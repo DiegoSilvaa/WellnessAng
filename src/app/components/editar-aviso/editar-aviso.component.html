@@ -7,21 +7,21 @@
       <div class="form-field">
         <!-- Campo de entrada de texto para el título -->
         <mat-form-field appearance="outline" style="width: 90%;">
-          <mat-label><mat-icon>title</mat-icon> {{currNot!.titulo}}</mat-label>
+          <mat-label><mat-icon>title</mat-icon> Título:</mat-label>
           <input type="text" id="titulo" name="titulo" matInput formControlName="titulo" required>
         </mat-form-field>
       </div>
       <div class="form-field">
         <!-- Campo de entrada de texto para el número de nómina -->
         <mat-form-field appearance="outline" style="width: 90%;">
-          <mat-label><mat-icon>badge</mat-icon> {{currNot!.num_nomina}}</mat-label>
+          <mat-label><mat-icon>badge</mat-icon> Número de Nómina:</mat-label>
           <input type="text" id="numeroNom" name="numeroNom" matInput formControlName="numeroNom" required>
         </mat-form-field>
       </div>
       <div class="form-field">
         <!-- Campo de entrada de rango de fechas -->
         <mat-form-field appearance="outline" style="width: 90%;">
-          <mat-label><mat-icon>event</mat-icon> {{currNot!.fecha_inicio}} - {{currNot!.fecha_publicacion}}</mat-label>
+          <mat-label><mat-icon>event</mat-icon> Fecha:</mat-label>
           <mat-date-range-input [rangePicker]="picker" >
             <input matStartDate formControlName="start" placeholder="Start date">
             <input matEndDate formControlName="end" placeholder="End date">
@@ -33,7 +33,7 @@
       <div class="form-field">
         <!-- Campo de entrada de texto para la descripción -->
         <mat-form-field appearance="outline" style="width: 90%;">
-          <mat-label><mat-icon>description</mat-icon> {{currNot!.contenido}}</mat-label>
+          <mat-label><mat-icon>description</mat-icon> Descripción:</mat-label>
           <input type="text" id="descripcion" name="descripcion" matInput formControlName="descripcion" required>
         </mat-form-field>
       </div>

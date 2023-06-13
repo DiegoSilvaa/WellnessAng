@@ -11,64 +11,67 @@
   display: flex;
 }
   
-  .titleCen {
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    color: rgb(0, 0, 0);
-    background-color: white;
-    width: 100%;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
+.titleCen {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: rgb(255, 255, 255);
+  background-color: #0434a4;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
   
   
-  .container {
-    flex: 1;
-    width: 90%;
-    padding: 10px 0px 10px 0px;
-    border-radius: 20px;
-    background-color: rgb(195, 188, 188, 0.8);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .containerDown {
-    width: 90%;
-    padding: 10px 0px 10px 0px;
-    border-radius: 20px;
-    background-color: white;
-    padding: 30px 0px 30px 0px;
-  }
+.container {
+  flex: 1;
+  width: 90%;
+  padding: 30px 30px 30px 30px;
+  border-radius: 10px;
+  background-color: rgb(195, 188, 188, 0.8);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
     
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 40px;
-    width: 100%;
-    justify-items: center;
-  }
-  
-  
-  mat-card {
-    background-color: #f2f2f2;
-    width: 450px;
-    border-radius: 20px;
-  }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
 
-  .no-reservas-text {
-    font-size: 80px;
-    color: #ffffff;
-    text-align: center;
-    margin-top: 10px;
-    opacity: 0.5;
-    background-color: gray;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-    border-radius: 10px;
-    width: 90% ;
-  }
+.card-image {
+  width: 100%; /* Establece el ancho deseado */
+  height: 180px; /* Establece la altura deseada */
+}
+  
+  
+mat-card {
+  background-color: #f2f2f2;
+  width: 350px;
+  min-width: 350px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  margin-inline: 10px;;
+  display: flex; /* agregue esto en mac */
+  overflow: hidden;
+}
+
+.no-reservas-text {
+  font-size: 80px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 10px;
+  opacity: 0.5;
+  background-color: gray;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  width: 90% ;
+}
   
   

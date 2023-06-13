@@ -27,12 +27,13 @@
 
 button {
   width: 20%;
-  background-color: #87F2FE;
+  background-color: #0434a4;
   justify-content: center;
   margin-top: 10px;
   border-radius: 10px;
-  border-color: #87F2FE;
+  border-color: #0434a4;
   color: white;
+  font-size: medium;
 }
 
 form {

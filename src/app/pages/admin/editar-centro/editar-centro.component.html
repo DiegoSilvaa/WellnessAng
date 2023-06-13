@@ -5,12 +5,14 @@
   <div class="containers">
     <form [formGroup]="form" (ngSubmit)="submit()" class="form">
       <label class="titleDips">Informacion Centro </label>
+      <!-- Campo de entrada para el nombre del centro -->
       <div class="form-field">
         <mat-form-field appearance="outline">
-          <mat-label><i class="material-icons">person</i> {{editCentro.nombre}}</mat-label>
+          <mat-label><i class="material-icons">person</i> Nombre:</mat-label>
           <input type="text" id="nombre" name="nombre" matInput formControlName="nombre" required>
         </mat-form-field>
       </div>
+      <!-- Campo de selección para la disponibilidad del centro -->
       <div class="form-field">
         <mat-form-field appearance="outline">
           <mat-label><i class="material-icons">toggle_on</i>  Disponibilidad:</mat-label>
@@ -20,10 +22,10 @@
           </mat-select>
         </mat-form-field>
       </div>
-     
+     <!-- Etiqueta de ubicación del centro -->
       <label class="titleDips">Ubicacion (URL)</label>
       <mat-form-field appearance="outline">
-        <mat-label><i class="material-icons">location_on</i> {{editCentro.ubicacion}}</mat-label>
+        <mat-label><i class="material-icons">location_on</i> Ubicación:</mat-label>
         <input type="text" id="ubicacion" name="ubicacion" matInput formControlName="ubicacion" required>
       </mat-form-field>
       
@@ -35,6 +37,7 @@
     <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
       <div class="imagenDisp"><img [src]="iamgen" *ngIf="iamgen" [style.width.px]="300" [style.height.px]="300"></div>
       <p>
+        <!-- Campo para seleccionar un archivo de imagen -->
         <input type="file" (change)="selectFile($event)">
       </p>
     </div>

@@ -2,6 +2,7 @@
 <div class="main-container">
   <h2 class="title"> Estadisticas del Gimnasio </h2>
   <div class="contents">
+    <!-- Contenedor de las gráficas -->
     <div class="chart-container">
       <div class="form-field">
           <mat-form-field appearance="outline" style="width: 100%;">
@@ -15,12 +16,13 @@
           </mat-form-field>
         </div>     
         <button mat-raised-button color="primary" 
-        style="background-color: #408dff; color: rgb(255, 255, 255); margin-bottom: 20px; width: 10%; height: 50px; font-size: 20px;"
+        style="background-color: #4f72be; color: rgb(255, 255, 255); margin-bottom: 20px; width: 10%; height: 50px; font-size: 20px;"
         (click)="FiltroGraficas()">Filtrar</button> 
         <label class="titleGraf"> Registros de Alumnos por Fecha  </label>
         <div *ngIf="!Linechart1 || fechas?.length === 0" class="no-reservas-text">
           <p>Los gráficos no se han generado.</p>
         </div>
+        <!-- Contenedor de la gráfica de línea -->
         <div class="line-chart-container" *ngIf="Linechart1">
           <div class="chart-body">
             <canvas id="Line1">{{Linechart1}}</canvas>
@@ -30,6 +32,7 @@
         <div *ngIf=" !pie || alumnosReg?.length === 0" class="no-reservas-text">
           <p>Los gráficos no se han generado.</p>
         </div>
+        <!-- Contenedor de la gráfica de barras circulares -->
         <div class="line-bar-container" *ngIf="pie">
           <div class="chart-body">
             <canvas id="Pie1">{{pie}}</canvas>

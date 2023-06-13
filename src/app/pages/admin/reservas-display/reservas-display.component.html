@@ -1,5 +1,6 @@
 <app-side-bar-admin></app-side-bar-admin>
 <div class="main-container">
+  <!-- Contenedor de instalaciones -->
     <h2 class="titleCen"> {{currentInstalacion.nombre}} </h2>
     <ng-container *ngIf="instalaciones?.length; else noReservas">
     <div class="container">
@@ -13,6 +14,7 @@
             </div>
           </mat-card-header>
             <img mat-card-image class="card-image" [src]="button.imagen" alt="Photo of a Shiba Inu">
+            <!-- Acciones de la tarjeta -->
             <mat-card-actions style="text-align: center; align-items: center; display: flex; justify-content: center;">
               <mat-button-toggle-group name="buttonGroup">
                 <mat-button-toggle (click)="onReservationClick(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">

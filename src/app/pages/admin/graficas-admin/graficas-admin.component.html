@@ -1,8 +1,10 @@
 <app-side-bar-admin></app-side-bar-admin>
+  <!-- Contenido de la sección de estadísticas -->
 <div class="main-container">
   <h2 class="titleCen"> Estadisticas de {{instalacionGraf.nombre}}</h2>
   <div class="contents">
     <div class="chart-container">
+       <!-- Contenedor de los gráficos -->
       <div class="chart-container-header">
         <div class="form-field">
           <mat-form-field appearance="outline" style="width: 100%;">
@@ -16,11 +18,12 @@
           </mat-form-field>
         </div> 
           <button mat-raised-button color="primary" 
-          style="background-color: #408dff; color: rgb(255, 255, 255); margin-bottom: 20px; width: 20%; margin-left: 20px;"
+          style="background-color: #4f72be; color: rgb(255, 255, 255); margin-bottom: 20px; width: 20%; margin-left: 20px;"
           (click)="filtrarFecha()">Filtrar</button> 
       </div>
       <div class="chart-container2">
           <div class="line-chart-container">
+            <!-- Contenedor del gráfico de líneas -->
             <div class="chart-header">
               <label>Reservaciones</label>
             </div>
@@ -45,6 +48,7 @@
       </div>
     </div>
     <div class="comentarios-container">
+      <!-- Comentarios del instalaciones-->
       <div *ngIf="calificacion?.length === 0" class="no-reservas-text">
         <p> No existen comentarios.</p>
       </div>

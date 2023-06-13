@@ -3,12 +3,14 @@
   <h2 class="titleCen"> Vista de administrador </h2>
   <div class="contents">
     <div class="aforo-container">
+      <!-- Contenedor del aforo del gimnasio -->
       <label class="title"> Aforo del Gimansio</label>
       <app-spinner-aforo></app-spinner-aforo>
       <button mat-icon-button routerLink="/statsAdmin" routerLinkActive="active" class="custom-button">
         <mat-icon style="color: white;">bar_chart</mat-icon> Aforo Gym
       </button>
     </div>
+    <!-- Contenedor de las estadísticas de centros deportivos -->
     <div class="stats-container">
       <label class="title"> Estadística Centros </label>
         <div class="pie-chart-container">
@@ -18,10 +20,11 @@
         </div>
   </div>
   </div>
+  <!-- Contenedor de centros deportivos -->
   <h2 class="titleCen"> Centros Deportivos </h2>
   <ng-container *ngIf="General?.length; else noReservas">
     <div class="grid-container">
-      <mat-card *ngFor="let button of General" class="example-card" [ngClass]="{'gray-card': button.esta_habilitado === false}">
+      <mat-card *ngFor="let button of General" class="example-card"  [ngClass]="{'gray-card': button.esta_habilitado === false}">
         <mat-card-header>
           <mat-icon mat-card-avatar>business_center</mat-icon>
           <mat-card-title>{{ button.nombre }}</mat-card-title>
@@ -30,8 +33,10 @@
           </div>
         </mat-card-header>
         <img mat-card-image class="card-image" src="{{ button.imagen }}" alt="Imagen de Centro">
-        <mat-card-content style="margin-top: 10px; align-items: center; width: 90%;">
-          <a mat-button color="primary" (click)="redirectToGoogleMaps(button)">
+        <mat-card-content style="margin-top: 10px; align-items: center; width: 90%; display: flex; flex-wrap: wrap;">
+          <a mat-button color="primary" (click)="redirectToGoogleMaps(button)" 
+          style="width: 100%; flex: 1; white-space: nowrap;  
+          overflow: hidden;   text-overflow: ellipsis; flex-shrink: 0;">
             <mat-icon>map</mat-icon>
             {{ button.ubicacion }}
           </a>
@@ -39,17 +44,17 @@
         
         <mat-card-actions style="text-align: center; align-items: center; display: flex; justify-content: center;">
           <mat-button-toggle-group name="buttonGroup">
-            <mat-button-toggle (click)="onReservationClick(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">
+            <mat-button-toggle (click)="onReservationClick(button)" [ngStyle]="{ 'background-color': '#4f72be', 'color': 'white' }" class="button-toggle-custom">
               <mat-icon style="color: white">remove_red_eye</mat-icon>
               Ver
             </mat-button-toggle>
             
-            <mat-button-toggle (click)="onEditCentro(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">
+            <mat-button-toggle (click)="onEditCentro(button)" [ngStyle]="{ 'background-color': '#4f72be', 'color': 'white' }" class="button-toggle-custom">
               <mat-icon style="color: white">edit</mat-icon>
               Editar
             </mat-button-toggle>
             
-            <mat-button-toggle (click)="onEliminar(button)" [ngStyle]="{ 'background-color': '#408dff', 'color': 'white' }" class="button-toggle-custom">
+            <mat-button-toggle (click)="onEliminar(button)" [ngStyle]="{ 'background-color': '#4f72be', 'color': 'white' }" class="button-toggle-custom">
               <mat-icon style="color: white">delete</mat-icon>
               Eliminar
             </mat-button-toggle>
