@@ -61,6 +61,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "options": {
+              "browserTarget": "testApp:build",
+              "disableHostCheck": true
+            },
             "production": {
               "browserTarget": "testApp:build:production"
             },
