@@ -1,7 +1,9 @@
 .main-container {
   align-items: center;
   background-image: url('../../../../assets/back6.png');
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   overflow-y: auto;
   flex-direction: column;
   display: flex;

@@ -5,7 +5,9 @@
     height: 100vh;
     background-image: url('../../../../assets/back4.png');
     margin-left: 15%;
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     flex-direction: column;
     flex: 1;
 }
