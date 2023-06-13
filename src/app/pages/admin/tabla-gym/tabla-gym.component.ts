@@ -16,7 +16,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 })
 
 export class TablaGymComponent {
-  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio';
+  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/registro_gimnasio/hoy';
   searchQuery = '';
   registro: any;
   registroArray: any;

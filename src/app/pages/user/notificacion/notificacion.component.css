@@ -10,7 +10,7 @@
   
 
   .container {
-    width: 90%;
+    width: 95%;
     padding: 10px 0px 10px 0px;
     background-color: rgb(195, 188, 188, 0.8);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
@@ -47,7 +47,7 @@
   
   .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
     width: 100%;
     justify-items: center;
@@ -56,11 +56,11 @@
   
   mat-card {
     background-color: #f2f2f2;
-  width: 350px;
-  min-width: 350px;
-  border-radius: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-  margin-inline: 10px;
+    width: 95%;
+    min-width: 95%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    margin-inline: 10px;
   }
 
   .card-image {

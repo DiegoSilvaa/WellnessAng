@@ -34,7 +34,7 @@ export class ReservaPageComponent implements OnInit{
       this.onDateSelected();
       this.form = this.formBuilder.group({
         hora: ['', Validators.required],
-        cantidad: ['', [Validators.required, Validators.min(1), Validators.max(20)]]
+        cantidad: ['', Validators.required]
       });
   }
 
@@ -52,6 +52,22 @@ export class ReservaPageComponent implements OnInit{
       .subscribe((results: any[]) => {
         this.horasArray = results;
         console.log(results);
+
+        const currentDate = new Date(); // Obtener la fecha y hora actual
+        const horaCurr = currentDate.getHours();
+        const minutosCurr = currentDate.getMinutes();
+        const horaCurrCompleta = horaCurr.toString().padStart(2, '0') + ':' + minutosCurr.toString().padStart(2, '0');
+
+        console.log(horaCurrCompleta)
+        this.horasArray = this.horasArray.filter((horaObj) => {
+          const fecha = new Date(horaObj.hora);
+          const hora = fecha.getHours()+6;
+          const minutos = fecha.getMinutes();
+          const horaCompleta = hora.toString().padStart(2, '0') + ':' + minutos.toString().padStart(2, '0');
+          console.log(hora)
+          // Comparar la fecha actual con la fecha del objeto hora
+          return horaCompleta > horaCurrCompleta;
+        });
   
         for (let i = 0; i < this.horasArray.length; i++) {
           const fecha = new Date(this.horasArray[i].hora);
@@ -77,43 +93,49 @@ export class ReservaPageComponent implements OnInit{
     });
   }
   
-
-
-
   confirmReservation() {
     if (this.form.valid) {
-      console.log(this.form)
-			const confirmacion = confirm('¿Estás seguro de que deseas Reservar este Instalacion?');
+      const cantidadValue = this.form.get('cantidad')?.value;
+  
+      if (cantidadValue < 1 || cantidadValue > 20) {
+        alert('La cantidad debe estar entre 1 y 20.');
+        return; // Detener la ejecución si la cantidad está fuera del rango
+      }
+  
+      console.log(this.form);
+      const confirmacion = confirm('¿Estás seguro de que deseas reservar esta instalación?');
       if (confirmacion) {
         const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/reservacion/matricula/A00832361/instalacion/${this.selectedReserva.id_instalacion}`;
-				console.log(this.form)
-        console.log(this.selected)
-				const formData = new FormData();
-				formData.append('fecha', this.selected.toDateString());
-				formData.append('hora', this.form.get('hora')?.value);
-				formData.append('cantidad_personas',this.form.get('cantidad')?.value);
-
+        console.log(this.form);
+        console.log(this.selected);
+        const formData = new FormData();
+        formData.append('fecha', this.selected.toDateString());
+        formData.append('hora', this.form.get('hora')?.value);
+        formData.append('cantidad_personas', this.form.get('cantidad')?.value);
+  
         const data = {
-          'fecha' : this.selected,
-          'hora' : this.form.get('hora')?.value,
+          'fecha': this.selected,
+          'hora': this.form.get('hora')?.value,
           'cantidad_personas': this.form.get('cantidad')?.value,
         }
-
-				this.http.post(url, data).subscribe((response: any) => {
-					  // La solicitud se ha completado exitosamente
-					this.form.reset();
-					console.log('La solicitud POST se ha completado exitosamente:', response);
-          alert('Reservaste esta instalacion con exito.')
-				},
-					(error) => {
-					  // Se produjo un error al realizar la solicitud
-					  console.error('Error al realizar la solicitud POST:', error);
-            alert('No se puede reservar la misma instalacion en esta fecha.')
-					}
+  
+        this.http.post(url, data).subscribe(
+          (response: any) => {
+            // La solicitud se ha completado exitosamente
+            this.form.reset();
+            console.log('La solicitud POST se ha completado exitosamente:', response);
+            alert('Reservaste esta instalación con éxito.');
+          },
+          (error) => {
+            // Se produjo un error al realizar la solicitud
+            console.error('Error al realizar la solicitud POST:', error);
+            alert('No se puede reservar la misma instalación en esta fecha.');
+          }
         );
       }
     } else {
-      alert("Completa los Campos Requeridos.")
+      alert('Completa los Campos Requeridos.');
     }
   }
+  
 }

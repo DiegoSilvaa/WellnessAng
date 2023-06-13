@@ -20,9 +20,6 @@ export class ReservasDisplayComponent implements OnInit {
   ngOnInit() {
     //console.log(this.currentInstalacion)
     this.getInstalacion();
-    this.refreshInterval = interval(1000).subscribe(() => {
-      this.getInstalacion();
-    });
   }
 
   ngOnDestroy() {
@@ -90,6 +87,9 @@ export class ReservasDisplayComponent implements OnInit {
     
     this.http.put(url,null).subscribe((results: any) => {
       console.log(results)
+      setTimeout(() => {
+        this.getInstalacion();
+      }, 100);
     })
   }
 }

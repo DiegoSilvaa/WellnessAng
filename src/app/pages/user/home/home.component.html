@@ -2,7 +2,7 @@
 <div class="main-container">
   <div class="contents">
     <div class="aforo-container">
-      <label class="title"> Aforo del Gimansio</label>
+      <label class="title"> Aforo del Gimnasio</label>
       <app-spinner-aforo></app-spinner-aforo>
     </div>
     <!-- Contenido para buscar deportes -->
@@ -23,7 +23,7 @@
     <!-- Contenedor de los centros deportivos -->
   <div class="centros-container" *ngFor="let centro of deportesFiltrados">
     <label class="titleCen">{{ centro.nombre }} <a mat-button color="#81c9fa" (click)="redirectToGoogleMaps(centro)">
-      <mat-icon>map</mat-icon> Ubicación
+      <mat-icon>place</mat-icon> Ubicación
     </a></label>
     <!-- Contenido si hay deportes en el centro deportivo -->
     <ng-container *ngIf="centro.deportes?.length; else noReservas">
