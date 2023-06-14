@@ -4,28 +4,52 @@
   <div class="contents">
     <!-- Contenedor de las gráficas -->
     <div class="stats-container">
-      <label class="titleGraf"> Suma de Ingresos acumulados por semana Bloque </label>
+      <label class="titleGraf2" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" > Suma de Ingresos acumulados por semana Bloque </label>
       <div class="cards-grid-container">
         <!-- Cuandros con Total por semana -->
-        <div class="total-card">
-          <label style="font-size: medium; color: lightgray; font-weight: 500;"> TOTAL SEMANA </label>
-          <label style="color: white;font-size: 40px; text-align: center;"> 1000 </label>
+        <div class="total-card" *ngFor="let semana of registrosXSemana">
+          <label style="font-size: medium; color: lightgray; font-weight: 500;"> TOTAL {{semana.semana}} </label>
+          <label style="color: white;font-size: 40px; text-align: center;"> {{semana.cantidad_registros}} </label>
         </div>
     </div>
     <div class="chart-container">
-      <label class="titleGraf"> Estadisticas Semana #Numero </label>
-      <div class="charts-holder">
+      <ng-container *ngFor="let registro of registrosXSemana; let i = index">
+      <label class="titleGraf2" style="margin-bottom: 10px;"> Estadisticas {{registro.semana}} </label>
+      <div class="charts-holder" style="margin-bottom: 20px;">
         <div class="box-container">
           <label class="titleGraf" style="border-radius: 10px;"> Personas con mayor asistencia al Gimansio </label>
+          <div class="button-container">
+            <button mat-raised-button color="primary" 
+        style="background-color: #4f72be; color: rgb(255, 255, 255); width: 50%; height: 30px; font-size: 20px;"
+        (click)="exportToExcelLine(i)">Exportar</button> 
+          </div>
+          <div class="line-chart-container">
+              <canvas [id]="'Line1'+i"></canvas>
+          </div>
         </div>
         <div class="box-container">
           <label class="titleGraf" style="border-radius: 10px;"> Personas con mayor asistencia al Gimansio </label>
-
+          <div class="button-container">
+            <button mat-raised-button color="primary" 
+        style="background-color: #4f72be; color: rgb(255, 255, 255); width: 50%; height: 30px; font-size: 20px;"
+        (click)="exportToExcelPie(i)">Exportar</button> 
+          </div>
+          <div class="line-bar-container">
+              <canvas [id]="'Pie1'+i"></canvas>
+          </div>
         </div>
       </div>
+    </ng-container>
+    <div class="button-container">
+      <button mat-raised-button color="primary" 
+        style="background-color: #4f72be; color: rgb(255, 255, 255); width: 30%; height: 40px; font-size: 20px;"
+        (click)="exportAllToExcel()">Exportar Todo</button> 
+    </div>
     </div>
     <div class="chart-container">
-      <div class="form-field">
+      <label class="titleGraf2" style="margin-bottom: 20px;"> Filtrar Estadisticas por Semana </label>
+      <div class="filter-container">
+        <div class="form-field">
           <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label><mat-icon>event</mat-icon> Fecha:</mat-label>
             <mat-date-range-input [rangePicker]="picker">
@@ -39,26 +63,38 @@
         <button mat-raised-button color="primary" 
         style="background-color: #4f72be; color: rgb(255, 255, 255); margin-bottom: 20px; width: 10%; height: 50px; font-size: 20px;"
         (click)="FiltroGraficas()">Filtrar</button> 
-        <label class="titleGraf"> Registros de Alumnos por Fecha  </label>
-        <div *ngIf="!Linechart1 || fechas?.length === 0" class="no-reservas-text">
-          <p>Los gráficos no se han generado.</p>
-        </div>
-        <!-- Contenedor de la gráfica de línea -->
-        <div class="line-chart-container" *ngIf="Linechart1">
-          <div class="chart-body">
-            <canvas id="Line1">{{Linechart1}}</canvas>
+      </div>  
+        <div class="charts-holder">
+          <div class="box-container">
+            <label class="titleGraf" style="border-radius: 10px; margin-bottom: 10px;"> Registros de Alumnos por Fecha  </label>
+            <div class="button-container" *ngIf="Linechart1">
+              <button mat-raised-button color="primary" 
+          style="background-color: #4f72be; color: rgb(255, 255, 255); width: 50%; height: 30px; font-size: 20px;"
+          (click)="exportToExcelLine1()">Exportar</button> 
+            </div>
+            <div *ngIf="!Linechart1 || fechas?.length === 0" class="no-reservas-text">
+              <p>Filtrar para generar el grafico.</p>
+            </div>
+            <!-- Contenedor de la gráfica de línea -->
+            <div class="line-chart-container">
+              <canvas id="Line1"></canvas>
+            </div>
           </div>
-        </div>
-        <label class="titleGraf"> Personas con mayor asistencia al Gimansio </label>
-        <div *ngIf=" !pie || alumnosReg?.length === 0" class="no-reservas-text">
-          <p>Los gráficos no se han generado.</p>
-        </div>
-        <!-- Contenedor de la gráfica de barras circulares -->
-        <div class="line-bar-container" *ngIf="pie">
-          <div class="chart-body">
-            <canvas id="Pie1">{{pie}}</canvas>
+          <div class="box-container">
+            <label class="titleGraf" style="border-radius: 10px; margin-bottom: 10px;"> Personas con mayor asistencia al Gimansio </label>
+            <div class="button-container" *ngIf="pie">
+              <button mat-raised-button color="primary" 
+          style="background-color: #4f72be; color: rgb(255, 255, 255); width: 50%; height: 30px; font-size: 20px;"
+          (click)="exportToExcelPie1()">Exportar</button> 
+            </div>
+            <div *ngIf=" !pie || alumnosReg?.length === 0" class="no-reservas-text">
+              <p>Filtrar para generar el grafico.</p>
+            </div>
+            <!-- Contenedor de la gráfica de barras circulares -->
+            <div class="line-bar-container">
+              <canvas id="Pie1"></canvas>
+            </div>
           </div>
-        </div>
-    </div>
+      </div>
   </div>
 </div>
