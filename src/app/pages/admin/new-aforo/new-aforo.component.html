@@ -39,15 +39,15 @@
           <div class="form-field">
             <mat-form-field appearance="outline">
               <mat-label><i class="material-icons">sports_soccer</i> Deporte:</mat-label>
-              <mat-select id="deporte" name="deporte" formControlName="deporte" required>
+              <mat-select id="deporte" name="deporte" class="arreglaNames" formControlName="deporte" required>
                 <mat-option *ngFor="let opcion of deportes" [value]="opcion.id_deporte">
                   <div class="button-cont">
                     {{ opcion.nombre_deporte}}
                     <button mat-icon-button color="primary" (click)="editOption(opcion)">
-                      <mat-icon>edit</mat-icon>
+                      <i class="fa-solid fa-pen"></i>
                     </button>
-                    <button mat-icon-button color="warn" (click)="deleteOption(opcion)" >
-                      <mat-icon>delete</mat-icon>
+                    <button mat-icon-button color="warn" (click)="deleteOption(opcion)" aria-label="" >
+                      <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
                 </mat-option>
