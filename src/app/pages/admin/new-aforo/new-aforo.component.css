@@ -173,6 +173,11 @@
   text-align: center;
 }
 
+.small-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .button-cont{
   display: flex;
   align-items: center;
