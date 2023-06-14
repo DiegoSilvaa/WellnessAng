@@ -3,7 +3,9 @@
     height: 100vh;
     background-image: url('../../../../assets/back2.png');
     margin-left: 13%;
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     flex-direction: column;
     align-items: center;
     height: 100vh;

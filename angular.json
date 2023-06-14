@@ -27,7 +27,8 @@
             "styles": [
               "node_modules/angular-calendar/css/angular-calendar.css",
               "src/custom-theme.scss",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           },

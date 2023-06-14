@@ -4,7 +4,9 @@
     align-items: center;
     height: 100vh;
     background-image: url('../../../../assets/back5.png');
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     overflow-y: auto;
     flex-direction: row;
 }
