@@ -76,20 +76,18 @@ export class DashboardComponent implements OnInit {
         datasets: [{
           label: 'Instalaciones',
           data: this.numCentros,
-          backgroundColor: [
-            '#408dff',
-            '#007bff',
-            '#66a3ff',
-            '#005cbf',
-            '#3377ff',
-            '#003f7f'
-          ],
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
         }
-      })
+      }
+    })
   }
 
   onReservationClick(reservation: any): void {

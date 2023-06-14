@@ -172,6 +172,7 @@ export class StatsAforoComponent implements OnInit{
     //console.log(canvas)
     //console.log(this.LinechartData[index])
     if (canvas) {
+      console.log(this.LinechartData[index])
       const ctx = canvas.getContext('2d');
       //console.log(this.lineChartLabel[index].labels)
       if (ctx) {

@@ -4,6 +4,8 @@ import { ReservaService } from 'src/app/services/reserva.service';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, generate, interval } from 'rxjs';
 import { Router } from '@angular/router';
+import { ChartDataset, ChartOptions } from 'chart.js';
+
 @Component({
   selector: 'app-graficas-admin',
   templateUrl: './graficas-admin.component.html',
@@ -16,18 +18,56 @@ export class GraficasAdminComponent {
   constructor(private resRes: ReservaService, private http: HttpClient, private router: Router){}
 
   instalacionGraf : any = this.resRes.instalacionStats;
-  
+  // Chart Options Templates
+  lineChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Semana'
+        }
+      },
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Cantidad de personas'
+        }
+      }
+    }
+  };
     
+  pieChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom'
+      }
+    }
+  };
+  
+
+  startDate!: Date;
+  endDate!: Date;
   ngOnInit(): void {
     this.getStats();
+    this.filtrarFecha();
+    // Obtener la fecha actual
+    const today = new Date();
+    
+    // Obtener la fecha de hace una semana
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(today.getDate() - 7);
+    this.startDate = oneWeekAgo;
+    this.endDate = today;
+    this.filtrarFecha();
+
   }
 
-
-  ngOnDestroy() {
-    if (this.refreshInterval) {
-      this.refreshInterval.unsubscribe();
-    }
-  }
   
   // API http://gymcodersapivm.eastus.cloudapp.azure.com:1433/calificacion_instalacion/{id}
   calificacion:any;
@@ -49,8 +89,6 @@ export class GraficasAdminComponent {
   }
 
   reservasFecha: any;
-  startDate!: Date;
-  endDate!: Date;
   filtrarFecha() {
     // Cantidad de Reservas por Fecha
     this.http.get<any[]>(`http://gymcodersapivm.eastus.cloudapp.azure.com:1433/instalacion/1/estadisticas_reservas_por_dia/fecha_inicial/${this.startDate}/fecha_final/${this.endDate}`)
@@ -80,22 +118,15 @@ export class GraficasAdminComponent {
         datasets: [{
           label: 'Cantidad de Reservas',
           data: values,
-          borderColor: 'rgb(75, 192, 192)',
-          fill: false
+          backgroundColor: "rgba(54, 162, 235, 0.5)",
+          borderColor: "rgb(54, 162, 235)"
         }]
       },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            }
-          }
-        }
+      options: this.lineChartOptions
       })
   }
 
-  BarChart!: Chart<'pie'>;
+  BarChart!: Chart;
   /// BAR CHART  createChart() Grafico de Pie por calificacion
   createBarChart(){
 
@@ -113,18 +144,9 @@ export class GraficasAdminComponent {
         datasets: [{
           label: 'Cantidad De Registros',
           data: values,
-          backgroundColor: [
-            '#A638B2',
-            '#FFE083',
-            '#F06AFF',
-            '#40CCA9',
-            '#41B296'
-          ],
         }]
       },
-      options: {
-        responsive: true,
-        }
+      options: this.pieChartOptions
       })
   }
 

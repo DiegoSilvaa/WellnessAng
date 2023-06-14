@@ -10,31 +10,24 @@
 }
   
 .table-container {
-  position: relative;
   min-height: 200px;
   width: 90%;
-  max-height: 700px;
-  overflow: auto;
+  max-height: 600px;
   background-color: white;
-  padding-top: 1s0px;
   padding-bottom: 20px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-top: 10px;
   align-items: center;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
 .custom-table {
   font-size: 20px; /* Tamaño de fuente */
-  position: relative;
-}
-
-table {
   width: 100%;
 }
-
 
 .custom-table mat-header-cell,
 .custom-table mat-cell {

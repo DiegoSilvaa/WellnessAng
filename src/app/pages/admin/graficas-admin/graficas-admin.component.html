@@ -21,8 +21,8 @@
           style="background-color: #4f72be; color: rgb(255, 255, 255); margin-bottom: 20px; width: 20%; margin-left: 20px;"
           (click)="filtrarFecha()">Filtrar</button> 
       </div>
-      <div class="chart-container2">
-          <div class="line-chart-container">
+      <div class="charts-holder">
+          <div class="box-container">
             <!-- Contenedor del gráfico de líneas -->
             <div class="chart-header">
               <label>Reservaciones</label>
@@ -30,21 +30,21 @@
             <div *ngIf="!Linechart1 " class="no-reservas-text">
               <p>Los gráficos no se han generado.</p>
             </div>
-            <div class="chart-body" style="display: flex; justify-content: center; align-items: center; flex: 1;">
+            <div class="line-chart-container">
               <canvas id="Line1">{{Linechart1}}</canvas>
             </div>
         </div>
-        <div class="pie-chart-container">
+        <div class="box-container">
           <div class="chart-header">
             <label>Calificación De Registros:</label>
           </div> 
-          <div *ngIf=" !BarChart || calificacion?.length === 0" class="no-reservas-text">
+          <div *ngIf=" !BarChart" class="no-reservas-text">
             <p>Los gráficos no se han generado.</p>
           </div>
-            <div class="chart-body" style="display: flex; justify-content: center; align-items: center; flex: 1;">
-                <canvas id="barChart">{{BarChart}}</canvas>
-            </div>
+          <div class="pie-chart-container">
+            <canvas id="barChart">{{BarChart}}</canvas>
           </div>
+        </div>
       </div>
     </div>
     <div class="comentarios-container">
