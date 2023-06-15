@@ -1,23 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  private loggedStatus = JSON.parse(localStorage.getItem('loggedIn')||'false')
-
-  constructor(private http: HttpClient) { }
-
   isLoggedIn = false;
   userType = '';
   username = '';
 
-
-
-  setLoggedIn(value:boolean){
-    this.loggedStatus = value
-    localStorage.setItem('loggedIn', 'true')
+  constructor(private http: HttpClient) {
+    this.restoreAuthData();
   }
 
   login(username: string) {
@@ -26,29 +19,24 @@ export class AuthServiceService {
 
     const alumnoUrl = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/${username}`;
     const adminUrl = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/administrador/${username}`;
-  
-    
+
     this.http.get<any>(alumnoUrl).subscribe(
       alumnoResponse => {
         console.log('Respuesta alumno:', alumnoResponse.data.length);
-        // Verifica si el array de respuesta está vacío
         if (alumnoResponse.data.length === 0) {
-          // Intenta consultar la URL de administrador
           this.http.get<any>(adminUrl).subscribe(
             adminResponse => {
               if (adminResponse.data.length !== 0) {
                 console.log('Respuesta admin:', adminResponse);
-                // Realiza acciones con la respuesta del servidor
                 this.userType = 'admin';
                 this.isLoggedIn = true;
                 this.username = username;
-                console.log(this.userType, this.isLoggedIn)
+                this.saveAuthData(); // Guarda los datos de autenticación en localStorage
                 return;
               }
             },
             adminError => {
               console.error('Error admin:', adminError);
-              // Realiza acciones en caso de error
               return;
             }
           );
@@ -56,6 +44,7 @@ export class AuthServiceService {
           this.userType = 'user';
           this.isLoggedIn = true;
           this.username = username;
+          this.saveAuthData(); // Guarda los datos de autenticación en localStorage
           return;
         } else {
           console.error('Error alumno');
@@ -64,22 +53,42 @@ export class AuthServiceService {
       },
       alumnoError => {
         console.error('Error alumno:', alumnoError);
-        // Realiza acciones en caso de error
       }
     );
   }
-  
-  
-  
-  
-  //Se reinician las variables de autentificacion
+
   logout(): void {
     this.isLoggedIn = false;
     this.userType = '';
     this.username = '';
+    this.clearAuthData(); // Elimina los datos de autenticación de localStorage
   }
 
   isAuthenticated(): boolean {
     return this.isLoggedIn;
+  }
+
+  private saveAuthData(): void {
+    localStorage.setItem('isLoggedIn', String(this.isLoggedIn));
+    localStorage.setItem('userType', this.userType);
+    localStorage.setItem('username', this.username);
+  }
+
+  private clearAuthData(): void {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('username');
+  }
+
+  private restoreAuthData(): void {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userType = localStorage.getItem('userType');
+    const username = localStorage.getItem('username');
+
+    if (isLoggedIn && userType && username) {
+      this.isLoggedIn = isLoggedIn === 'true';
+      this.userType = userType;
+      this.username = username;
+    }
   }
 }
