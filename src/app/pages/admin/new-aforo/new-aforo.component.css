@@ -3,7 +3,9 @@
     align-items: center;
     height: 100vh;
     background-image: url('../../../../assets/back.png');
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     margin-left: 13%;
     flex-direction: column;
   }
@@ -163,12 +165,27 @@
     margin-bottom: 10px;
 }
 
+.arreglaNames .mat-select-trigger{
+  justify-content: center;
+}
+
+.arreglaNames .mat-select-panel {
+  text-align: center;
+}
+
+.small-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .button-cont{
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content:right;
 }
+
+
 
 @media (max-width: 768px) {
   .containers {
