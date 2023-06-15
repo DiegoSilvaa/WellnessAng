@@ -5,12 +5,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private loggedStatus = JSON.parse(localStorage.getItem('loggedIn')||'false')
+
   constructor(private http: HttpClient) { }
 
   isLoggedIn = false;
   userType = '';
   username = '';
 
+
+
+  setLoggedIn(value:boolean){
+    this.loggedStatus = value
+    localStorage.setItem('loggedIn', 'true')
+  }
 
   login(username: string) {
     this.isLoggedIn = false;
@@ -19,6 +27,7 @@ export class AuthServiceService {
     const alumnoUrl = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/${username}`;
     const adminUrl = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/administrador/${username}`;
   
+    
     this.http.get<any>(alumnoUrl).subscribe(
       alumnoResponse => {
         console.log('Respuesta alumno:', alumnoResponse.data.length);
