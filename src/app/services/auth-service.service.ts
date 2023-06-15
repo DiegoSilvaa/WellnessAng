@@ -10,66 +10,64 @@ export class AuthServiceService {
   isLoggedIn = false;
   userType = '';
   username = '';
-  success = false;
-  pending = false;
-  error = false;
 
-  //Checar si el username es valido acorde a sus credenciales
-  login(username: string, password: string): boolean {
-		const url = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/login';
 
-    // Cuerpo de datos que enviarás en la solicitud POST
-    const body = {
-      "matricula": username,
-      "password": password
-    };
+  login(username: string) {
+    this.isLoggedIn = false;
+    this.userType = '';
 
-    this.http.post(url, body).subscribe(
-      response => {
-        console.log('Respuesta:', response);
-        // Realiza acciones con la respuesta del servidor
-        this.userType = 'user';
-        this.isLoggedIn = true;
+    const alumnoUrl = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/${username}`;
+    const adminUrl = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/administrador/${username}`;
+  
+    this.http.get<any>(alumnoUrl).subscribe(
+      alumnoResponse => {
+        console.log('Respuesta alumno:', alumnoResponse.data.length);
+        // Verifica si el array de respuesta está vacío
+        if (alumnoResponse.data.length === 0) {
+          // Intenta consultar la URL de administrador
+          this.http.get<any>(adminUrl).subscribe(
+            adminResponse => {
+              if (adminResponse.data.length !== 0) {
+                console.log('Respuesta admin:', adminResponse);
+                // Realiza acciones con la respuesta del servidor
+                this.userType = 'admin';
+                this.isLoggedIn = true;
+                this.username = username;
+                console.log(this.userType, this.isLoggedIn)
+                return;
+              }
+            },
+            adminError => {
+              console.error('Error admin:', adminError);
+              // Realiza acciones en caso de error
+              return;
+            }
+          );
+        } else if (alumnoResponse.data.length !== 0){
+          this.userType = 'user';
+          this.isLoggedIn = true;
+          this.username = username;
+          return;
+        } else {
+          console.error('Error alumno');
+          return;
+        }
       },
-      error => {
-        console.error('Error:', error);
+      alumnoError => {
+        console.error('Error alumno:', alumnoError);
         // Realiza acciones en caso de error
       }
     );
-
-
-    if (username === 'diego') {
-      this.userType = 'user';
-      this.isLoggedIn = true;
-      this.username = username;
-      return true;
-    } else if (username === 'alan') {
-      this.userType = 'registro';
-      this.isLoggedIn = true;
-      this.username = username;
-      return true;
-    } else if (username === 'perro'){
-      this.userType = 'admin';
-      this.isLoggedIn = true;
-      this.username = username;
-      return true;
-    }
-
-    //Si el ususario es invalido, da error = true
-    this.error = true;
-    this.pending = false;
-    console.log(this.error)
-    return false;
   }
-
+  
+  
+  
+  
   //Se reinician las variables de autentificacion
   logout(): void {
     this.isLoggedIn = false;
     this.userType = '';
     this.username = '';
-    this.pending = false;
-    this.success = false;
-    this.error = false;
   }
 
   isAuthenticated(): boolean {

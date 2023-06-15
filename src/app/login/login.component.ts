@@ -24,28 +24,28 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 	  this.form = this.formBuilder.group({
   		username: ['', Validators.required],
-  		password: ['', Validators.required],
 	  });
 	}
 
-  access : boolean = false;
   submit() {
-
+    
     // PROBAR ESTA FUNCIONALIDAD CUANDO ESTE LISTA EL BACKEND
-    this.access = this.authService.login(this.form.get('username')?.value, this.form.get('password')?.value)
-    if (this.access) {
-      console.log(`${this.form.get('username')?.value} ----- ${this.form.get('password')?.value}`);
-      if (this.authService.userType === 'admin') {
-        this.router.navigate(['/dashboard']);
-      } else if (this.authService.userType === 'user') {
-        this.router.navigate(['/home']);
-      } else if (this.authService.userType === 'registro') {
-        this.router.navigate(['/registroModulo']);
-      }
-    } else {
-      alert('Por favor, completa todos los campos requeridos.');
-    }
+    this.authService.login(this.form.get('username')?.value);
 
+    setTimeout(() => {
+      if (this.form.valid) {
+        if (this.authService.isLoggedIn) {
+          if (this.authService.userType === 'admin') {
+            this.router.navigate(['/dashboard']);
+          } else if (this.authService.userType === 'user') {
+            this.router.navigate(['/home']);
+          } } else {
+          alert('Por favor, escriba bien el nombre de Usuario.');
+        }
+      } else {
+        alert('Complete el campo por favor.')
+      }
+    }, 1000);
   }
 }
 

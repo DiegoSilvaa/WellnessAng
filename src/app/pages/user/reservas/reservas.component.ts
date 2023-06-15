@@ -3,6 +3,7 @@ import { Booking } from 'src/app/clases/booking';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, interval } from 'rxjs';
 import { forkJoin } from 'rxjs';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-reservas',
@@ -10,12 +11,11 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./reservas.component.css']
 })
 export class ReservasComponent implements OnInit {
-  API : string = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/a00832361/reservaciones';
   reservas: any;
   reservasArray: any;
   private refreshInterval!: Subscription;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private auth: AuthServiceService) { 
     this.reservas = [];
   }
 
@@ -29,6 +29,7 @@ export class ReservasComponent implements OnInit {
     }
   }
   
+  API : string = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/alumno/${this.auth.username}/reservaciones`;
 
   getCentros() {
     this.http.get<any[]>(this.API).subscribe((results: any) => {

@@ -7,7 +7,7 @@ import { DateAdapter } from '@angular/material/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 @Component({
   selector: 'app-reserva-page',
   templateUrl: './reserva-page.component.html',
@@ -23,7 +23,8 @@ export class ReservaPageComponent implements OnInit{
   minDate!: Date;
   maxDate!: Date;
 
-  constructor(private router: Router, private resService: ReservaService, private http: HttpClient,private formBuilder: FormBuilder) {}
+  constructor(private router: Router, private resService: ReservaService, private http: HttpClient,private formBuilder: FormBuilder
+    , private auth:AuthServiceService) {}
 
   form!: FormGroup;
   ngOnInit(): void {
@@ -105,7 +106,7 @@ export class ReservaPageComponent implements OnInit{
       console.log(this.form);
       const confirmacion = confirm('¿Estás seguro de que deseas reservar esta instalación?');
       if (confirmacion) {
-        const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/reservacion/matricula/A00832361/instalacion/${this.selectedReserva.id_instalacion}`;
+        const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/reservacion/matricula/${this.auth.username}/instalacion/${this.selectedReserva.id_instalacion}`;
         console.log(this.form);
         console.log(this.selected);
         const formData = new FormData();

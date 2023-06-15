@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgxImageCompressService } from 'ngx-image-compress';
-	
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 @Component({
   selector: 'app-crear-aviso',
   templateUrl: './crear-aviso.component.html',
   styleUrls: ['./crear-aviso.component.css']
 })
 export class CrearAvisoComponent implements OnInit {  
-	constructor(private formBuilder: FormBuilder, private http: HttpClient, private imageCompress: NgxImageCompressService) { }
+	constructor(private formBuilder: FormBuilder, private http: HttpClient, private imageCompress: NgxImageCompressService
+		, private auth:AuthServiceService) { }
 	form!: FormGroup;
 
 	ngOnInit() {
@@ -19,7 +20,7 @@ export class CrearAvisoComponent implements OnInit {
 	buildForm() {
 	  this.form = this.formBuilder.group({
 		titulo: ['', Validators.required],
-		numeroNom: ['', Validators.required],
+		numeroNom: [this.auth.username, Validators.required],
 		descripcion: ['', Validators.required],
 		start: ['', Validators.required],
 		end: ['', Validators.required],
@@ -30,7 +31,7 @@ export class CrearAvisoComponent implements OnInit {
 	if (this.form.valid) {
 		const confirmacion = confirm('¿Estás seguro de que deseas crear una alerta?');
     	if (confirmacion) {
-			const url = 'http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/num_nomina/admin1';
+			const url = `http://gymcodersapivm.eastus.cloudapp.azure.com:1433/avisos/num_nomina/${this.auth.username}`;
 	
 		    const formData = new FormData();
 		    formData.append('titulo', this.form.get('titulo')?.value);

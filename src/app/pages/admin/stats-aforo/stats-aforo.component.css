@@ -157,8 +157,10 @@ button {
 
 .button-container{
   width: 100%;
-  padding: 10px;
   align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
 }

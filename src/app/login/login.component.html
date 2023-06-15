@@ -8,15 +8,7 @@
           <mat-form-field appearance="outline" style="width: 100%">
             <mat-label><i class="material-icons">person</i> Nombre:</mat-label>
             <input type="text" id="nombre" name="nombre" matInput formControlName="username" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label><i class="material-icons">lock</i> Contraseña:</mat-label>
-            <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" matInput formControlName="password" required>
-            <mat-icon matSuffix (click)="togglePasswordVisibility()">
-              {{ showPassword ? 'visibility' : 'visibility_off' }}
-            </mat-icon>
-          </mat-form-field>
-          
+          </mat-form-field>          
         </div>  
         <button mat-button color="primary" style="background-color: #070AB2; color: rgb(255, 255, 255);" class="mat-elevation-z4;"> Iniciar </button>
       </form>
