@@ -35,31 +35,6 @@ import { AuthGuard } from '../services/can-activate.service';
 import { ErrorComponent } from '../components/error/error.component';
 
 const routes: Routes = [
-<<<<<<< Updated upstream
-  { path: '', component: LoginComponent, },
-  { path: 'home', component: HomeComponent },
-  { path: 'perfil', component: PerfilComponent,  },
-  { path: 'reservas', component: ReservasComponent,   },
-  { path: 'reservaPage', component: ReservaPageComponent,},
-  { path: 'reservaConf', component: ReservaPageConfComponent,  },
-  { path: 'notificacion', component: NotificacionComponent,  },
-  { path: 'notificacionConf', component: NotificacionConfComponent,  },
-  { path: 'alertas', component: AlertasComponent,  },
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'aforo', component: NewAforoComponent,  },
-  { path: 'newCentro', component: NewCentroComponent,  },
-  { path: 'newReservas', component: NewreservacionesComponent,  },
-  { path: 'registroModulo', component: RegistroModuloComponent},
-  { path: 'crearAviso', component: CrearAvisoComponent,  },
-  { path: 'editarAviso', component: EditarAvisoComponent,  },
-  { path: 'dispReserva', component: ReservasDisplayComponent,  },
-  { path: 'graficasAdmin', component: GraficasAdminComponent,  },
-  { path: 'statsAdmin', component: StatsAforoComponent,  },
-  { path: 'instalacionesUser', component: InstalacionesDisplayComponent, },
-  { path: 'editCentro', component: EditarCentroComponent, },
-  { path: 'editInstalacion', component: EditarInstalacionComponent, },
-  { path: 'tablaGym', component: TablaGymComponent, },
-=======
   { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent,  canActivate: [AuthGuard]},
   { path: 'perfil', component: PerfilComponent,  canActivate: [AuthGuard] },
@@ -83,7 +58,6 @@ const routes: Routes = [
   { path: 'editCentro', component: EditarCentroComponent, canActivate: [AuthGuard] },
   { path: 'editInstalacion', component: EditarInstalacionComponent, canActivate: [AuthGuard] },
   { path: 'tablaGym', component: TablaGymComponent, canActivate: [AuthGuard] },
->>>>>>> Stashed changes
   { path: '**', component: ErrorComponent},
 ];
 
