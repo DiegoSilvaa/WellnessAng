@@ -35,7 +35,7 @@ import { AuthGuard } from '../services/can-activate.service';
 import { ErrorComponent } from '../components/error/error.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent,  canActivate: [AuthGuard]},
+  { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent,  canActivate: [AuthGuard]},
   { path: 'perfil', component: PerfilComponent,  canActivate: [AuthGuard] },
   { path: 'reservas', component: ReservasComponent,  canActivate: [AuthGuard]  },
